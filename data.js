@@ -1130,28 +1130,186 @@ window.SITE_DATA = {
       id: "chapter-08",
       num: "Chapter 08",
       short: "第8章",
-      title: "講座LPと申込導線",
+      title: "講師専用サイト作成",
       outcome: [
-        "講座LPの構成案",
-        "申込から受講までの流れ図",
-        "FAQリスト",
+        "note講師専用ページの構成",
+        "仕入れ先・動画・資料のまとめ方",
+        "STUDIO集客ページの整理",
       ],
       bridge: {
         app: "Academy",
-        text: "ここで作った講座LPの構成は、Academyアプリの講座ページにそのまま落とし込めます。本部が作った講座ページを講師ページにも反映できるため、講師ごとに営業ページを持たせることができます。",
+        text: "まずは今あるツール(note/STUDIO)で講師専用サイトの仕組みを作りましょう。将来、Academyアプリの構築が終わったら、ここで手作業で整えた講師専用ページ・仕入れ先・教材配布・講師一覧を、Academy上で一元管理できるようになります。必要になったときに移せばOKです。",
       },
       learn: [
-        "申し込まれる講座LPの構成",
-        "価格の見せ方",
-        "申込フォームの設計",
-        "受講までの案内フロー",
+        "講師専用サイトとDiscordの役割の違い",
+        "noteとSTUDIOの使い分け",
+        "講師専用ページ(仕入れ先・動画・資料)の作り方",
+        "下書き共有リンクでの限定公開",
       ],
       sample: false,
-      body: null,
+      body: `
+<p>認定講師が「いつでも必要な情報にアクセスできる環境」を作ることが、講師の自走を支える基盤です。MUSUBIではnoteとSTUDIOを役割で使い分け、講座ごとに専用ページを設けています。</p>
+<div class="quotebox">
+<p><strong>🗣️ @ayumiの実体験</strong></p>
+<p>「MUSUBIの講師専用ページはSTUDIOの非公開ページで作っています。その中に作り方動画・手順・資料・Q&Aなど、講師が開講するために必要な情報を整理しています。仕入れるものの一覧は、アフィリエイトリンクをまとめたnoteのページを用意し、STUDIOの講師専用ページからそのnoteへの入口リンクを貼っています。講座ごとの専用ページと全講師共通ページの両方を作り、必要な情報が一箇所にまとまるようにしています。」</p>
+</div>
+
+<h3>◆ 8-1　なぜ講師専用サイトが必要か</h3>
+<p>「情報はDiscordで共有すればいい」と思うかもしれませんが、専用サイトとDiscordは役割が違います。</p>
+<table class="tbl">
+<thead><tr><th></th><th>講師専用サイト(STUDIO・note)</th><th>Discord</th></tr></thead>
+<tbody>
+<tr><td>役割</td><td>情報の「保管庫」</td><td>コミュニティの「広場」</td></tr>
+<tr><td>使い方</td><td>いつでも見返せる固定コンテンツ</td><td>リアルタイムの交流・質問・お知らせ</td></tr>
+<tr><td>向いている情報</td><td>仕入れ先・動画・資料・手順説明</td><td>質問回答・成果報告・新情報の共有</td></tr>
+<tr><td>情報の流れ方</td><td>変わらない・積み上がる</td><td>流れていく・埋もれる</td></tr>
+</tbody>
+</table>
+<p>専用サイトがあることで「あの情報どこだっけ？」という状況がなくなり、講師が自信を持って開講できます。</p>
+
+<h3>◆ 8-2　noteとSTUDIOの使い分け</h3>
+<p>noteとSTUDIOは役割で使い分けます。まず全体像を図で確認しましょう。</p>
+<figure class="figure-wide">
+<img src="images/ch08-role-division.png" alt="講師専用ページの役割分担。STUDIOの非公開ページに動画・レシピ資料・講師向け情報・Q&Aをまとめ、仕入れ先一覧はnoteへリンクして使い分ける">
+<figcaption>図8-1｜講師専用ページの役割分担。講師向け情報はSTUDIOの非公開ページにまとめ、仕入れ先一覧はnoteへリンクして使い分けます。</figcaption>
+</figure>
+<div class="feature-list">
+<div class="feature"><div class="f-head">🌐 STUDIO（講師専用ページの本体）</div><p><strong>役割：</strong>講師専用ページを<strong>非公開ページ</strong>として作成する場所<br><strong>特徴：</strong>作り方動画・手順・資料ダウンロード・Q&A・開講の流れなどを整理して格納。デザイン自由度が高くブランド表現に最適<br><span style="color:var(--copper)">💡 講座ごとの専用ページ＋全講師共通ページを非公開で作成し、URLを認定講師にのみ共有する。※STUDIOは一般公開の公式サイト(講座紹介・申込)にも使う</span><br><a href="https://studio.design/" target="_blank" rel="noopener" style="color:var(--bluegray);font-weight:700">STUDIO を見る →</a></p></div>
+<div class="feature"><div class="f-head">📝 note（仕入れ一覧・アフィリエイト）</div><p><strong>役割：</strong>講師が仕入れるもの(材料・道具)の一覧を、アフィリエイトリンク付きでまとめる場所<br><strong>特徴：</strong>「何をどこで買うか」を一覧化。講師が仕入れるたびに報酬が入る<br><span style="color:var(--copper)">💡 STUDIOの講師専用ページから、このnoteの仕入れ一覧へ入口リンクを貼る</span><br><a href="https://note.com/" target="_blank" rel="noopener" style="color:var(--bluegray);font-weight:700">note を見る →</a></p></div>
+</div>
+<div class="callout">
+<p><strong>💡 使い分けの基準</strong></p>
+<ul>
+<li>動画・手順・資料・Q&Aなど講師専用の情報 → STUDIO(非公開ページ)</li>
+<li>仕入れるもののアフィリエイト一覧 → note</li>
+<li>一般公開していい情報(講座紹介・受講生の声・申し込み) → STUDIO(公開ページ)</li>
+<li>STUDIOの講師専用ページ内に、noteの仕入れ一覧への入口リンクを設置する</li>
+</ul>
+</div>
+
+<h3>◆ 8-3　STUDIOの講師専用ページ構成</h3>
+<p>MUSUBIでは「講座ごとの専用ページ」と「全講師共通ページ」の2種類を作成しています。受講した講座の専用ページには講座固有の情報、共通ページには全講師が使う情報をまとめています。</p>
+<figure class="figure-wide">
+<img src="images/ch08-instructor-site-example.png" alt="図8-2 実際の講師専用サイト例。STUDIOの非公開ページに講師専用ページトップ・動画レッスン内容・材料仕入れ情報・案内サポートを整理し、必要に応じてnoteの仕入れ先一覧へリンクする構成">
+</figure>
+<p><strong>▶ ページ①　講座ごとの専用ページ(例：CACM専用ページ)</strong></p>
+<table class="tbl">
+<thead><tr><th>コンテンツ</th><th>内容</th><th>更新頻度</th></tr></thead>
+<tbody>
+<tr><td>作り方動画</td><td>YouTube限定公開リンク(工程ごと)</td><td>材料・手順変更時</td></tr>
+<tr><td>仕入れ一覧(note)</td><td>noteの仕入れアフィリエイト一覧への入口リンク</td><td>仕入れ先変更時・随時</td></tr>
+<tr><td>各種資料ダウンロード</td><td>ワークショップシート・カラーチャート・ブレンドリストなど</td><td>内容更新時</td></tr>
+<tr><td>Q&A</td><td>よくある質問と回答</td><td>講師からの質問をもとに随時追加</td></tr>
+<tr><td>登録・コミュニティ参加</td><td>登録フォーム・Discordリンク</td><td>変更時のみ</td></tr>
+<tr><td>認定講座開講について</td><td>開講の流れ・仕入れページリンク・講座の進め方</td><td>変更時のみ</td></tr>
+</tbody>
+</table>
+<p><strong>▶ ページ②　全講師共通ページ</strong></p>
+<p>全講師に共通して必要な情報は、別の共通ページにまとめます。講座専用ページと分けることで管理がシンプルになります。</p>
+<ul>
+<li>Discordコミュニティへの参加リンク・案内</li>
+<li>インストラクター登録フォームリンク</li>
+<li>全講師共通のお知らせ・規約</li>
+<li>キット仕入れページへのリンク(共通)</li>
+</ul>
+<p><strong>▶ STUDIO非公開ページの作り方と共有</strong></p>
+<div class="feature-list">
+<div class="feature"><div class="f-head">STEP 1　STUDIOで講師専用ページを作成する</div><p>講座ごとの専用ページ＋全講師共通ページを用意する。タイトルは受講者以外が見てもわかりにくい名前にしない</p></div>
+<div class="feature"><div class="f-head">STEP 2　コンテンツを配置する</div><p>作り方動画・手順・資料ダウンロード・Q&A、noteの仕入れ一覧への入口リンクを整理して配置する</p></div>
+<div class="feature"><div class="f-head">STEP 3　ページを「非公開」に設定する</div><p>STUDIOのページ設定で非公開(パスワード保護など)にする。一般公開ページと混同しないよう分けて管理する</p></div>
+<div class="feature"><div class="f-head">STEP 4　URLを認定講師に共有する</div><p>Discordのお知らせチャンネルまたは個別DM。キット発送時の同封書類に記載する方法も◎</p></div>
+</div>
+<div class="callout callout-warn">
+<p><strong>⚠️ 非公開ページの注意点</strong></p>
+<ul>
+<li>非公開ページのURL・パスワードを知っている人は閲覧できる → SNSや公開ページには貼らない</li>
+<li>一般公開ページと非公開ページを混同しない → 最初にどちらに置くか決めておく</li>
+<li>URLが流出した場合は設定を変更して再共有する</li>
+</ul>
+</div>
+
+<h3>◆ 8-4　掲載コンテンツの作り方</h3>
+<p><strong>▶ ① 仕入れ一覧(note)の整理方法</strong></p>
+<p>仕入れるものの一覧は<strong>note</strong>にまとめ、STUDIOの講師専用ページからリンクします。「何の材料か」→「仕入れ先名」→「URL(アフィリエイト)」→「備考(最低発注数・価格目安)」の順で整理します。</p>
+<table class="tbl">
+<thead><tr><th>材料・道具</th><th>仕入れ先</th><th>URL</th><th>備考</th></tr></thead>
+<tbody>
+<tr><td>○○(材料名)</td><td>楽天・Amazon等</td><td>※アフィリエイトリンクに変換</td><td>最低○個〜・¥○○程度</td></tr>
+<tr><td>○○(材料名)</td><td>専門卸サイト</td><td>※アフィリエイトリンクに変換</td><td>業者価格・まとめ買い推奨</td></tr>
+<tr><td>梱包資材</td><td>100均・ホームセンター</td><td>参考商品リンク</td><td>店頭でも入手可能</td></tr>
+</tbody>
+</table>
+<div class="callout">
+<p><strong>💡 アフィリエイトリンクを活用する</strong></p>
+<ul>
+<li>仕入れ先URLをそのまま貼るより、アフィリエイトリンクに変換して貼る</li>
+<li>「もしもアフィリエイト」に登録(無料) → 楽天・Amazon等のリンクを取得</li>
+<li>講師が仕入れるたびに少額の報酬が入る、完全自動の収益になる</li>
+</ul>
+</div>
+<p><strong>▶ ② 作り方動画リンクの管理</strong></p>
+<ul>
+<li>YouTubeで動画を「限定公開」に設定してURLをコピー</li>
+<li>STUDIOの講師専用ページに「① ○○の作り方」→リンク、の形で貼り付ける</li>
+<li>動画を更新した場合は同じURLで差し替え(YouTubeの「動画を置き換え」機能)</li>
+<li>動画のタイトルは「【CACM専用】○○の作り方」など。公開されても内容がわかりにくい名前に</li>
+</ul>
+<p><strong>▶ ③ 各種資料のダウンロード設定</strong></p>
+<ul>
+<li>CanvaでPDF作成 → Googleドライブにアップロード → 共有リンクを「リンクを知っている人が閲覧可」に設定</li>
+<li>STUDIOの講師専用ページにダウンロードリンクとして貼り付ける</li>
+<li>ワークショップシート・カラーチャート・ブレンドリストなどが対象</li>
+</ul>
+
+<h3>◆ 8-5　STUDIOを講座集客に活かす</h3>
+<p>STUDIOは一般向けの公開情報を整備する場所です。講師が集客するために必要な情報も、STUDIOを充実させることで間接的にサポートできます。</p>
+<p><strong>▶ 認定講師一覧ページ</strong></p>
+<ul>
+<li>受講後に登録フォームで講師情報を収集 → STUDIOに掲載</li>
+<li>掲載内容：講師名・活動エリア・SNSリンク(希望者のみ)</li>
+<li>掲載されることで講師のモチベーションが上がる・問い合わせが来る</li>
+</ul>
+<p><strong>▶ 今すぐSTUDIOに追加すべきページ</strong></p>
+<table class="tbl">
+<thead><tr><th>ページ</th><th>内容</th><th>効果</th></tr></thead>
+<tbody>
+<tr><td>認定講師一覧</td><td>講師名・エリア・SNSリンク</td><td>講師のモチベーション向上・口コミ集客</td></tr>
+<tr><td>受講生の声</td><td>顔写真＋コメント(許可を得て)</td><td>新規受講生の申し込み率UP</td></tr>
+<tr><td>よくある質問</td><td>価格・内容・受講後の流れ</td><td>問い合わせ対応の手間削減</td></tr>
+<tr><td>申し込みボタン</td><td>各ページ最下部に設置</td><td>申し込み機会の最大化</td></tr>
+</tbody>
+</table>
+
+<h3>◆ 8-6　専用サイトの運用と更新</h3>
+<p>専用サイトは作って終わりではありません。講師からの質問・仕入れ先の変更・動画の更新などに合わせて定期的に更新します。</p>
+<table class="tbl">
+<thead><tr><th>更新タイミング</th><th>更新内容</th><th>ツール</th></tr></thead>
+<tbody>
+<tr><td>仕入れ先変更時</td><td>noteの仕入れ一覧のURLを差し替え</td><td>note</td></tr>
+<tr><td>動画を撮り直したとき</td><td>YouTubeで差し替え → URLはそのまま</td><td>YouTube</td></tr>
+<tr><td>講師から同じ質問が多いとき</td><td>Q&Aに追加</td><td>STUDIO</td></tr>
+<tr><td>新しい資料を作ったとき</td><td>ダウンロードリンクを追加</td><td>STUDIO＋Googleドライブ</td></tr>
+<tr><td>新しい認定講師が誕生したとき</td><td>認定講師一覧に追加</td><td>STUDIO</td></tr>
+<tr><td>講座内容・価格変更時</td><td>講座紹介ページを更新</td><td>STUDIO</td></tr>
+</tbody>
+</table>
+<div class="callout">
+<p><strong>💡 更新を楽にする工夫</strong></p>
+<ul>
+<li>STUDIOの講師専用ページ構成は最初からシンプルにしておく。後から追加しやすい構成にする</li>
+<li>GoogleドライブのフォルダをSTUDIO・noteと対応させて整理すると更新がスムーズ</li>
+<li>Discordの「質問・相談」チャンネルで出た質問をQ&Aに転記するルーティンを作る</li>
+</ul>
+</div>
+`,
       checklist: [
-        "講座LPの構成案を作った",
-        "申込から受講までの流れを図にした",
-        "FAQを10個書き出した",
+        "STUDIOで講師専用ページ(非公開)を作成した",
+        "noteで仕入れ一覧(アフィリエイト)を作成した",
+        "STUDIOの講師専用ページからnoteの仕入れ一覧へリンクした",
+        "YouTube動画リンクをSTUDIOの講師専用ページに貼り付けた",
+        "各種資料をGoogleドライブにアップしてリンクを貼った",
+        "講師専用ページのURLを認定講師に共有した",
+        "STUDIOに認定講師一覧・受講生の声・申し込みボタンを追加した",
       ],
     },
     {
