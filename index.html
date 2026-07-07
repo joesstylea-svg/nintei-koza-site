@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>認定講座構築プログラム｜スキルを、仕組みに変える。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --bg-soft:#FAFAF8; --bg-warm:#F4F2EF;
+  --bg-blue:#EAF6FA; --bg-orange:#FFF3E4;
+  --ink:#2F2F2F; --body:#3F3A36; --ink-2:#6F6A64; --ink-3:#9A948C;
+  --line:#E5E2DD; --line-2:#D8D2CA;
+  --orange:#E7A147; --orange-deep:#D98F2F;
+  --copper:#B87955; --copper-soft:#D8B8A8;
+  --blue:#56BFD6; --bluegray:#4B6678;
+  --green:#6B9A6B;
+  --serif:"Shippori Mincho","Hiragino Mincho ProN",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  --maxw:1160px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.95;font-size:16px;font-weight:500;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+::selection{background:var(--bg-orange);color:var(--orange-deep)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd-in{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:.06em}
+.logo small{display:block;font-family:var(--sans);font-weight:500;font-size:10px;color:var(--orange);letter-spacing:.24em;line-height:1.2}
+nav.gnav{display:flex;gap:24px;align-items:center;font-size:14.5px;font-weight:700;color:var(--ink-2)}
+nav.gnav a{padding:4px 2px;border-bottom:2px solid transparent}
+nav.gnav a:hover{color:var(--orange-deep)}
+nav.gnav a.active{color:var(--ink);border-bottom-color:var(--orange)}
+.nav-login{border:1.5px solid var(--line-2);border-radius:999px;padding:7px 18px;font-size:13px}
+.nav-login:hover{border-color:var(--orange);color:var(--orange-deep)}
+.hamb{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.hamb span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
+.m-menu{display:none;background:#fff;border-bottom:1px solid var(--line);padding:12px 24px 22px}
+.m-menu a{display:block;padding:12px 4px;border-bottom:1px solid var(--line);font-size:15px;font-weight:700}
+.m-menu a.nav-login{border:none;border-bottom:1px solid var(--line);border-radius:0;padding:12px 4px}
+.m-menu.open{display:block}
+
+/* ---------- layout ---------- */
+main{min-height:70vh}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.sec{padding:84px 0}
+.sec-soft{background:var(--bg-soft)}
+.sec-blue{background:var(--bg-blue)}
+.sec-orange{background:var(--bg-orange)}
+.kicker{font-size:12px;letter-spacing:.28em;color:var(--orange-deep);font-weight:700;margin-bottom:16px;text-transform:uppercase}
+h1.display{font-size:clamp(32px,5vw,52px);line-height:1.4;font-weight:700;letter-spacing:.02em}
+h2.sec-t{font-size:clamp(23px,3vw,32px);line-height:1.55;font-weight:700;letter-spacing:.02em;margin-bottom:18px}
+.lede{color:var(--body);font-size:16px;max-width:660px}
+.center{text-align:center}
+.center .lede{margin:0 auto}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-block;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:700;letter-spacing:.04em;transition:.2s;cursor:pointer;border:none;font-family:var(--sans);text-align:center;line-height:1.6}
+.btn-p{background:var(--orange);color:#fff;box-shadow:0 4px 14px rgba(231,161,71,.3)}
+.btn-p:hover{background:var(--orange-deep);transform:translateY(-1px)}
+.btn-copper{background:var(--copper);color:#fff}
+.btn-copper:hover{opacity:.9;transform:translateY(-1px)}
+.btn-slate{background:var(--bluegray);color:#fff}
+.btn-slate:hover{opacity:.88;transform:translateY(-1px)}
+.btn-s{background:#fff;border:1.5px solid var(--line-2);color:var(--ink)}
+.btn-s:hover{border-color:var(--orange);color:var(--orange-deep)}
+.btn-sm{padding:9px 20px;font-size:13.5px;border-radius:10px}
+.btn-block{display:block;width:100%}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.btn-row.center{justify-content:center}
+
+/* ---------- hero ---------- */
+.hero{padding:88px 0 84px;background:linear-gradient(180deg,#fff 0%,var(--bg-blue) 130%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero .sub{margin:26px 0 0;color:var(--body);max-width:540px;font-size:16px}
+.sub-cta{margin-top:20px;font-size:14px;font-weight:700}
+.sub-cta a{color:var(--bluegray);border-bottom:1.5px solid var(--line-2);padding-bottom:2px;margin-right:22px}
+.sub-cta a:hover{color:var(--orange-deep);border-color:var(--orange)}
+
+/* 構築ボード(Hero右) */
+.board{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 26px 22px;box-shadow:0 18px 50px rgba(75,102,120,.12);transform:rotate(.4deg)}
+.bd-head{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:15px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.bd-badge{font-size:11px;background:var(--bg-orange);color:var(--orange-deep);border-radius:999px;padding:3px 12px;letter-spacing:.1em}
+.bd-step{border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin-bottom:10px;background:var(--bg-soft)}
+.bd-step.is-doing{background:#fff;border-color:var(--orange);box-shadow:0 4px 14px rgba(231,161,71,.14)}
+.bd-label{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
+.bd-num{font-size:10.5px;letter-spacing:.14em;color:#fff;background:var(--orange);border-radius:6px;padding:2px 8px}
+.bd-step.is-todo .bd-num{background:var(--line-2);color:var(--ink-2)}
+.bd-checks{display:flex;flex-direction:column;gap:2px;margin-top:8px;font-size:12.5px;color:var(--ink-2)}
+.bd-checks .on{color:var(--green);font-weight:700}
+.bd-mini{display:flex;align-items:center;gap:10px;margin-top:9px}
+.bd-bar{flex:1;height:7px;background:var(--bg-warm);border-radius:4px;overflow:hidden}
+.bd-bar>div{height:100%;background:var(--blue);border-radius:4px}
+.bd-pct{font-size:12px;font-weight:700;color:var(--bluegray)}
+.bd-state{font-size:11.5px;color:var(--ink-3);margin-left:auto}
+.bd-step .bd-row{display:flex;align-items:center}
+
+/* ---------- 問題提起 ---------- */
+.problem li{list-style:none;padding:15px 0 15px 36px;border-bottom:1px solid var(--line);color:var(--body);position:relative;font-size:15.5px}
+.problem li::before{content:"—";position:absolute;left:4px;color:var(--orange)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 20px;font-size:13.5px;font-weight:700;color:var(--ink-2)}
+.chip:nth-child(odd){border-color:#F2DFC4;background:var(--bg-orange);color:var(--orange-deep)}
+
+/* ---------- 階段式 商品導線 ---------- */
+.flow{list-style:none;margin-top:48px;position:relative}
+.flow li{position:relative;margin-bottom:14px}
+.flow li:not(:last-child)::after{content:"↓";position:absolute;left:34px;bottom:-16px;color:var(--orange);font-weight:700;font-size:16px;z-index:2}
+.fl-card{display:flex;align-items:center;gap:22px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 28px;transition:.22s}
+.fl-card:hover{border-color:var(--orange);box-shadow:0 10px 28px rgba(231,161,71,.13);transform:translateY(-2px)}
+.fl-num{min-width:52px;height:52px;border-radius:14px;background:var(--bg-orange);color:var(--orange-deep);font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
+.fl-main{flex:1}
+.fl-act{font-size:11.5px;letter-spacing:.22em;color:var(--orange-deep);font-weight:700;margin-bottom:2px}
+.fl-main h3{font-size:17px;font-weight:700;line-height:1.55}
+.fl-main p{font-size:13.5px;color:var(--ink-2);margin-top:2px}
+.fl-price{font-size:13.5px;font-weight:700;color:var(--bluegray);white-space:nowrap;text-align:right}
+.fl-cta{white-space:nowrap}
+@media(min-width:1001px){
+  .flow li:nth-child(2) .fl-card{margin-left:44px}
+  .flow li:nth-child(3) .fl-card{margin-left:88px}
+  .flow li:nth-child(4) .fl-card{margin-left:132px}
+  .flow li:nth-child(5) .fl-card{margin-left:176px}
+  .flow li:nth-child(2)::after{left:78px}
+  .flow li:nth-child(3)::after{left:122px}
+  .flow li:nth-child(4)::after{left:166px}
+}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:22px;margin-top:40px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 28px;transition:.22s;position:relative}
+.card:hover{box-shadow:0 12px 32px rgba(47,47,47,.07);transform:translateY(-2px)}
+.card .c-label{font-size:11.5px;letter-spacing:.22em;color:var(--orange-deep);font-weight:700;margin-bottom:12px}
+.card h3{font-size:18px;font-weight:700;line-height:1.6;margin-bottom:8px}
+.card .c-desc{font-size:14px;color:var(--ink-2);margin-bottom:16px}
+.card .c-price{font-size:15px;font-weight:700;color:var(--bluegray);margin-bottom:18px;padding-top:16px;border-top:1px solid var(--line)}
+
+/* ---------- 現在地カード(library) ---------- */
+.now-panel{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;margin:36px 0 10px}
+.now-card{background:linear-gradient(135deg,#fff,var(--bg-orange));border:1.5px solid #F2DFC4;border-radius:16px;padding:30px 32px}
+.now-card .nc-t{font-size:12px;letter-spacing:.22em;color:var(--orange-deep);font-weight:700;margin-bottom:10px}
+.now-card .nc-stage{font-size:20px;font-weight:700;margin-bottom:6px}
+.now-card .nc-next{font-size:14.5px;color:var(--body)}
+.now-card .nc-next strong{color:var(--orange-deep)}
+.next-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px}
+.next-card .nc-t{font-size:12px;letter-spacing:.22em;color:var(--bluegray);font-weight:700;margin-bottom:12px}
+.next-card a{display:flex;gap:10px;align-items:center;padding:9px 0;font-size:14.5px;font-weight:700;color:var(--body);border-bottom:1px dashed var(--line)}
+.next-card a:hover{color:var(--orange-deep)}
+.next-card .na-tag{font-size:10.5px;background:var(--bg-blue);color:var(--bluegray);border-radius:6px;padding:2px 9px;letter-spacing:.1em;white-space:nowrap}
+
+/* ---------- progress ---------- */
+.progress-wrap{background:#fff;border:1.5px solid #F2DFC4;border-radius:16px;padding:28px 30px;margin:36px 0;box-shadow:0 8px 26px rgba(231,161,71,.08)}
+.progress-meta{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px;color:var(--ink-2);margin-bottom:12px;font-weight:700}
+.progress-meta strong{font-size:20px;color:var(--orange-deep)}
+.pbar{height:12px;background:var(--bg-warm);border-radius:6px;overflow:hidden}
+.pbar>div{height:100%;background:linear-gradient(90deg,var(--orange),#F0B966);border-radius:6px;transition:width .5s}
+
+/* ---------- STEPグループ(textbook) ---------- */
+.step-group{margin-top:26px}
+.sg-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.sg-num{font-size:12px;letter-spacing:.14em;color:#fff;background:var(--orange);border-radius:8px;padding:4px 14px;font-weight:700}
+.sg-num.plus{background:var(--blue)}
+.sg-title{font-size:18px;font-weight:700}
+.sg-prog{font-size:12.5px;font-weight:700;color:var(--ink-3);margin-left:auto}
+.sg-prog.all{color:var(--green)}
+.ch-list{display:flex;flex-direction:column;gap:10px}
+.ch-item{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 22px;transition:.2s}
+a.ch-item:hover{border-color:var(--orange);box-shadow:0 6px 18px rgba(231,161,71,.12);transform:translateX(3px)}
+.ch-num{font-size:12px;letter-spacing:.1em;color:var(--orange-deep);font-weight:700;min-width:82px}
+.ch-title{font-weight:700;flex:1;font-size:15.5px}
+.ch-state{font-size:12px;font-weight:700;padding:4px 13px;border-radius:999px;white-space:nowrap}
+.st-done{background:#EEF3EE;color:var(--green)}
+.st-todo{background:var(--bg-blue);color:var(--bluegray)}
+.st-lock{background:var(--bg-warm);color:var(--ink-3)}
+.ch-item.locked{background:var(--bg-soft)}
+.ch-item.locked .ch-title{color:var(--ink-3);font-weight:500}
+
+/* ---------- 章詳細 ---------- */
+.study{display:grid;grid-template-columns:250px 1fr;gap:52px;padding:52px 0 90px}
+.study-side{position:sticky;top:90px;align-self:start;font-size:13.5px}
+.side-t{font-size:11.5px;letter-spacing:.22em;color:var(--ink-3);margin-bottom:14px;font-weight:700}
+.side-step{font-size:10.5px;letter-spacing:.12em;color:var(--orange-deep);font-weight:700;margin:14px 0 4px}
+.side-list a{display:flex;gap:8px;padding:7px 10px;border-radius:8px;color:var(--ink-2);line-height:1.5;margin-bottom:2px;font-weight:500}
+.side-list a:hover{background:var(--bg-soft)}
+.side-list a.cur{background:var(--bg-orange);color:var(--ink);font-weight:700}
+.side-list a.lk{opacity:.5}
+.side-list .mk{min-width:16px;color:var(--orange-deep)}
+.ch-head .ch-kicker{letter-spacing:.26em;color:var(--orange-deep);font-size:13px;font-weight:700;margin-bottom:12px}
+.ch-head h1{font-size:clamp(25px,3.4vw,36px);line-height:1.5;font-weight:700;margin-bottom:24px}
+.outcome{background:var(--bg-orange);border:1px solid #F2DFC4;border-radius:14px;padding:22px 28px;margin-bottom:18px}
+.outcome .ob-t{font-size:13px;letter-spacing:.18em;color:var(--orange-deep);font-weight:700;margin-bottom:8px}
+.outcome li{list-style:none;padding:4px 0 4px 26px;position:relative;font-size:15px;font-weight:700;color:var(--body)}
+.outcome li::before{content:"◎";position:absolute;left:0;color:var(--orange)}
+.learnbox{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:22px 28px;margin-bottom:38px}
+.learnbox .lb-t{font-size:12.5px;letter-spacing:.18em;color:var(--ink-2);font-weight:700;margin-bottom:10px}
+.learnbox li{list-style:none;padding:4px 0 4px 28px;position:relative;font-size:14.5px;color:var(--body)}
+.learnbox li::before{content:"□";position:absolute;left:2px;color:var(--copper)}
+.ch-body{font-size:16px}
+.ch-body h3{font-size:19.5px;font-weight:700;margin:46px 0 16px;padding:10px 16px;border-left:4px solid var(--orange);background:var(--bg-soft);border-radius:0 10px 10px 0;line-height:1.6}
+.ch-body p{margin:14px 0;color:var(--body)}
+.ch-body ul,.ch-body ol{margin:14px 0 14px 24px;color:var(--body)}
+.ch-body li{margin:6px 0}
+.tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;background:#fff}
+.tbl th{background:var(--bg-blue);text-align:left;padding:11px 14px;border:1px solid var(--line);font-weight:700;color:var(--bluegray);white-space:nowrap}
+.tbl td{padding:11px 14px;border:1px solid var(--line);vertical-align:top}
+.tbl td.ok{color:var(--orange-deep);font-weight:700}
+.callout{background:var(--bg-soft);border:1px solid var(--line);border-left:4px solid var(--copper-soft);border-radius:10px;padding:20px 26px;margin:22px 0}
+.callout-accent{border-left-color:var(--orange);background:var(--bg-orange)}
+.callout-blue{border-left-color:var(--blue);background:var(--bg-blue)}
+.callout-warn{border-left-color:#C98B6A;background:#FBF7F4}
+.callout ul{margin:8px 0 0 20px}
+.quotebox{border-left:3px solid var(--line-2);padding:6px 0 6px 24px;margin:22px 0;color:var(--ink-2);font-family:var(--serif);font-size:16px}
+.feature-list{display:flex;flex-direction:column;gap:14px;margin:22px 0}
+.feature{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 26px}
+.feature .f-head{font-weight:700;margin-bottom:6px;font-size:15.5px}
+.feature p{margin:0;font-size:14.5px;color:var(--ink-2)}
+.pill{display:inline-block;font-size:11px;background:var(--bg-warm);color:var(--ink-2);border-radius:999px;padding:2px 12px;margin-left:8px;vertical-align:middle;letter-spacing:.08em;font-weight:700}
+.pill-accent{background:var(--bg-orange);color:var(--orange-deep)}
+.worksheet{background:#fff;border:1.5px dashed var(--orange);border-radius:14px;padding:26px 30px;margin:22px 0}
+.worksheet ol{margin:12px 0 0 22px}
+.worksheet li{margin:10px 0;color:var(--body)}
+.note{font-size:13.5px;color:var(--ink-3)}
+
+/* 挿絵 figure(構造図解・ワーク補助・モック共通) */
+.ch-body figure{margin:0}
+.figure-wide,.figure-half,.figure-worksheet,.figure-mock{margin:32px 0}
+.figure-half,.figure-worksheet{max-width:640px;margin-left:auto;margin-right:auto}
+.figure-mock{max-width:760px;margin-left:auto;margin-right:auto}
+.figure-wide img,.figure-half img,.figure-worksheet img,.figure-mock img{width:100%;display:block;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 6px 20px rgba(47,47,47,.05)}
+.figure-caption,.ch-body figcaption{font-size:13px;color:var(--ink-3);text-align:center;margin-top:12px;line-height:1.7}
+/* 実物写真ギャラリー(複数枚を1グループで表示) */
+.figure-gallery{margin:32px auto}
+.figure-gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.figure-gallery-grid img{width:100%;height:100%;display:block;object-fit:cover;aspect-ratio:1/1;border-radius:16px;border:1px solid var(--line);box-shadow:0 6px 20px rgba(47,47,47,.05);background:#fff}
+@media(max-width:900px){.figure-gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.figure-gallery-grid{grid-template-columns:1fr}.figure-gallery-grid img{aspect-ratio:auto}}
+
+/* Academy/Community 接続ボックス */
+.bridge{display:flex;gap:16px;background:var(--bg-blue);border:1px solid #D3EBF2;border-radius:14px;padding:24px 28px;margin:34px 0;align-items:flex-start}
+.bridge.community{background:var(--bg-orange);border-color:#F2DFC4}
+.bridge .br-tag{font-size:11px;letter-spacing:.14em;font-weight:700;color:#fff;background:var(--blue);border-radius:8px;padding:4px 12px;white-space:nowrap;margin-top:4px}
+.bridge.community .br-tag{background:var(--orange)}
+.bridge p{font-size:14.5px;color:var(--body);margin:0 0 8px}
+.bridge a{font-size:13.5px;font-weight:700;color:var(--bluegray)}
+.bridge.community a{color:var(--orange-deep)}
+.bridge a:hover{text-decoration:underline}
+
+/* チェックリスト・章ナビ */
+.ch-checklist{background:var(--bg-blue);border-radius:16px;padding:30px 34px;margin:48px 0 36px}
+.ch-checklist .cc-t{font-size:17px;font-weight:700;margin-bottom:14px;color:var(--bluegray)}
+.cc-item{display:flex;align-items:flex-start;gap:12px;padding:9px 12px;cursor:pointer;font-size:15px;color:var(--body);border-radius:10px;font-weight:500}
+.cc-item:hover{background:rgba(255,255,255,.7)}
+.cc-item input{width:19px;height:19px;margin-top:5px;accent-color:var(--orange);cursor:pointer;flex-shrink:0}
+.ch-nav{display:flex;justify-content:space-between;gap:14px;border-top:1px solid var(--line);padding-top:32px;flex-wrap:wrap;align-items:center}
+.done-btn{background:var(--orange);color:#fff;box-shadow:0 4px 14px rgba(231,161,71,.3)}
+.done-btn:hover{background:var(--orange-deep)}
+.done-btn.is-done{background:var(--green);box-shadow:none}
+.ch-extra{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;font-size:13.5px;font-weight:700}
+.ch-extra a{color:var(--bluegray);border-bottom:1.5px dashed var(--line-2);padding-bottom:2px}
+.ch-extra a:hover{color:var(--orange-deep);border-color:var(--orange)}
+.placeholder-body{background:var(--bg-soft);border:1.5px dashed var(--line-2);border-radius:14px;padding:52px 30px;text-align:center;color:var(--ink-2);margin:30px 0}
+.placeholder-body .ph-i{font-size:30px;margin-bottom:12px}
+
+/* ロックカード(ポジティブ) */
+.lockcard{background:linear-gradient(135deg,#fff,var(--bg-orange));border:1.5px solid #F2DFC4;border-radius:16px;padding:52px 30px;text-align:center;margin:38px 0}
+.lockcard .lk-i{font-size:30px;margin-bottom:12px}
+.lockcard h3{font-size:20px;font-weight:700;margin-bottom:10px}
+.lockcard p{color:var(--body);font-size:15px;max-width:480px;margin:0 auto 24px}
+
+/* ---------- pricing ---------- */
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.price-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:34px 26px;text-align:center;transition:.2s}
+.price-card:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(47,47,47,.06)}
+.price-card.hot{border:2px solid var(--orange);box-shadow:0 12px 32px rgba(231,161,71,.14)}
+.price-card .pc-name{font-size:12.5px;letter-spacing:.24em;color:var(--ink-2);font-weight:700;margin-bottom:14px}
+.price-card.hot .pc-name{color:var(--orange-deep)}
+.price-card .pc-price{font-size:23px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.price-card .pc-cap{font-size:13px;color:var(--ink-2)}
+.setup-band{background:var(--bg-blue);border:1px solid #D3EBF2;color:var(--bluegray);border-radius:16px;padding:28px 36px;display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:36px;flex-wrap:wrap}
+.setup-band .sb-t{font-size:13px;letter-spacing:.18em;font-weight:700}
+.setup-band .sb-p{font-size:28px;font-weight:700;color:var(--ink)}
+
+/* ---------- feature sections ---------- */
+.fsec{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.fcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 26px;transition:.2s}
+.fcard:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(47,47,47,.06)}
+.fcard h4{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--bg-orange)}
+.fcard li{list-style:none;font-size:14px;color:var(--ink-2);padding:4px 0 4px 20px;position:relative}
+.fcard li::before{content:"✓";position:absolute;left:0;color:var(--orange);font-weight:700}
+
+/* ---------- free page ---------- */
+.doc{max-width:760px;margin:0 auto}
+.doc-sec{margin-bottom:58px}
+.doc-sec h2{font-size:22px;font-weight:700;padding:10px 18px;border-left:4px solid var(--orange);background:var(--bg-soft);border-radius:0 10px 10px 0;margin-bottom:22px;line-height:1.55}
+.doc-sec p{margin:13px 0;color:var(--body)}
+.doc-sec ul{margin:13px 0 13px 24px;color:var(--body)}
+
+/* ---------- login / admin ---------- */
+.auth{max-width:460px;margin:70px auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:46px 44px;box-shadow:0 14px 40px rgba(47,47,47,.05)}
+.auth h1{font-size:24px;font-weight:700;text-align:center;margin-bottom:8px}
+.auth .a-sub{text-align:center;font-size:13.5px;color:var(--ink-3);margin-bottom:28px}
+.fld{margin-bottom:18px}
+.fld label{display:block;font-size:13px;color:var(--ink-2);margin-bottom:6px;font-weight:700}
+.fld input{width:100%;border:1.5px solid var(--line-2);border-radius:10px;padding:13px 14px;font-size:15px;font-family:var(--sans);background:var(--bg-soft)}
+.fld input:focus{outline:none;border-color:var(--orange);background:#fff}
+.demo-box{margin-top:26px;padding-top:22px;border-top:1.5px dashed var(--line-2)}
+.demo-box .d-t{font-size:12px;color:var(--ink-3);letter-spacing:.14em;margin-bottom:12px;text-align:center;font-weight:700}
+.demo-box .btn{margin-bottom:8px}
+.admin-tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:18px;background:#fff}
+.admin-tbl th{background:var(--bg-blue);text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.1em;color:var(--bluegray)}
+.admin-tbl td{padding:12px 16px;border-bottom:1px solid var(--line)}
+.role-badge{font-size:11.5px;border-radius:999px;padding:3px 13px;letter-spacing:.06em;font-weight:700}
+.rb-free{background:var(--bg-warm);color:var(--ink-2)}
+.rb-textbook{background:var(--bg-orange);color:var(--orange-deep)}
+.rb-mentoring{background:var(--bg-blue);color:var(--bluegray)}
+.admin-panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 34px;margin-top:26px}
+.admin-panel h3{font-size:17px;font-weight:700;margin-bottom:14px}
+.tbl-scroll{overflow-x:auto}
+
+/* ---------- footer ---------- */
+footer{background:var(--bg-warm);border-top:1px solid var(--line)}
+.ft-in{max-width:var(--maxw);margin:0 auto;padding:56px 24px 40px;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.ft-brand{font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:10px}
+.ft-note{font-size:13px;color:var(--ink-2);max-width:340px}
+.ft-cols{display:flex;gap:60px;flex-wrap:wrap}
+.ft-col .ft-t{font-size:11.5px;letter-spacing:.22em;color:var(--ink-3);margin-bottom:14px;font-weight:700}
+.ft-col a{display:block;font-size:13.5px;font-weight:500;color:var(--ink-2);padding:4px 0}
+.ft-col a:hover{color:var(--orange-deep)}
+.copy{text-align:center;font-size:12px;color:var(--ink-3);padding:0 24px 34px}
+
+/* ---------- CTAバンド ---------- */
+.cta-band{background:var(--bg-orange);border:1px solid #F2DFC4;border-radius:20px;padding:56px 48px;text-align:center;margin:0 24px}
+.cta-band-wrap{max-width:var(--maxw);margin:0 auto 88px}
+.cta-band h2{font-size:clamp(21px,2.8vw,28px);font-weight:700;line-height:1.7;margin-bottom:12px}
+.cta-band p{color:var(--body);font-size:15px;margin-bottom:26px}
+
+/* ---------- トースト(完了演出) ---------- */
+#toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-size:15px;font-weight:700;padding:14px 30px;border-radius:999px;opacity:0;pointer-events:none;transition:.35s;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.2);white-space:nowrap}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---------- スマホ下部固定ナビ(章ページ) ---------- */
+.mnext{display:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:1000px){
+  .g3,.fsec{grid-template-columns:repeat(2,1fr)}
+  .price-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .board{transform:none;max-width:480px}
+  .study{grid-template-columns:1fr;gap:30px}
+  .study-side{position:static;order:2;border-top:1px solid var(--line);padding-top:30px}
+  .now-panel{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  body{font-size:16px}
+  nav.gnav{display:none}
+  .hamb{display:block}
+  .sec{padding:56px 0}
+  .hero{padding:60px 0 56px}
+  .g3,.g2,.fsec,.price-grid{grid-template-columns:1fr}
+  .btn-row .btn{flex:1 1 100%}
+  .fl-card{flex-wrap:wrap;gap:12px;padding:20px 20px}
+  .fl-price{text-align:left;width:100%}
+  .fl-cta{width:100%}
+  .fl-cta .btn{width:100%}
+  .ch-item{flex-wrap:wrap;gap:8px}
+  .ch-num{min-width:auto}
+  .auth{margin:40px 16px;padding:36px 26px}
+  .cta-band{padding:40px 24px}
+  .setup-band{justify-content:center;text-align:center}
+  .tbl{display:block;overflow-x:auto;white-space:normal}
+  .bridge{flex-direction:column;gap:10px}
+  .sg-prog{margin-left:0;width:100%}
+  /* 下部固定ナビ */
+  .mnext{display:flex;position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));gap:10px;z-index:60}
+  .mnext .btn{flex:1;padding:12px 10px;font-size:14px}
+  .has-mnext{padding-bottom:84px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd-in">
+    <a class="logo" href="#/">認定講座構築<small>SKILL TO SYSTEM</small></a>
+    <nav class="gnav" id="gnav"></nav>
+    <button class="hamb" id="hamb" aria-label="メニュー"><span></span><span></span><span></span></button>
+  </div>
+  <div class="m-menu" id="mmenu"></div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="ft-in">
+    <div>
+      <div class="ft-brand">認定講座構築プログラム</div>
+      <p class="ft-note">スキルを、仕組みに変える。順番に進めれば、認定講座のかたちができていく構築サイトです。</p>
+    </div>
+    <div class="ft-cols">
+      <div class="ft-col">
+        <div class="ft-t">LEARN</div>
+        <a href="#/free">無料版を読む</a>
+        <a href="#/textbook">完全版で作る</a>
+        <a href="#/library">教材ダッシュボード</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-t">APPS</div>
+        <a href="#/academy">Academy</a>
+        <a href="#/academy/pricing">Academy 料金</a>
+        <a href="#/community">Community</a>
+        <a href="#/community/pricing">Community 料金</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-t">SUPPORT</div>
+        <a href="#/mentoring">個別伴走コース</a>
+        <a href="#/login">ログイン</a>
+        <a href="#/admin">管理画面(モック)</a>
+      </div>
+    </div>
+  </div>
+  <div class="copy">© MUSUBI 認定講座構築プログラム</div>
+</footer>
+
+<div id="toast"></div>
+
+<script src="data.js"></script>
+<script>
+// ============================================================
+// 認定講座構築サイト SPA(ハッシュルーティング / ビルド不要)
+// 権限・進捗は localStorage で管理(MVP:手動権限付与を想定)
+// ============================================================
+const D = window.SITE_DATA;
+const $ = (s)=>document.querySelector(s);
+const app = $("#app");
+
+// ---------- 状態 ----------
+const store = {
+  get role(){ return localStorage.getItem("nk_role") || "free"; },
+  set role(v){ localStorage.setItem("nk_role", v); },
+  get done(){ try{ return JSON.parse(localStorage.getItem("nk_done")||"[]"); }catch(e){ return []; } },
+  set done(arr){ localStorage.setItem("nk_done", JSON.stringify(arr)); },
+  get user(){ return localStorage.getItem("nk_user") || ""; },
+  set user(v){ localStorage.setItem("nk_user", v); },
+};
+const hasTextbook = ()=> ["textbook","mentoring"].includes(store.role);
+const hasMentoring = ()=> store.role === "mentoring";
+const roleLabel = (r)=>({free:"無料会員",textbook:"完全版会員",mentoring:"伴走コース会員"}[r]||r);
+
+// ---------- 共通部品 ----------
+function navHtml(){
+  const items = [
+    ["#/","ホーム"],["#/free","無料版"],["#/library","教材"],
+    ["#/academy","Academy"],["#/community","Community"],["#/mentoring","伴走コース"],
+  ];
+  const cur = location.hash || "#/";
+  const links = items.map(([h,t])=>{
+    const active = (h==="#/" ? (cur==="#/"||cur==="") : cur.startsWith(h));
+    return `<a href="${h}" class="${active?"active":""}">${t}</a>`;
+  }).join("");
+  const login = store.user
+    ? `<a href="#/login" class="nav-login">${roleLabel(store.role)}</a>`
+    : `<a href="#/login" class="nav-login">ログイン</a>`;
+  return links + login;
+}
+function renderNav(){
+  $("#gnav").innerHTML = navHtml();
+  $("#mmenu").innerHTML = navHtml();
+}
+function lockCard(title, msg, ctaText, ctaHref){
+  return `<div class="lockcard">
+    <div class="lk-i">✨</div>
+    <h3>${title}</h3>
+    <p>${msg}</p>
+    <a class="btn btn-p" href="${ctaHref}">${ctaText}</a>
+  </div>`;
+}
+function progressPct(){
+  const total = D.chapters.length;
+  const done = store.done.filter(id=>D.chapters.some(c=>c.id===id)).length;
+  return {done,total,pct:Math.round(done/total*100)};
+}
+function stepOf(chapterId){
+  return D.steps.find(s=>s.chapters.includes(chapterId));
+}
+function stepProgress(step){
+  const done = step.chapters.filter(id=>store.done.includes(id)).length;
+  return {done, total: step.chapters.length};
+}
+function nextChapter(){
+  return D.chapters.find(c=>!store.done.includes(c.id));
+}
+function showToast(msg){
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._tm);
+  t._tm = setTimeout(()=>t.classList.remove("show"), 2600);
+}
+function bridgeHtml(b, second){
+  if(!b) return "";
+  const isCom = b.app === "Community";
+  const href = isCom ? "#/community" : "#/academy";
+  return `<div class="bridge ${isCom?"community":""}">
+    <span class="br-tag">${b.app}</span>
+    <div><p>${b.text}</p><a href="${href}">${b.app}アプリを見る →</a></div>
+  </div>`;
+}
+
+// ---------- ページ:トップ ----------
+function pageHome(){
+  const flow = D.products.map((p,i)=>`
+    <li>
+      <div class="fl-card">
+        <div class="fl-num">0${i+1}</div>
+        <div class="fl-main">
+          <div class="fl-act">${p.action}</div>
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+        </div>
+        <div class="fl-price">${p.price}</div>
+        <div class="fl-cta"><a class="btn btn-s btn-sm" href="${p.href}">${p.cta}</a></div>
+      </div>
+    </li>`).join("");
+  return `
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="kicker">CERTIFICATION COURSE BUILDER</div>
+        <h1 class="display">スキルを、<br>仕組みに変える。</h1>
+        <p class="sub">単発レッスンで終わらせず、教材・認定基準・講師ページ・申込導線・コミュニティまで、順番に進めれば講座のかたちができていく構築サイトです。</p>
+        <div class="btn-row">
+          <a class="btn btn-p" href="#/free">無料版を読む</a>
+          <a class="btn btn-s" href="#/textbook">完全版で作り始める</a>
+        </div>
+        <div class="sub-cta">
+          <a href="#/academy">Academyアプリを見る</a>
+          <a href="#/mentoring">伴走コースに相談する</a>
+        </div>
+      </div>
+      <div class="board">
+        <div class="bd-head">認定講座構築ボード<span class="bd-badge">進行中</span></div>
+        <div class="bd-step is-doing">
+          <div class="bd-label"><span class="bd-num">STEP 01</span>講座コンセプト</div>
+          <div class="bd-checks">
+            <span class="on">✓ 誰に届けるか</span>
+            <span class="on">✓ 何を教えるか</span>
+            <span>□ 受講後にできること</span>
+          </div>
+        </div>
+        <div class="bd-step">
+          <div class="bd-label"><span class="bd-num">STEP 02</span>価格と利益</div>
+          <div class="bd-mini"><div class="bd-bar"><div style="width:40%"></div></div><span class="bd-pct">40%</span></div>
+        </div>
+        <div class="bd-step is-todo">
+          <div class="bd-row"><div class="bd-label"><span class="bd-num">STEP 03</span>講座LP</div><span class="bd-state">未着手</span></div>
+        </div>
+        <div class="bd-step is-todo">
+          <div class="bd-row"><div class="bd-label"><span class="bd-num">STEP 04</span>Academyで運用</div><span class="bd-state">未着手</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="kicker">PROBLEM</div>
+      <h2 class="sec-t">こんなお悩みはありませんか？</h2>
+      <ul class="problem">
+        <li>レッスンはできるけど、講座の仕組みにできていない</li>
+        <li>毎回自分が動かないと売上にならない</li>
+        <li>教材や申込導線がバラバラ</li>
+        <li>講師を育てる仕組みがない</li>
+        <li>講座ページが長くなりすぎて伝わりにくい</li>
+        <li>受講後のフォローやコミュニティ運営が続かない</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap">
+      <div class="kicker">SOLUTION</div>
+      <h2 class="sec-t">認定講座は、作って終わりではなく、<br>回る状態まで整える。</h2>
+      <p class="lede">このプログラムでは、講座そのものだけでなく、講座が回り続けるために必要な要素を順番に整えていきます。</p>
+      <div class="chips">
+        ${["講座設計","教材設計","認定基準","価格設計","講座LP","申込導線","講師ページ","Academyアプリ","Communityアプリ","伴走サポート"].map(c=>`<span class="chip">${c}</span>`).join("")}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="kicker">YOUR PATH</div>
+      <h2 class="sec-t">知る → 作る → 運用する → 育てる。<br>順番に進めば、講座は形になります。</h2>
+      <ol class="flow">${flow}</ol>
+    </div>
+  </section>
+
+  <div class="cta-band-wrap">
+    <div class="cta-band">
+      <h2>まずは無料版で、<br>認定講座づくりの全体像をつかんでください。</h2>
+      <p>読むのに必要な時間は約15分。登録不要でいますぐ読めます。</p>
+      <a class="btn btn-p" href="#/free">無料版を読む</a>
+    </div>
+  </div>`;
+}
+
+// ---------- ページ:無料版 ----------
+function pageFree(){
+  const secs = D.freeBook.sections.map(s=>`
+    <div class="doc-sec"><h2>${s.heading}</h2>${s.body}</div>`).join("");
+  return `
+  <section class="sec sec-blue">
+    <div class="wrap center">
+      <div class="kicker">FREE TEXTBOOK</div>
+      <h1 class="display" style="font-size:clamp(25px,3.8vw,38px)">${D.freeBook.title}</h1>
+      <p class="lede" style="margin-top:10px;font-weight:700">${D.freeBook.subtitle}</p>
+      <p class="note" style="margin-top:14px">著：${D.brand.author}</p>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap doc">${secs}
+      <div class="cta-band" style="margin:0">
+        <h2>もっと具体的に作りたい方へ</h2>
+        <p>完全版では、講座設計・価格設定・教材・講座LP・講師ページ・運用導線まで、1章ずつ進めながら作れます。</p>
+        <a class="btn btn-p" href="#/textbook">完全版で作り始める</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+// ---------- ページ:教材ダッシュボード ----------
+function pageLibrary(){
+  const p = progressPct();
+  const tb = hasTextbook();
+  // 現在地の計算
+  let stage, next;
+  if(!tb){
+    stage = "無料版を学習中";
+    next = {label:"完全版 第1章(サンプル)を読んでみる", href:"#/textbook/chapter-01"};
+  }else{
+    const nc = nextChapter();
+    if(!nc){
+      stage = "完全版 全章完了！";
+      next = {label:"Academyで運用を整える", href:"#/academy"};
+    }else{
+      const st = stepOf(nc.id);
+      stage = `完全版で構築中（${st.label} ${st.title}）`;
+      next = {label:`${nc.short}「${nc.title}」を進める`, href:"#/textbook/"+nc.id};
+    }
+  }
+  return `
+  <section class="sec">
+    <div class="wrap">
+      <div class="kicker">LIBRARY</div>
+      <h2 class="sec-t">教材ダッシュボード</h2>
+      <p class="lede">現在の権限：<strong>${roleLabel(store.role)}</strong>${store.user?`（${store.user}）`:""}</p>
+
+      <div class="now-panel">
+        <div class="now-card">
+          <div class="nc-t">あなたの現在地</div>
+          <div class="nc-stage">${stage}</div>
+          <p class="nc-next">次におすすめ：<strong><a href="${next.href}" style="color:inherit;text-decoration:underline">${next.label}</a></strong></p>
+          ${tb?`
+          <div style="margin-top:16px">
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--ink-2)"><span>完全版の進捗</span><span>${p.done} / ${p.total} 章</span></div>
+            <div class="pbar" style="margin-top:6px"><div style="width:${p.pct}%"></div></div>
+          </div>`:""}
+        </div>
+        <div class="next-card">
+          <div class="nc-t">次にできること</div>
+          <a href="${next.href}"><span class="na-tag">学ぶ</span>${tb?"完全版で講座設計を進める":"無料版・サンプル章で全体像を知る"}</a>
+          <a href="#/academy"><span class="na-tag">運用する</span>Academyで講座ページと申込を整える</a>
+          <a href="#/community"><span class="na-tag">育てる</span>Communityで受講後の場を作る(必要な場合)</a>
+          <a href="#/mentoring"><span class="na-tag">相談する</span>伴走コースで一緒に完成させる</a>
+        </div>
+      </div>
+
+      <div class="grid g3">
+        <div class="card">
+          <div class="c-label">FREE ─ 知る</div>
+          <h3>認定講座構築の無料教科書</h3>
+          <p class="c-desc">全体像をつかむ入門版。登録不要で読めます。</p>
+          <div class="c-price">0円</div>
+          <a class="btn btn-p btn-sm" href="#/free">無料で読む</a>
+        </div>
+        <div class="card" ${tb?"":'style="background:var(--bg-soft)"'}>
+          <div class="c-label">FULL ─ 作る ${tb?"":"✨"}</div>
+          <h3>認定講座構築の完全教科書</h3>
+          <p class="c-desc">全10章＋付録。進捗 ${p.done} / ${p.total} 章 完了。</p>
+          <div class="c-price">39,800円</div>
+          ${tb
+            ? `<a class="btn btn-p btn-sm" href="#/textbook">構築をつづける</a>`
+            : `<a class="btn btn-s btn-sm" href="#/textbook">内容を見る</a>`}
+        </div>
+        <div class="card" ${hasMentoring()?"":'style="background:var(--bg-soft)"'}>
+          <div class="c-label">MENTORING ─ 完成させる ${hasMentoring()?"":"✨"}</div>
+          <h3>個別伴走コース 専用ページ</h3>
+          <p class="c-desc">伴走コース受講者専用の資料・進行管理。</p>
+          <div class="c-price">500,000円〜</div>
+          <a class="btn btn-s btn-sm" href="#/mentoring">コースを見る</a>
+        </div>
+        <div class="card">
+          <div class="c-label">APP ─ 運用する</div>
+          <h3>Academy</h3>
+          <p class="c-desc">作った講座を、回る状態にするMikke OSアプリ。</p>
+          <div class="c-price">初期 49,800円 / 月額 5,000円〜</div>
+          <a class="btn btn-s btn-sm" href="#/academy">紹介を見る</a>
+        </div>
+        <div class="card">
+          <div class="c-label">APP ─ 育てる</div>
+          <h3>Community</h3>
+          <p class="c-desc">受講後のつながりを育てるMikke OSアプリ。必要な場合だけ追加できます。</p>
+          <div class="c-price">料金は設計中</div>
+          <a class="btn btn-s btn-sm" href="#/community">紹介を見る</a>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+// ---------- ページ:完全版 学習トップ(STEP構成) ----------
+function pageTextbook(){
+  const tb = hasTextbook();
+  const p = progressPct();
+  const groups = D.steps.map(st=>{
+    const sp = stepProgress(st);
+    const items = st.chapters.map(id=>{
+      const c = D.chapters.find(x=>x.id===id);
+      const done = store.done.includes(c.id);
+      const open = tb || c.sample;
+      const state = !open ? `<span class="ch-state st-lock">✨ 完全版で開く</span>`
+        : done ? `<span class="ch-state st-done">✓ 完了</span>`
+        : c.sample && !tb ? `<span class="ch-state st-todo">サンプル公開</span>`
+        : `<span class="ch-state st-todo">進める</span>`;
+      const inner = `<span class="ch-num">${c.short}</span><span class="ch-title">${c.title}</span>${state}`;
+      return open
+        ? `<a class="ch-item" href="#/textbook/${c.id}">${inner}</a>`
+        : `<div class="ch-item locked">${inner}</div>`;
+    }).join("");
+    return `<div class="step-group">
+      <div class="sg-head">
+        <span class="sg-num ${st.id==="step-plus"?"plus":""}">${st.label}</span>
+        <span class="sg-title">${st.title}</span>
+        ${tb?`<span class="sg-prog ${sp.done===sp.total?"all":""}">${sp.done} / ${sp.total} 完了</span>`:""}
+      </div>
+      <div class="ch-list">${items}</div>
+    </div>`;
+  }).join("");
+  const head = tb
+    ? `<div class="progress-wrap">
+        <div class="progress-meta"><span>あなたの講座、構築中。</span><span><strong>${p.done}</strong> / ${p.total} 章 完了</span></div>
+        <div class="pbar"><div style="width:${p.pct}%"></div></div>
+      </div>`
+    : lockCard("ここから先で、講座が形になります",
+        "第1章はサンプルで読めます。完全版では、全10章＋付録のワーク・テンプレートを使って、あなたの講座を実際に組み立てていきます(39,800円)。",
+        "完全版で作り始める(外部決済)", D.links.buyTextbook);
+  return `
+  <section class="sec sec-soft">
+    <div class="wrap">
+      <div class="kicker">FULL TEXTBOOK</div>
+      <h2 class="sec-t">認定講座構築の完全教科書</h2>
+      <p class="lede">5つのSTEPを順番に進めると、講座の設計から運用までが形になります。</p>
+      ${head}
+      ${groups}
+      ${tb?"":`<p class="note" style="margin-top:26px">※購入後は管理者が権限を付与すると、この画面から全章に進めるようになります。</p>`}
+    </div>
+  </section>`;
+}
+
+// ---------- ページ:章詳細 ----------
+function pageChapter(id){
+  const idx = D.chapters.findIndex(c=>c.id===id);
+  if(idx<0) return page404();
+  const c = D.chapters[idx];
+  const tb = hasTextbook();
+  if(!tb && !c.sample){
+    return `<section class="sec"><div class="wrap">
+      ${lockCard("この章は完全版で開きます","完全版(39,800円)では、全10章＋付録のワーク・テンプレートを使って、あなたの講座を実際に組み立てていきます。","完全版で作り始める(外部決済)",D.links.buyTextbook)}
+      <div class="center"><a class="btn btn-s" href="#/textbook">STEP一覧へ戻る</a></div>
+    </div></section>`;
+  }
+  const done = store.done.includes(c.id);
+  // サイドバー(STEP見出し付き)
+  const side = D.steps.map(st=>{
+    const links = st.chapters.map(cid=>{
+      const x = D.chapters.find(ch=>ch.id===cid);
+      const open = tb || x.sample;
+      const mk = store.done.includes(x.id) ? "✓" : (open ? "・" : "✨");
+      const cls = (x.id===id?"cur":"") + (open?"":" lk");
+      return open
+        ? `<a class="${cls}" href="#/textbook/${x.id}"><span class="mk">${mk}</span>${x.short}　${x.title}</a>`
+        : `<a class="${cls}" href="#/textbook"><span class="mk">${mk}</span>${x.short}　${x.title}</a>`;
+    }).join("");
+    return `<div class="side-step">${st.label}　${st.title}</div>${links}`;
+  }).join("");
+  const st = stepOf(c.id);
+  const outcome = c.outcome ? `
+    <div class="outcome">
+      <div class="ob-t">この章で完成するもの</div>
+      <ul>${c.outcome.map(o=>`<li>${o}</li>`).join("")}</ul>
+    </div>` : "";
+  const learn = c.learn.map(l=>`<li>${l}</li>`).join("");
+  const body = c.body || `
+    <div class="placeholder-body">
+      <div class="ph-i">📖</div>
+      <p><strong>この章の本文は現在準備中です。</strong><br>原稿(完全版v2)からの移植を順次進めています。<br>章の構成・ワーク・チェックリストは確定済みです。</p>
+    </div>`;
+  const bridges = bridgeHtml(c.bridge) + bridgeHtml(c.bridge2);
+  const checklist = c.checklist.map((t,i)=>`
+    <label class="cc-item"><input type="checkbox" data-cc="${c.id}-${i}"> ${t}</label>`).join("");
+  const prev = idx>0 ? D.chapters[idx-1] : null;
+  const next = idx<D.chapters.length-1 ? D.chapters[idx+1] : null;
+  const prevOpen = prev && (tb || prev.sample);
+  const nextOpen = next && (tb || next.sample);
+  const nextBtn = nextOpen ? `<a class="btn btn-p" href="#/textbook/${next.id}">次の章へ →</a>`
+    : next ? `<a class="btn btn-p" href="${D.links.buyTextbook}">続きは完全版で →</a>` : "";
+  return `
+  <div class="wrap study has-mnext-src">
+    <aside class="study-side">
+      <div class="side-t">構築の流れ</div>
+      <div class="side-list">${side}</div>
+    </aside>
+    <article>
+      <div class="ch-head">
+        <div class="ch-kicker">${st?st.label+"　"+st.title+"　/　":""}${c.num}${c.sample&&!tb?"　<span class='pill pill-accent'>サンプル公開中</span>":""}</div>
+        <h1>${c.title}</h1>
+      </div>
+      ${outcome}
+      <div class="learnbox">
+        <div class="lb-t">この章で学ぶこと</div>
+        <ul>${learn}</ul>
+      </div>
+      <div class="ch-body">${body}</div>
+      ${bridges}
+      <div class="ch-checklist">
+        <div class="cc-t">✅ ${c.short}　実践チェックリスト</div>
+        ${checklist}
+      </div>
+      <div class="ch-nav">
+        <div>
+          ${prevOpen?`<a class="btn btn-s" href="#/textbook/${prev.id}">← ${prev.short}へ</a>`:`<a class="btn btn-s" href="#/textbook">STEP一覧へ</a>`}
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn done-btn doneToggle ${done?"is-done":""}">${done?"✓ 完了済み(タップで解除)":"この章を完了にする"}</button>
+          ${nextBtn}
+        </div>
+      </div>
+      <div class="ch-extra">
+        <a href="#/academy">Academyで運用するイメージを見る →</a>
+        <a href="#/mentoring">伴走コースで相談する →</a>
+      </div>
+    </article>
+  </div>
+  <div class="mnext">
+    <button class="btn done-btn doneToggle ${done?"is-done":""}">${done?"✓ 完了済み":"完了にする"}</button>
+    ${nextBtn}
+  </div>`;
+}
+
+// ---------- ページ:Academy ----------
+function pageAcademy(){
+  const f = D.academy.features.map(x=>`
+    <div class="fcard"><h4>${x.title}</h4><ul>${x.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("");
+  return `
+  <section class="sec sec-blue">
+    <div class="wrap">
+      <div class="kicker">MIKKE OS APP</div>
+      <h2 class="sec-t" style="font-size:clamp(27px,3.8vw,40px)">Academyで、<br>講座が回る状態にする。</h2>
+      <p class="lede">完全版で講座の設計ができたら、次に必要になるのは運用の仕組みです。<br><br>Academyでは、講座LP、申込フォーム、本部受付、講師受付、教材配布、キット仕入れ、認定更新、講師ページまでを管理できます。学んだ内容を実際に運用する場所として使うと、講座構築後の管理が楽になります。</p>
+      <div class="btn-row">
+        <a class="btn btn-p" href="#/academy/pricing">料金・導入案内を見る</a>
+        <a class="btn btn-s" href="${D.links.consult}">Academyについて相談する</a>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="kicker">FEATURES</div>
+      <h2 class="sec-t">Academyでできること</h2>
+      <div class="fsec">${f}</div>
+      <div class="bridge community" style="margin-top:40px">
+        <span class="br-tag">Community</span>
+        <div>
+          <p>Community機能はAcademyには含まれません。受講後の交流や会員制コミュニティ運営が必要になった場合は、別アプリのCommunityを必要に応じて連携できます(講座受講者の招待・認定講師の招待・講座ページからの案内リンクなど)。</p>
+          <a href="#/community">Communityアプリを見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function pageAcademyPricing(){
+  const plans = D.academy.plans.map((p,i)=>`
+    <div class="price-card ${i===1?"hot":""}">
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-price">${p.price}</div>
+      <div class="pc-cap">${p.cap}</div>
+    </div>`).join("");
+  return `
+  <section class="sec sec-soft">
+    <div class="wrap center">
+      <div class="kicker">ACADEMY PRICING</div>
+      <h2 class="sec-t">小さく始めて、<br>講座と講師が増えたら育てる。</h2>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="setup-band">
+        <div><div class="sb-t">初期導入費</div><div class="sb-p">49,800円</div></div>
+        <div style="font-size:14px">導入設定・初期講座セットアップを含みます</div>
+      </div>
+      <div class="price-grid">${plans}</div>
+      <p class="note center" style="margin-top:22px">${D.academy.extra}</p>
+      <div class="callout" style="margin-top:44px">
+        <p><strong>決済について</strong></p>
+        <p style="font-size:14.5px;margin-top:6px">決済機能はアプリ内に内蔵しません。講座代、キット代、更新料などは、Stripe・Square・銀行振込など、各本部が利用している外部決済リンクを設定して運用します。</p>
+      </div>
+      <div class="btn-row center">
+        <a class="btn btn-p" href="${D.links.consult}">Academyについて相談する</a>
+        <a class="btn btn-s" href="${D.links.consult}">導入希望を送る</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+// ---------- ページ:Community ----------
+function pageCommunity(){
+  const f = D.community.features.map(x=>`
+    <div class="fcard"><h4>${x.title}</h4><ul>${x.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("");
+  return `
+  <section class="sec sec-orange">
+    <div class="wrap">
+      <div class="kicker">MIKKE OS APP</div>
+      <h2 class="sec-t" style="font-size:clamp(27px,3.8vw,40px)">Communityで、<br>受講後のつながりを育てる。</h2>
+      <p class="lede">Communityは、認定講座の受講後に交流・質問・報告・イベントなどの場を作りたい人向けのMikke OSアプリです。<br><br>認定講座に必ずコミュニティが必要なわけではありません。ただし、講師同士の交流や継続サポート、有料サロン化を考える場合は、Communityを使うことで場の運営がしやすくなります。</p>
+      <div class="btn-row">
+        <a class="btn btn-p" href="#/community/pricing">料金について見る</a>
+        <a class="btn btn-s" href="${D.links.consult}">Communityについて相談する</a>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="kicker">FEATURES</div>
+      <h2 class="sec-t">Communityでできること</h2>
+      <div class="fsec">${f}</div>
+      <div class="bridge" style="margin-top:40px">
+        <span class="br-tag">Academy</span>
+        <div>
+          <p>CommunityはAcademyとは別アプリです。Academyで講座を作った方が、必要になったときに追加できる見せ方にしています。認定講座の運用そのもの(講座LP・申込・講師管理・教材配布)はAcademyが担当します。</p>
+          <a href="#/academy">Academyアプリを見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function pageCommunityPricing(){
+  const plans = D.community.draftPlans.map(p=>`
+    <div class="price-card">
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-price">${p.price}</div>
+      <div class="pc-cap">詳細未定</div>
+    </div>`).join("");
+  return `
+  <section class="sec sec-soft">
+    <div class="wrap center">
+      <div class="kicker">COMMUNITY PRICING</div>
+      <h2 class="sec-t">Communityアプリ料金</h2>
+      <p class="lede">現在設計中です。まずは、Academyや伴走コースを利用する方に向けて、必要に応じて個別にご案内します。</p>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="price-grid" style="grid-template-columns:repeat(3,1fr)">${plans}</div>
+      <p class="note center" style="margin-top:20px">※将来的な料金の仮案です。詳細は未定です。</p>
+      <div class="btn-row center">
+        <a class="btn btn-p" href="${D.links.consult}">Communityについて相談する</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+// ---------- ページ:伴走コース ----------
+function pageMentoring(){
+  const memberArea = hasMentoring()
+    ? `<div class="admin-panel" style="margin-top:44px">
+        <h3>🤝 伴走コース会員専用エリア(モック)</h3>
+        <p style="font-size:14.5px;color:var(--ink-2)">次回セッションの資料・進行チェックリスト・個別課題をここに掲載します。(MVPではプレースホルダー)</p>
+      </div>`
+    : `<div class="lockcard" style="margin-top:44px">
+        <div class="lk-i">🤝</div>
+        <h3>会員専用エリア</h3>
+        <p>伴走コース受講者には、専用の資料・進行管理ページをご用意します。</p>
+        <a class="btn btn-p" href="${D.links.consult}">まずは相談する(無料)</a>
+      </div>`;
+  return `
+  <section class="sec sec-soft">
+    <div class="wrap center">
+      <div class="kicker">MENTORING</div>
+      <h2 class="sec-t" style="font-size:clamp(25px,3.8vw,38px)">一人で作るのが不安な方へ<br>認定講座構築 個別伴走コース</h2>
+      <p class="lede">個別伴走コースでは、完全版の内容をもとに、講座コンセプト、価格設計、教材構成、申込導線、Academyアプリへの落とし込みまで一緒に進めます。必要な方には、Communityアプリを使った会員制コミュニティ設計もサポートします。</p>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="grid g2">
+        <div class="card">
+          <div class="c-label">PRICE</div>
+          <h3>コース料金</h3>
+          <div style="font-size:34px;font-weight:700;margin:14px 0 8px">${D.mentoring.price}</div>
+          <p class="note">${D.mentoring.priceNote}</p>
+          <div class="btn-row"><a class="btn btn-p btn-block" href="${D.links.consult}">相談する(無料)</a></div>
+        </div>
+        <div class="card">
+          <div class="c-label">INCLUDES</div>
+          <h3>含まれる内容</h3>
+          <ul style="margin:14px 0 0 4px">
+            ${D.mentoring.includes.map(i=>`<li style="list-style:none;padding:6px 0 6px 26px;position:relative;font-size:14.5px;color:var(--body)"><span style="position:absolute;left:0;color:var(--orange);font-weight:700">✓</span>${i}</li>`).join("")}
+          </ul>
+        </div>
+      </div>
+      ${memberArea}
+    </div>
+  </section>`;
+}
+
+// ---------- ページ:ログイン(モック) ----------
+function pageLogin(){
+  const logged = !!store.user;
+  return `
+  <div class="auth">
+    <h1>${logged?"アカウント":"ログイン"}</h1>
+    <p class="a-sub">${logged?`ログイン中：${store.user}（${roleLabel(store.role)}）`:"MVPのためログインはモックです"}</p>
+    ${logged?`
+      <button class="btn btn-s btn-block" id="logoutBtn">ログアウト</button>
+      <div class="demo-box">
+        <div class="d-t">教材へ</div>
+        <a class="btn btn-p btn-block" href="#/library">教材ダッシュボードへ</a>
+      </div>`
+    :`
+      <div class="fld"><label>メールアドレス</label><input type="email" id="loginMail" placeholder="you@example.com"></div>
+      <div class="fld"><label>パスワード</label><input type="password" id="loginPw" placeholder="••••••••"></div>
+      <button class="btn btn-p btn-block" id="loginBtn">ログイン</button>
+      <div class="demo-box">
+        <div class="d-t">— デモ用：権限を選んでログイン —</div>
+        <button class="btn btn-s btn-block" data-demo="free">無料会員としてログイン</button>
+        <button class="btn btn-s btn-block" data-demo="textbook">完全版購入者としてログイン</button>
+        <button class="btn btn-s btn-block" data-demo="mentoring">伴走コース会員としてログイン</button>
+      </div>`}
+  </div>`;
+}
+
+// ---------- ページ:管理画面(モック) ----------
+function pageAdmin(){
+  const p = progressPct();
+  const mockUsers = [
+    {mail:"hana@example.com", role:"textbook", date:"2026-06-28"},
+    {mail:"yui@example.com", role:"free", date:"2026-07-01"},
+    {mail:"sara@example.com", role:"mentoring", date:"2026-06-15"},
+    {mail:"mio@example.com", role:"textbook", date:"2026-07-03"},
+  ];
+  const rows = mockUsers.map(u=>`
+    <tr><td>${u.mail}</td>
+    <td><span class="role-badge rb-${u.role}">${roleLabel(u.role)}</span></td>
+    <td>${u.date}</td>
+    <td><button class="btn btn-s btn-sm" disabled style="opacity:.5">権限変更(モック)</button></td></tr>`).join("");
+  return `
+  <section class="sec">
+    <div class="wrap">
+      <div class="kicker">ADMIN (MOCK)</div>
+      <h2 class="sec-t">簡易管理画面</h2>
+      <p class="lede">MVPでは権限付与は手動運用です。この画面は動作イメージのモックです。</p>
+
+      <div class="admin-panel">
+        <h3>このブラウザの権限(実際に切り替わります)</h3>
+        <p style="font-size:14px;color:var(--ink-2);margin-bottom:14px">現在：<span class="role-badge rb-${store.role}">${roleLabel(store.role)}</span>　進捗：${p.done} / ${p.total} 章 完了</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-s btn-sm" data-role="free">free にする</button>
+          <button class="btn btn-s btn-sm" data-role="textbook">textbook にする</button>
+          <button class="btn btn-s btn-sm" data-role="mentoring">mentoring にする</button>
+          <button class="btn btn-s btn-sm" id="resetProgress" style="color:#A05B45">進捗をリセット</button>
+        </div>
+      </div>
+
+      <div class="admin-panel">
+        <h3>会員一覧(ダミーデータ)</h3>
+        <div class="tbl-scroll">
+        <table class="admin-tbl">
+          <thead><tr><th>MAIL</th><th>権限</th><th>付与日</th><th></th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        </div>
+        <p class="note" style="margin-top:14px">※実運用では：外部決済で購入 → 案内メール → ここで管理者が権限を付与 → 完全版が閲覧可能になる、という流れを想定。</p>
+      </div>
+    </div>
+  </section>`;
+}
+
+function page404(){
+  return `<section class="sec"><div class="wrap center">
+    <h2 class="sec-t">ページが見つかりません</h2>
+    <a class="btn btn-p" href="#/">トップへ戻る</a>
+  </div></section>`;
+}
+
+// ---------- ルーター ----------
+function route(){
+  const h = (location.hash || "#/").replace(/^#/,"");
+  const parts = h.split("/").filter(Boolean);
+  let html;
+  if(parts.length===0) html = pageHome();
+  else if(parts[0]==="free") html = pageFree();
+  else if(parts[0]==="library") html = pageLibrary();
+  else if(parts[0]==="textbook" && parts[1]) html = pageChapter(parts[1]);
+  else if(parts[0]==="textbook") html = pageTextbook();
+  else if(parts[0]==="academy" && parts[1]==="pricing") html = pageAcademyPricing();
+  else if(parts[0]==="academy") html = pageAcademy();
+  else if(parts[0]==="community" && parts[1]==="pricing") html = pageCommunityPricing();
+  else if(parts[0]==="community") html = pageCommunity();
+  else if(parts[0]==="mentoring") html = pageMentoring();
+  else if(parts[0]==="login") html = pageLogin();
+  else if(parts[0]==="admin") html = pageAdmin();
+  else html = page404();
+
+  app.innerHTML = html;
+  // 章ページはスマホ下部固定ナビの分だけ余白を作る
+  document.body.classList.toggle("has-mnext", !!document.querySelector(".mnext"));
+  renderNav();
+  $("#mmenu").classList.remove("open");
+  window.scrollTo(0,0);
+  bindEvents(parts);
+}
+
+// ---------- イベント ----------
+function bindEvents(parts){
+  // 章の完了ボタン(本文下・スマホ固定ナビの両方)
+  document.querySelectorAll(".doneToggle").forEach(btn=>{
+    const id = parts[1];
+    btn.addEventListener("click", ()=>{
+      let d = store.done;
+      const willDone = !d.includes(id);
+      if(willDone) d.push(id);
+      else d = d.filter(x=>x!==id);
+      store.done = d;
+      route();
+      if(willDone){
+        const c = D.chapters.find(x=>x.id===id);
+        const p = progressPct();
+        showToast(`🎉 ${c.short} 完了！構築が一歩進みました（${p.done}/${p.total}章）`);
+      }
+    });
+  });
+  // 章内チェックリスト(localStorageに保存)
+  document.querySelectorAll("[data-cc]").forEach(cb=>{
+    const key = "nk_cc_" + cb.dataset.cc;
+    cb.checked = localStorage.getItem(key)==="1";
+    cb.addEventListener("change", ()=> localStorage.setItem(key, cb.checked?"1":"0"));
+  });
+  // ログイン(モック)
+  const loginBtn = $("#loginBtn");
+  if(loginBtn){
+    loginBtn.addEventListener("click", ()=>{
+      const mail = ($("#loginMail").value||"").trim();
+      if(!mail){ alert("メールアドレスを入力してください(モック)"); return; }
+      store.user = mail;
+      location.hash = "#/library";
+    });
+  }
+  document.querySelectorAll("[data-demo]").forEach(b=>{
+    b.addEventListener("click", ()=>{
+      store.role = b.dataset.demo;
+      store.user = "demo@" + b.dataset.demo + ".jp";
+      location.hash = "#/library";
+    });
+  });
+  const logoutBtn = $("#logoutBtn");
+  if(logoutBtn){
+    logoutBtn.addEventListener("click", ()=>{
+      store.user = "";
+      store.role = "free";
+      route();
+    });
+  }
+  // 管理画面
+  document.querySelectorAll("[data-role]").forEach(b=>{
+    b.addEventListener("click", ()=>{ store.role = b.dataset.role; route(); });
+  });
+  const rp = $("#resetProgress");
+  if(rp){
+    rp.addEventListener("click", ()=>{
+      if(confirm("学習進捗をリセットしますか？")){
+        store.done = [];
+        Object.keys(localStorage).filter(k=>k.startsWith("nk_cc_")).forEach(k=>localStorage.removeItem(k));
+        route();
+      }
+    });
+  }
+}
+
+// ハンバーガー
+$("#hamb").addEventListener("click", ()=> $("#mmenu").classList.toggle("open"));
+
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
