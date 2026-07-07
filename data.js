@@ -1190,7 +1190,8 @@ window.SITE_DATA = {
 <h3>◆ 8-3　STUDIOの講師専用ページ構成</h3>
 <p>MUSUBIでは「講座ごとの専用ページ」と「全講師共通ページ」の2種類を作成しています。受講した講座の専用ページには講座固有の情報、共通ページには全講師が使う情報をまとめています。</p>
 <figure class="figure-wide">
-<img src="images/ch08-instructor-site-example.png" alt="図8-2 実際の講師専用サイト例。STUDIOの非公開ページに講師専用ページトップ・動画レッスン内容・材料仕入れ情報・案内サポートを整理し、必要に応じてnoteの仕入れ先一覧へリンクする構成">
+<img src="images/ch08-instructor-site-example.png" alt="実際の講師専用サイト例。STUDIOの非公開ページに講師専用ページトップ・動画レッスン内容・材料仕入れ情報・案内サポートを整理し、必要に応じてnoteの仕入れ先一覧へリンクする構成">
+<figcaption>図8-2｜実際の講師専用サイト例。STUDIOの非公開ページに講師向け情報を整理し、必要に応じてnoteの仕入れ先一覧へリンクします。</figcaption>
 </figure>
 <p><strong>▶ ページ①　講座ごとの専用ページ(例：CACM専用ページ)</strong></p>
 <table class="tbl">
