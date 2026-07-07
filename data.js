@@ -118,7 +118,7 @@ window.SITE_DATA = {
 <h3>◆ 1-2　認定講座の3つの収益源</h3>
 <p>認定講座ビジネスには、同時に3つの収益が流れ込む構造があります。この3つが揃ったとき「自分が動かなくても収益が入る状態」が生まれます。</p>
 <figure class="figure-wide">
-<img src="images/ch01-income-3pillars.png" alt="認定講座の3つの収益源(受講料収益・キット材料収益・コンテンツ収益)">
+<img src="images/ch01-income-3pillars.webp" alt="認定講座の3つの収益源(受講料収益・キット材料収益・コンテンツ収益)">
 <figcaption>図1-1｜認定講座ビジネスは、受講料・キット収益・コンテンツ収益の3本柱で育てていきます。</figcaption>
 </figure>
 <div class="feature-list">
@@ -208,7 +208,7 @@ window.SITE_DATA = {
 <h3>◆ 2-2　認定講座にできるスキルの5条件</h3>
 <p>「自分がワクワクする」を大前提に、以下の5条件をチェックします。</p>
 <figure class="figure-wide">
-<img src="images/ch02-5criteria-diagram.png" alt="認定講座にできるスキルの5条件(独自性・再現性・商品性・継続需要・価値を語れる)">
+<img src="images/ch02-5criteria-diagram.webp" alt="認定講座にできるスキルの5条件(独自性・再現性・商品性・継続需要・価値を語れる)">
 <figcaption>図2-1｜認定講座にできるスキルは、独自性・再現性・商品性・継続需要・価値を語れるかの5条件で見ていきます。</figcaption>
 </figure>
 <div class="feature-list">
@@ -263,7 +263,7 @@ window.SITE_DATA = {
 
 <h3>◆ 2-5　スキル棚卸しワーク(今すぐ書いてみる)</h3>
 <figure class="figure-wide">
-<img src="images/ch02-skill-selection-sheet.png" alt="スキル棚卸しワーク 記入例(ガラスアロマアクセサリーを例にした整理)">
+<img src="images/ch02-skill-selection-sheet.webp" alt="スキル棚卸しワーク 記入例(ガラスアロマアクセサリーを例にした整理)">
 <figcaption>図2-2｜まずは思いつくスキルを書き出し、講座化しやすいものを1つに絞っていきます。</figcaption>
 </figure>
 <div class="worksheet">
@@ -326,7 +326,7 @@ window.SITE_DATA = {
 <h3>◆ 3-1　価格設定の3つの基準</h3>
 <p>価格は感覚で決めず、<strong>原価・競合・価値</strong>の3つの視点を重ねて考えます。まず全体像をつかんでから、下の表で1つずつ整理していきましょう。</p>
 <figure class="figure-wide">
-<img src="images/ch03-price-3axis.png" alt="価格設定の3つの視点(原価基準・競合基準・価値基準を重ねて最終価格を決める)">
+<img src="images/ch03-price-3axis.webp" alt="価格設定の3つの視点(原価基準・競合基準・価値基準を重ねて最終価格を決める)">
 <figcaption>図3-1｜価格は「原価」「競合」「価値」の3つの視点を重ねて決めていきます。</figcaption>
 </figure>
 <table class="tbl">
@@ -474,7 +474,7 @@ window.SITE_DATA = {
 <h3>◆ 4-1　全体の流れ(6ステップ)</h3>
 <p>認定講座の完成までには6つのステップがあります。この順番で進めることが最速です。</p>
 <figure class="figure-wide">
-<img src="images/ch04-roadmap.png" alt="認定講座完成までの6ステップ(スキル確定→キット作成→テキスト作成→動画撮影→専用サイト構築→モニター受講)">
+<img src="images/ch04-roadmap.webp" alt="認定講座完成までの6ステップ(スキル確定→キット作成→テキスト作成→動画撮影→専用サイト構築→モニター受講)">
 <figcaption>図4-1｜4〜6ヶ月で、まず1講座を完成させる。全体の流れを6ステップでつかみます。</figcaption>
 </figure>
 <table class="tbl">
@@ -616,7 +616,7 @@ window.SITE_DATA = {
 <h3>◆ 5-1　キットが果たす3つの役割</h3>
 <p>キットは単なる材料セットではありません。<strong>「再現性」「収益性」「ブランド価値」</strong>の3つを支える設計の一部です。まず全体像をつかんでから、下の表で1つずつ見ていきましょう。</p>
 <figure class="figure-wide">
-<img src="images/ch05-kit-role.png" alt="キットが果たす3つの役割(再現性を作る・収益性を作る・ブランド価値を作る)">
+<img src="images/ch05-kit-role.webp" alt="キットが果たす3つの役割(再現性を作る・収益性を作る・ブランド価値を作る)">
 <figcaption>図5-1｜キットは材料の箱ではなく、講座の価値を支える設計の一部です。</figcaption>
 </figure>
 <table class="tbl">
@@ -629,9 +629,9 @@ window.SITE_DATA = {
 </table>
 <figure class="figure-gallery">
 <div class="figure-gallery-grid">
-<img src="images/ch05-kit-sample-beads.png" alt="実際のキット例:ビーズケースに材料を整理し見本作品を添えた状態">
-<img src="images/ch05-kit-sample-collage.png" alt="実際のキット例:カボション・生地・型・粉・金具・ライトなどの材料と道具">
-<img src="images/ch05-kit-sample-tools.png" alt="実際のキット例:粉・ワックス・モールド・顔料・ボウル・スパチュラなどの材料と道具">
+<img src="images/ch05-kit-sample-beads.webp" alt="実際のキット例:ビーズケースに材料を整理し見本作品を添えた状態">
+<img src="images/ch05-kit-sample-collage.webp" alt="実際のキット例:カボション・生地・型・粉・金具・ライトなどの材料と道具">
+<img src="images/ch05-kit-sample-tools.webp" alt="実際のキット例:粉・ワックス・モールド・顔料・ボウル・スパチュラなどの材料と道具">
 </div>
 <figcaption>図5-2｜実際のキット例。講座内容に応じて、材料・道具・補助資材を整理して構成します。</figcaption>
 </figure>
@@ -785,7 +785,7 @@ window.SITE_DATA = {
 <h3>◆ 6-1　必要なコンテンツの全体像(動画と写真)</h3>
 <p>認定講座に必要なコンテンツは「動画」と「写真」の2種類です。動画は作り方の復習用、写真はテキスト・専用サイトへの掲載用として使い分けます。</p>
 <figure class="figure-wide">
-<img src="images/ch06-content-overview.png" alt="認定講座に必要な撮影コンテンツ(作り方解説動画・写真撮影・SNS集客用リール)の全体像">
+<img src="images/ch06-content-overview.webp" alt="認定講座に必要な撮影コンテンツ(作り方解説動画・写真撮影・SNS集客用リール)の全体像">
 <figcaption>図6-1｜認定講座では、作り方動画・写真素材・SNSリールを役割ごとに用意します。</figcaption>
 </figure>
 <div class="feature-list">
@@ -826,7 +826,7 @@ window.SITE_DATA = {
 <h3>◆ 6-3　撮影環境と写真撮影のポイント</h3>
 <p>機材よりも「光・背景・固定」の3つが映像クオリティを決めます。この3つを整えるだけで、スマホ撮影でもプロっぽい映像になります。</p>
 <figure class="figure-wide">
-<img src="images/ch06-smartphone-setup.png" alt="スマホ撮影セットの基本(スマホ・三脚アームスタンド・窓際の自然光・白背景シート・手元スペース)">
+<img src="images/ch06-smartphone-setup.webp" alt="スマホ撮影セットの基本(スマホ・三脚アームスタンド・窓際の自然光・白背景シート・手元スペース)">
 <figcaption>図6-2｜スマホ撮影でも、光・背景・固定を整えるだけで見やすい教材動画になります。</figcaption>
 </figure>
 <table class="tbl">
@@ -987,7 +987,7 @@ window.SITE_DATA = {
 <h3>◆ 7-2　テキストのページ構成とページ数の考え方</h3>
 <p>MUSUBIではA4縦・24ページにまとめています。ネットプリントで中綴じ印刷する場合、表紙・裏表紙を含めて<strong>4ページ単位(24・28・32・36…)</strong>で構成する必要があります。まずページ数を4の倍数で計画してから内容を割り付けましょう。</p>
 <figure class="figure-wide">
-<img src="images/ch07-text-diploma-examples.png" alt="実際のテキスト・ディプロマ例(CACM認定講座とMUSUBI∞AROMAの教材と修了証)">
+<img src="images/ch07-text-diploma-examples.webp" alt="実際のテキスト・ディプロマ例(CACM認定講座とMUSUBI∞AROMAの教材と修了証)">
 <figcaption>図7-1｜実際のテキスト・ディプロマ例。講座の世界観に合わせて、教材と修了証のデザインを統一します。</figcaption>
 </figure>
 <table class="tbl">
@@ -1132,8 +1132,8 @@ window.SITE_DATA = {
       short: "第8章",
       title: "講師専用サイト作成",
       outcome: [
-        "note講師専用ページの構成",
-        "仕入れ先・動画・資料のまとめ方",
+        "STUDIO講師専用ページ(非公開)の構成",
+        "noteの仕入れ一覧(アフィリエイト)",
         "STUDIO集客ページの整理",
       ],
       bridge: {
@@ -1143,8 +1143,8 @@ window.SITE_DATA = {
       learn: [
         "講師専用サイトとDiscordの役割の違い",
         "noteとSTUDIOの使い分け",
-        "講師専用ページ(仕入れ先・動画・資料)の作り方",
-        "下書き共有リンクでの限定公開",
+        "STUDIO講師専用ページ(動画・資料・Q&A)の作り方",
+        "非公開ページのURL共有と注意点",
       ],
       sample: false,
       body: `
@@ -1170,7 +1170,7 @@ window.SITE_DATA = {
 <h3>◆ 8-2　noteとSTUDIOの使い分け</h3>
 <p>noteとSTUDIOは役割で使い分けます。まず全体像を図で確認しましょう。</p>
 <figure class="figure-wide">
-<img src="images/ch08-role-division.png" alt="講師専用ページの役割分担。STUDIOの非公開ページに動画・レシピ資料・講師向け情報・Q&Aをまとめ、仕入れ先一覧はnoteへリンクして使い分ける">
+<img src="images/ch08-role-division.webp" alt="講師専用ページの役割分担。STUDIOの非公開ページに動画・レシピ資料・講師向け情報・Q&Aをまとめ、仕入れ先一覧はnoteへリンクして使い分ける">
 <figcaption>図8-1｜講師専用ページの役割分担。講師向け情報はSTUDIOの非公開ページにまとめ、仕入れ先一覧はnoteへリンクして使い分けます。</figcaption>
 </figure>
 <div class="feature-list">
@@ -1190,7 +1190,7 @@ window.SITE_DATA = {
 <h3>◆ 8-3　STUDIOの講師専用ページ構成</h3>
 <p>MUSUBIでは「講座ごとの専用ページ」と「全講師共通ページ」の2種類を作成しています。受講した講座の専用ページには講座固有の情報、共通ページには全講師が使う情報をまとめています。</p>
 <figure class="figure-wide">
-<img src="images/ch08-instructor-site-example.png" alt="実際の講師専用サイト例。STUDIOの非公開ページに講師専用ページトップ・動画レッスン内容・材料仕入れ情報・案内サポートを整理し、必要に応じてnoteの仕入れ先一覧へリンクする構成">
+<img src="images/ch08-instructor-site-example.webp" alt="実際の講師専用サイト例。STUDIOの非公開ページに講師専用ページトップ・動画レッスン内容・材料仕入れ情報・案内サポートを整理し、必要に応じてnoteの仕入れ先一覧へリンクする構成">
 <figcaption>図8-2｜実際の講師専用サイト例。STUDIOの非公開ページに講師向け情報を整理し、必要に応じてnoteの仕入れ先一覧へリンクします。</figcaption>
 </figure>
 <p><strong>▶ ページ①　講座ごとの専用ページ(例：CACM専用ページ)</strong></p>

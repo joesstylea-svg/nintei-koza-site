@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<meta name="description" content="スキルを、仕組みに変える。講座設計・価格・教材・講師制度・運用まで、順番に進めれば認定講座のかたちができていく構築型の学習サイトです。">
+<meta name="theme-color" content="#E7A147">
+<meta property="og:type" content="website">
+<meta property="og:title" content="認定講座構築プログラム｜スキルを、仕組みに変える。">
+<meta property="og:description" content="講座設計・価格・教材・講師制度・運用まで、順番に進めれば認定講座のかたちができていく構築型学習サイト。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E7A147'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='bold'%3E結%3C/text%3E%3C/svg%3E">
 <title>認定講座構築プログラム｜スキルを、仕組みに変える。</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,6 +107,21 @@ h2.sec-t{font-size:clamp(23px,3vw,32px);line-height:1.55;font-weight:700;letter-
 .bd-pct{font-size:12px;font-weight:700;color:var(--bluegray)}
 .bd-state{font-size:11.5px;color:var(--ink-3);margin-left:auto}
 .bd-step .bd-row{display:flex;align-items:center}
+
+/* ---------- 実績・運営者(社会的証明) ---------- */
+.proof{padding:56px 0;border-bottom:1px solid var(--line)}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:8px 0 26px}
+.proof-item{text-align:center;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:22px 10px}
+.proof-num{font-size:clamp(26px,4vw,38px);font-weight:700;color:var(--orange-deep);line-height:1.3}
+.proof-num small{font-size:.5em;font-weight:700;color:var(--ink-2);margin-left:2px}
+.proof-label{font-size:13px;font-weight:700;color:var(--ink-2);letter-spacing:.08em;margin-top:4px}
+.proof-author{display:flex;gap:14px;align-items:flex-start;background:var(--bg-orange);border:1px solid #F2DFC4;border-radius:14px;padding:20px 26px}
+.proof-author .pa-mark{min-width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px}
+.proof-author p{font-size:14px;color:var(--body);margin:0}
+@media(max-width:680px){.proof{padding:40px 0}.proof-grid{gap:10px}.proof-item{padding:16px 6px}.proof-author{flex-direction:column;gap:10px}}
+
+/* ---------- 読書進捗バー(章ページ) ---------- */
+#readbar{position:fixed;top:64px;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--orange),#F0B966);z-index:49;transition:width .08s linear;pointer-events:none}
 
 /* ---------- 問題提起 ---------- */
 .problem li{list-style:none;padding:15px 0 15px 36px;border-bottom:1px solid var(--line);color:var(--body);position:relative;font-size:15.5px}
@@ -396,6 +417,7 @@ footer{background:var(--bg-warm);border-top:1px solid var(--line)}
   </div>
   <div class="m-menu" id="mmenu"></div>
 </header>
+<div id="readbar"></div>
 
 <main id="app"></main>
 
@@ -475,12 +497,15 @@ function renderNav(){
   $("#gnav").innerHTML = navHtml();
   $("#mmenu").innerHTML = navHtml();
 }
-function lockCard(title, msg, ctaText, ctaHref){
+function lockCard(title, msg, ctaText, ctaHref, sub){
   return `<div class="lockcard">
     <div class="lk-i">✨</div>
     <h3>${title}</h3>
     <p>${msg}</p>
-    <a class="btn btn-p" href="${ctaHref}">${ctaText}</a>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-p" href="${ctaHref}">${ctaText}</a>
+      ${sub?`<a class="btn btn-s" href="${sub.href}">${sub.text}</a>`:""}
+    </div>
   </div>`;
 }
 function progressPct(){
@@ -566,6 +591,22 @@ function pageHome(){
         <div class="bd-step is-todo">
           <div class="bd-row"><div class="bd-label"><span class="bd-num">STEP 04</span>Academyで運用</div><span class="bd-state">未着手</span></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="wrap">
+      <div class="kicker">TRACK RECORD</div>
+      <h2 class="sec-t" style="font-size:clamp(20px,2.6vw,26px)">実際に回っている仕組みを、そのまま体系化しました。</h2>
+      <div class="proof-grid">
+        <div class="proof-item"><div class="proof-num">4<small>講座</small></div><div class="proof-label">構築した認定講座</div></div>
+        <div class="proof-item"><div class="proof-num">200<small>名以上</small></div><div class="proof-label">全国の認定講師</div></div>
+        <div class="proof-item"><div class="proof-num">100<small>名以上</small></div><div class="proof-label">コミュニティ参加</div></div>
+      </div>
+      <div class="proof-author">
+        <div class="pa-mark">結</div>
+        <p><strong>著者・監修：@ayumi（MUSUBI主宰）</strong><br>アロマ×クラフトの認定講座を4つ構築し、全国200名以上の認定講師とコミュニティを運営。机上の理論ではなく、実際に回り続けている仕組みの手順を、この教科書にそのまままとめています。</p>
       </div>
     </div>
   </section>
@@ -762,7 +803,8 @@ function pageTextbook(){
       </div>`
     : lockCard("ここから先で、講座が形になります",
         "第1章はサンプルで読めます。完全版では、全10章＋付録のワーク・テンプレートを使って、あなたの講座を実際に組み立てていきます(39,800円)。",
-        "完全版で作り始める(外部決済)", D.links.buyTextbook);
+        "完全版で作り始める(外部決済)", D.links.buyTextbook,
+        {text:"まず第1章をサンプルで読む", href:"#/textbook/chapter-01"});
   return `
   <section class="sec sec-soft">
     <div class="wrap">
@@ -784,7 +826,7 @@ function pageChapter(id){
   const tb = hasTextbook();
   if(!tb && !c.sample){
     return `<section class="sec"><div class="wrap">
-      ${lockCard("この章は完全版で開きます","完全版(39,800円)では、全10章＋付録のワーク・テンプレートを使って、あなたの講座を実際に組み立てていきます。","完全版で作り始める(外部決済)",D.links.buyTextbook)}
+      ${lockCard("この章は完全版で開きます","完全版(39,800円)では、全10章＋付録のワーク・テンプレートを使って、あなたの講座を実際に組み立てていきます。","完全版で作り始める(外部決済)",D.links.buyTextbook,{text:"まず第1章をサンプルで読む",href:"#/textbook/chapter-01"})}
       <div class="center"><a class="btn btn-s" href="#/textbook">STEP一覧へ戻る</a></div>
     </div></section>`;
   }
@@ -823,6 +865,8 @@ function pageChapter(id){
   const nextOpen = next && (tb || next.sample);
   const nextBtn = nextOpen ? `<a class="btn btn-p" href="#/textbook/${next.id}">次の章へ →</a>`
     : next ? `<a class="btn btn-p" href="${D.links.buyTextbook}">続きは完全版で →</a>` : "";
+  // 読む目安(本文の文字数から算出。目安550字/分)
+  const mins = c.body ? Math.max(2, Math.round(c.body.replace(/<[^>]+>/g,"").length/550)) : 0;
   return `
   <div class="wrap study has-mnext-src">
     <aside class="study-side">
@@ -831,7 +875,7 @@ function pageChapter(id){
     </aside>
     <article>
       <div class="ch-head">
-        <div class="ch-kicker">${st?st.label+"　"+st.title+"　/　":""}${c.num}${c.sample&&!tb?"　<span class='pill pill-accent'>サンプル公開中</span>":""}</div>
+        <div class="ch-kicker">${st?st.label+"　"+st.title+"　/　":""}${c.num}${mins?`　<span class='pill'>読む目安 約${mins}分</span>`:""}${c.sample&&!tb?"　<span class='pill pill-accent'>サンプル公開中</span>":""}</div>
         <h1>${c.title}</h1>
       </div>
       ${outcome}
@@ -1137,6 +1181,7 @@ function route(){
   document.body.classList.toggle("has-mnext", !!document.querySelector(".mnext"));
   renderNav();
   $("#mmenu").classList.remove("open");
+  const rb = $("#readbar"); if(rb) rb.style.width = "0";
   window.scrollTo(0,0);
   bindEvents(parts);
 }
@@ -1209,6 +1254,15 @@ function bindEvents(parts){
 
 // ハンバーガー
 $("#hamb").addEventListener("click", ()=> $("#mmenu").classList.toggle("open"));
+
+// 読書進捗バー(章ページのみ)
+const readbar = $("#readbar");
+window.addEventListener("scroll", ()=>{
+  if(!document.querySelector(".mnext")){ readbar.style.width = "0"; return; }
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  readbar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + "%";
+}, {passive:true});
 
 window.addEventListener("hashchange", route);
 route();
