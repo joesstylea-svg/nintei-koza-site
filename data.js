@@ -1317,32 +1317,165 @@ window.SITE_DATA = {
       id: "chapter-09",
       num: "Chapter 09",
       short: "第9章",
-      title: "講師制度と運用設計",
+      title: "コミュニティ作成",
       outcome: [
-        "認定基準の文章",
-        "講師向けルールブックの骨子",
-        "講師フォローの月次サイクル",
+        "Discordサーバーの設計(ロール・チャンネル)",
+        "コミュニティを動かす3つのコンテンツ",
+        "休眠講師への声かけステップ",
       ],
       bridge: {
-        app: "Academy",
-        text: "講師が増えたら、講師ごとの受付・教材閲覧・仕入れ・活動状態を管理する必要があります。Academyでは、講師アカウントを発行し、開催できる講座や教材閲覧権限を管理できます。",
-      },
-      bridge2: {
         app: "Community",
-        text: "受講後の交流や質問の場を作りたい場合は、Mikke OSのCommunityアプリを使うことで、Room・投稿・コメント・会員管理を分けて運用できます。ただし、認定講座に必ずコミュニティが必要なわけではありません。必要になったときに追加できます。",
+        text: "まずは今あるDiscordで、講師がつながれる場を作りましょう。将来、Mikke OSのCommunityアプリの構築が終わったら、ここで手作業で整えたロール・チャンネル分け・お知らせ・コラム投稿を、Community上で会員管理やRoom単位で一元管理できるようになります。認定講座に必ずコミュニティが必要なわけではないので、必要になったときに移せばOKです。",
       },
       learn: [
-        "認定基準と更新制度の作り方",
-        "講師が自走するコミュニティ運営",
-        "講師ページと受付の切り分け",
-        "休眠講師の掘り起こし",
+        "コミュニティが必要な理由(孤独を防ぐ)",
+        "Discordを選ぶ理由",
+        "ロール・チャンネルの設計",
+        "コミュニティを動かす3つのコンテンツ",
+        "休眠講師の掘り起こし方",
       ],
       sample: false,
-      body: null,
+      body: `
+<p>コミュニティは講師へのアフターケアの場です。月額料金をいただくわけではないので、無理に盛り上げようとする必要はありません。シンプルに「情報が届く・質問できる・つながりを感じられる」場所を作ることが目的です。</p>
+<div class="quotebox">
+<p><strong>🗣️ @ayumiの実体験</strong></p>
+<p>「MUSUBIのDiscordは1サーバーで、ロール振り分けによって各講座の講師だけが見えるチャンネルを分けています。お知らせ・質問への回答・@ayumiのコラム(Column)の投稿がコミュニティを動かす主なコンテンツになっています。」</p>
+</div>
+
+<h3>◆ 9-1　コミュニティがなぜ必要か</h3>
+<p>認定講師が動かなくなる最大の理由は「孤独」です。受講後に一人で開講しようとすると、不安や疑問が生まれたときに誰にも相談できず、結果的に止まってしまいます。</p>
+<table class="tbl">
+<thead><tr><th>コミュニティがない場合</th><th>コミュニティがある場合</th></tr></thead>
+<tbody>
+<tr><td>疑問が生まれても聞く場所がない</td><td>すぐ質問できる場所がある</td></tr>
+<tr><td>他の講師の活動が見えず孤独感</td><td>仲間の成果や活動が刺激になる</td></tr>
+<tr><td>運営からの情報が届かない</td><td>お知らせ・更新情報がリアルタイムで届く</td></tr>
+<tr><td>モチベーションが続かない</td><td>コラムや情報提供で学び続けられる</td></tr>
+</tbody>
+</table>
+<div class="callout">
+<p><strong>💡 コミュニティの本質</strong></p>
+<ul>
+<li>「管理する場所」ではなく「つながる場所」として設計する</li>
+<li>活発にするために無理にイベントを設ける必要はない</li>
+<li>あなたが定期的に存在感を示すだけで、場は温まり続ける</li>
+</ul>
+</div>
+
+<h3>◆ 9-2　なぜDiscordか</h3>
+<table class="tbl">
+<thead><tr><th>ツール</th><th>メリット</th><th>デメリット</th><th>判定</th></tr></thead>
+<tbody>
+<tr><td>Discord</td><td>無料・チャンネル分け・ロール管理・音声通話</td><td>慣れていない人が最初は戸惑う</td><td class="ok">◎ 推奨</td></tr>
+<tr><td>LINEグループ</td><td>誰でも使える・通知が来る</td><td>チャンネル分けができない・情報が流れる</td><td>△</td></tr>
+<tr><td>Facebookグループ</td><td>投稿検索ができる</td><td>若い世代が使わない・運営が複雑</td><td>△</td></tr>
+<tr><td>Slack</td><td>ビジネス向け・チャンネル分け可能</td><td>有料プランでないと機能制限あり</td><td>△</td></tr>
+</tbody>
+</table>
+<p>Discordは無料でチャンネルを無制限に作れ、ロールで見られるチャンネルを制限できます。複数の講座を持つ場合に特に強力なツールです。</p>
+
+<h3>◆ 9-3　Discordサーバーの設計</h3>
+<p>MUSUBIでは1サーバー＋ロール振り分けで全講座の講師を管理しています。講座ごとにサーバーを分けると管理が大変になるため、1つのサーバーで一元管理するのがおすすめです。</p>
+<p><strong>▶ ロール設計(MUSUBIモデル)</strong></p>
+<table class="tbl">
+<thead><tr><th>ロール名</th><th>付与する対象</th><th>見られるチャンネル</th></tr></thead>
+<tbody>
+<tr><td>管理者</td><td>@ayumi自身</td><td>全チャンネル</td></tr>
+<tr><td>ADBMインストラクター</td><td>ADBM受講者</td><td>全体共通＋ADBM専用</td></tr>
+<tr><td>CACMインストラクター</td><td>CACM受講者</td><td>全体共通＋CACM専用</td></tr>
+<tr><td>GAAMインストラクター</td><td>GAAM受講者</td><td>全体共通＋GAAM専用</td></tr>
+</tbody>
+</table>
+<div class="callout">
+<p><strong>💡 ロール設定のメリット</strong></p>
+<ul>
+<li>1サーバーで全講師を管理できる → 管理が一元化されて楽</li>
+<li>各講師は自分の講座に関係するチャンネルだけ見える → 情報が整理される</li>
+<li>新しい講座が増えてもロールとチャンネルを追加するだけで対応できる</li>
+</ul>
+</div>
+
+<h3>◆ 9-4　チャンネル設計</h3>
+<p>チャンネルは「必要最小限」から始めて、運用しながら追加します。最初から作りすぎると管理が大変になり、使われないチャンネルだらけになります。</p>
+<p><strong>▶ MUSUBIの実際のチャンネル構成</strong></p>
+<div class="feature-list">
+<div class="feature"><div class="f-head">📣 #運営からのお知らせ(MUSUBI運営カテゴリ)</div><p><strong>投稿者：</strong>@ayumiのみ投稿<br><span style="color:var(--copper)">💡 他の人は投稿できない設定にする。重要情報を見逃させない最重要チャンネル</span></p></div>
+<div class="feature"><div class="f-head">✍️ #ayumi-column　@ayumiのコラム(MUSUBI運営カテゴリ)</div><p><strong>投稿者：</strong>@ayumiのみ投稿<br><span style="color:var(--copper)">💡 定期的な投稿がコミュニティに温かみをもたらす</span></p></div>
+<div class="feature"><div class="f-head">❓ #discord質問　Discord操作・環境に関する質問(環境カテゴリ)</div><p><strong>投稿者：</strong>全講師が投稿可能<br><span style="color:var(--copper)">💡 質問が来たら48時間以内に回答する。同じ質問はQ&Aにまとめて専用サイトに追加する</span></p></div>
+<div class="feature"><div class="f-head">🌿 #ADBM(お知らせ・ご質問・雑談・パーツ仕入情報・資料室・動画)</div><p>ADBMロール保有者のみ閲覧可能。投稿者：ADBMインストラクター＋管理者<br><span style="color:var(--copper)">💡 CACMpro・GAAMpro・ADRMproも同様の構成で作成する</span></p></div>
+</div>
+<p><strong>▶ 講座別専用チャンネルの構成</strong></p>
+<ul>
+<li>【作品カテゴリ】作品作ったよ・販売したよ</li>
+<li>【講座別カテゴリ例：CACMpro】ようこそ・お知らせ・ご質問・雑談・動画・仕入先・資料動画・講座開講手順</li>
+</ul>
+<p class="note">※各講座のProチャンネルはそれぞれのロール保有者のみ閲覧可能に設定する</p>
+
+<h3>◆ 9-5　コミュニティを動かすコンテンツ</h3>
+<p>アフターケアとして運営するDiscordは、定期的なテキストコンテンツだけで十分機能します。MUSUBIの実際の運用をモデルとして紹介します。</p>
+<p><strong>▶ MUSUBIの3つのコンテンツ</strong></p>
+<table class="tbl">
+<thead><tr><th>コンテンツ</th><th>内容</th><th>頻度</th><th>効果</th></tr></thead>
+<tbody>
+<tr><td>📣 お知らせ</td><td>キットの更新・新情報・重要連絡</td><td>随時</td><td>全講師に確実に情報が届く</td></tr>
+<tr><td>✍️ Column</td><td>@ayumiが書くコラム。ビジネス・クラフト・日常など</td><td>定期的</td><td>先生の存在感が伝わる。読まれる場になる</td></tr>
+<tr><td>❓ 質問対応</td><td>講師からの質問に回答。FAQとして専用サイトに追加</td><td>随時</td><td>講師の不安を解消。開講率が上がる</td></tr>
+</tbody>
+</table>
+<p><strong>▶ Columnの書き方のコツ</strong></p>
+<ul>
+<li>テーマは「ビジネス・クラフト・日常」の3つをローテーション</li>
+<li>長文でなくてOK。200〜400文字のテキストでも十分</li>
+<li>「先生も同じ悩みを持っている」というリアルさが共感を生む</li>
+<li>受講生の作品や成果を取り上げると、取り上げられた講師のモチベーションが上がる</li>
+</ul>
+<div class="quotebox">
+<p><strong>🗣️ @ayumiの実体験</strong></p>
+<p>「定期的にColumnを書くことでコミュニティに『先生がいる』という安心感が生まれます。読んでくれているかわからなくても、書き続けることが大事。久しぶりに投稿したとき『読んでいました！』という反応が来ることがあります。」</p>
+</div>
+
+<h3>◆ 9-6　休眠講師の掘り起こし方</h3>
+<p>長期間Discordに動きがなくても、焦らなくて大丈夫です。「責める・急かす」のではなく、「戻ってきやすい空気を作る」ことが重要です。</p>
+<div class="feature-list">
+<div class="feature"><div class="f-head">STEP 1　Discordに一言投稿する</div><p>「久しぶりに覗いてみました☺️ みなさん最近どうですか？」これだけでOK。あなたが動いた事実が全員に伝わる</p></div>
+<div class="feature"><div class="f-head">STEP 2　新しい価値を提供する</div><p>「新しい仕入れ先を見つけました」「Columnを書きました」など、戻ってくる理由を作る</p></div>
+<div class="feature"><div class="f-head">STEP 3　個別DMで温かく声をかける</div><p>「最近どうですか？また一緒にやりたいと思っています」責めずに近況を聞くだけでOK</p></div>
+<div class="feature"><div class="f-head">STEP 4　成果を共有する</div><p>動いている講師の活動・成果をDiscordで紹介する。「自分もできる」という空気が生まれる</p></div>
+</div>
+<div class="callout callout-warn">
+<p><strong>⚠️ やってはいけないこと</strong></p>
+<ul>
+<li>❌ 「なぜ動かないのですか？」と責める → 余計に離れてしまう</li>
+<li>❌ 「活動報告を義務化する」 → プレッシャーになり逆効果</li>
+<li>❌ しばらく投稿がないからといって見捨てる → 人は動くタイミングがそれぞれ違う</li>
+</ul>
+</div>
+
+<h3>◆ 9-7　Discordサーバーの初期設定手順</h3>
+<div class="feature-list">
+<div class="feature"><div class="f-head">STEP 1　Discordアカウントを作成する</div><p>https://discord.com にアクセスしてアカウント登録。スマホアプリ版も同時にインストールしておく</p></div>
+<div class="feature"><div class="f-head">STEP 2　新しいサーバーを作成する</div><p>左側の「＋」ボタン→「サーバーを作成」→「自分と友達のために」→サーバー名を入力(例：MUSUBI認定インストラクター)</p></div>
+<div class="feature"><div class="f-head">STEP 3　ロールを作成する</div><p>サーバー設定→「ロール」→「＋ロールを作成」→講座ごとのロール名を設定。カラーを講座ごとに変えると視認性が上がる</p></div>
+<div class="feature"><div class="f-head">STEP 4　チャンネルを作成・権限設定する</div><p>「テキストチャンネルを作成」→チャンネル名入力→「プライベートチャンネル」に設定→見られるロールを選択</p></div>
+<div class="feature"><div class="f-head">STEP 5　認定講師を招待してロールを付与する</div><p>招待リンクを生成→講師に共有→参加後に該当するロールを付与。これで該当チャンネルが見えるようになる</p></div>
+</div>
+<div class="callout">
+<p><strong>💡 初期設定のコツ</strong></p>
+<ul>
+<li>最初は「お知らせ」「質問」「講座別チャンネル」の3種類だけで始める</li>
+<li>チャンネルを作りすぎない。使われないチャンネルが増えると場が静かに見える</li>
+<li>サーバーのアイコンはCanvaで作ったブランドロゴを使う</li>
+</ul>
+</div>
+`,
       checklist: [
-        "認定基準を文章にした",
-        "講師向けのルールブック骨子を作った",
-        "講師フォローの月次サイクルを決めた",
+        "Discordアカウントを作成した",
+        "サーバーを作成してサーバー名・アイコンを設定した",
+        "講座ごとのロールを作成した",
+        "最低限のチャンネル(お知らせ・質問・講座別)を作成した",
+        "認定講師を招待してロールを付与した",
+        "#お知らせ に最初の投稿をした",
+        "最初のコラムを書いた",
       ],
     },
     {

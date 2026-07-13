@@ -120,6 +120,28 @@ h2.sec-t{font-size:clamp(23px,3vw,32px);line-height:1.55;font-weight:700;letter-
 .proof-author p{font-size:14px;color:var(--body);margin:0}
 @media(max-width:680px){.proof{padding:40px 0}.proof-grid{gap:10px}.proof-item{padding:16px 6px}.proof-author{flex-direction:column;gap:10px}}
 
+/* ---------- あゆみストーリー(Before/After) ---------- */
+.ba-grid{display:grid;grid-template-columns:1fr 44px 1fr;gap:10px;align-items:stretch;margin-top:34px}
+.ba-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}
+.ba-card.after{border:1.5px solid var(--orange);background:linear-gradient(135deg,#fff,var(--bg-orange));box-shadow:0 10px 28px rgba(231,161,71,.12)}
+.ba-tag{display:inline-block;font-size:11.5px;letter-spacing:.18em;font-weight:700;border-radius:999px;padding:4px 14px;margin-bottom:12px;background:var(--bg-warm);color:var(--ink-2)}
+.ba-card.after .ba-tag{background:var(--orange);color:#fff}
+.ba-card li{list-style:none;position:relative;padding:6px 0 6px 24px;font-size:14.5px;color:var(--body)}
+.ba-card li::before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+.ba-card.after li::before{content:"✓";color:var(--orange-deep);font-weight:700}
+.ba-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--orange);font-weight:700}
+@media(max-width:680px){.ba-grid{grid-template-columns:1fr;gap:6px}.ba-arrow{transform:rotate(90deg);padding:4px 0}}
+
+/* ---------- FAQ ---------- */
+.faq{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:flex-start;padding:18px 22px;font-weight:700;font-size:15px;line-height:1.7}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";min-width:26px;height:26px;border-radius:8px;background:var(--bg-orange);color:var(--orange-deep);font-weight:700;display:grid;place-items:center;font-size:13px;margin-top:1px}
+.faq summary::after{content:"+";margin-left:auto;color:var(--ink-3);font-size:20px;font-weight:400;line-height:1.4}
+.faq[open] summary::after{content:"−"}
+.faq .faq-a{padding:0 22px 20px 62px;font-size:14.5px;color:var(--body)}
+@media(max-width:680px){.faq .faq-a{padding-left:22px}}
+
 /* ---------- 読書進捗バー(章ページ) ---------- */
 #readbar{position:fixed;top:64px;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--orange),#F0B966);z-index:49;transition:width .08s linear;pointer-events:none}
 
@@ -626,6 +648,33 @@ function pageHome(){
     </div>
   </section>
 
+  <section class="sec" style="background:var(--bg-blue)">
+    <div class="wrap">
+      <div class="kicker">STORY</div>
+      <h2 class="sec-t">「作っては売る」の毎日から、<br>仕組みが回る毎日へ。</h2>
+      <p class="lede">私も最初は、作れる量と教えられる人数が収入の上限でした。認定講座という仕組みに変えてから、講師のみなさんがキットを仕入れて講座を開いてくれるようになり、私が直接教えなくても講座が回るようになりました。この教科書には、その手順をそのまま載せています。</p>
+      <div class="ba-grid">
+        <div class="ba-card">
+          <span class="ba-tag">いままで</span>
+          <ul>
+            <li>作れる数が、そのまま収入の上限</li>
+            <li>教えても単発で終わってしまう</li>
+            <li>自分が止まると、収益も止まる</li>
+          </ul>
+        </div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-card after">
+          <span class="ba-tag">仕組みができると</span>
+          <ul>
+            <li>講師の数だけ、講座が広がる</li>
+            <li>キット仕入れで継続的な収益が入る</li>
+            <li>自分が直接教えなくても、講座が開かれる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="sec sec-soft">
     <div class="wrap">
       <div class="kicker">SOLUTION</div>
@@ -634,6 +683,10 @@ function pageHome(){
       <div class="chips">
         ${["講座設計","教材設計","認定基準","価格設計","講座LP","申込導線","講師ページ","Academyアプリ","Communityアプリ","伴走サポート"].map(c=>`<span class="chip">${c}</span>`).join("")}
       </div>
+      <figure class="figure-wide" style="max-width:820px;margin:44px auto 0">
+        <img src="images/ch01-income-3pillars.webp" alt="認定講座の3つの収益源(受講料収益・キット材料収益・コンテンツ収益)" loading="lazy">
+        <figcaption>完全版 第1章より。この「3つの収益源」の仕組みを、10章かけて順番に組み立てていきます。</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -642,6 +695,20 @@ function pageHome(){
       <div class="kicker">YOUR PATH</div>
       <h2 class="sec-t">知る → 作る → 運用する → 育てる。<br>順番に進めば、講座は形になります。</h2>
       <ol class="flow">${flow}</ol>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">FAQ</div>
+      <h2 class="sec-t">よくあるご質問</h2>
+      <div style="margin-top:30px">
+        <details class="faq"><summary>ハンドメイド以外のスキルでも使えますか？</summary><div class="faq-a">講座設計・価格設定・講師制度づくりの「型」は共通です。教科書はハンドメイド(クラフト)の実例で解説していますが、教えられるスキルであれば同じ手順で応用できます。</div></details>
+        <details class="faq"><summary>初心者ですが、ついていけますか？</summary><div class="faq-a">はい。まず無料版で全体像をつかみ、完全版はSTEP 01「土台を作る」から1章ずつ順番に進める構成です。各章にワークとチェックリストがあり、読むだけでなく手を動かしながら形にしていきます。</div></details>
+        <details class="faq"><summary>講座が完成するまで、どのくらいかかりますか？</summary><div class="faq-a">目安は4〜6ヶ月です。第4章のロードマップで「何ヶ月目に何をやるか」を月ごとに示しているので、自分のペースに合わせて計画できます。</div></details>
+        <details class="faq"><summary>無料版と完全版の違いは何ですか？</summary><div class="faq-a">無料版は「考え方と5つのステップ」の全体像(約15分で読めます)。完全版は全10章＋付録で、価格設定・キット・テキスト・講師制度・コミュニティ運営まで、実際に作るための手順・ワーク・実例をすべて収録しています。</div></details>
+        <details class="faq"><summary>スマホだけでも学べますか？</summary><div class="faq-a">はい。このサイトはスマホでの学習に最適化しています。進捗も自動で保存されるので、すきま時間に少しずつ進められます。</div></details>
+      </div>
     </div>
   </section>
 
