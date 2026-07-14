@@ -132,6 +132,16 @@ h2.sec-t{font-size:clamp(23px,3vw,32px);line-height:1.55;font-weight:700;letter-
 .ba-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--orange);font-weight:700}
 @media(max-width:680px){.ba-grid{grid-template-columns:1fr;gap:6px}.ba-arrow{transform:rotate(90deg);padding:4px 0}}
 
+/* ---------- トップ挿絵レイアウト ---------- */
+.split2{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.photo-card{width:100%;display:block;border-radius:18px;border:1px solid var(--line);box-shadow:0 14px 36px rgba(47,47,47,.08);background:#fff}
+.cert-band{padding:0 0 88px}
+.cert-band .cb-cap{text-align:center;font-size:14.5px;font-weight:700;color:var(--ink-2);margin-top:16px}
+.cta-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;text-align:left}
+.cta-grid img{width:100%;border-radius:16px;display:block}
+@media(max-width:900px){.split2{grid-template-columns:1fr;gap:26px}}
+@media(max-width:680px){.cta-grid{grid-template-columns:1fr;gap:22px;text-align:center}.cert-band{padding-bottom:56px}}
+
 /* ---------- FAQ ---------- */
 .faq{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
 .faq summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:flex-start;padding:18px 22px;font-weight:700;font-size:15px;line-height:1.7}
@@ -650,28 +660,17 @@ function pageHome(){
 
   <section class="sec" style="background:var(--bg-blue)">
     <div class="wrap">
-      <div class="kicker">STORY</div>
-      <h2 class="sec-t">「作っては売る」の毎日から、<br>仕組みが回る毎日へ。</h2>
-      <p class="lede">私も最初は、作れる量と教えられる人数が収入の上限でした。認定講座という仕組みに変えてから、講師のみなさんがキットを仕入れて講座を開いてくれるようになり、私が直接教えなくても講座が回るようになりました。この教科書には、その手順をそのまま載せています。</p>
-      <div class="ba-grid">
-        <div class="ba-card">
-          <span class="ba-tag">いままで</span>
-          <ul>
-            <li>作れる数が、そのまま収入の上限</li>
-            <li>教えても単発で終わってしまう</li>
-            <li>自分が止まると、収益も止まる</li>
-          </ul>
+      <div class="split2">
+        <div>
+          <div class="kicker">STORY</div>
+          <h2 class="sec-t">「作っては売る」の毎日から、<br>仕組みが回る毎日へ。</h2>
+          <p class="lede">私も最初は、作れる量と教えられる人数が収入の上限でした。認定講座という仕組みに変えてから、講師のみなさんがキットを仕入れて講座を開いてくれるようになり、私が直接教えなくても講座が回るようになりました。この教科書には、その手順をそのまま載せています。</p>
         </div>
-        <div class="ba-arrow">→</div>
-        <div class="ba-card after">
-          <span class="ba-tag">仕組みができると</span>
-          <ul>
-            <li>講師の数だけ、講座が広がる</li>
-            <li>キット仕入れで継続的な収益が入る</li>
-            <li>自分が直接教えなくても、講座が開かれる</li>
-          </ul>
-        </div>
+        <img class="photo-card" src="images/top-story-hands.webp" alt="認定講座のキットを丁寧に箱に詰める手元" loading="lazy">
       </div>
+      <figure class="figure-wide" style="max-width:880px;margin:48px auto 0">
+        <img src="images/top-transformation.webp" alt="作って売る毎日から、仕組みが回る毎日へ。教える人を、育てる側へ。" loading="lazy">
+      </figure>
     </div>
   </section>
 
@@ -692,9 +691,21 @@ function pageHome(){
 
   <section class="sec">
     <div class="wrap">
-      <div class="kicker">YOUR PATH</div>
-      <h2 class="sec-t">知る → 作る → 運用する → 育てる。<br>順番に進めば、講座は形になります。</h2>
+      <div class="split2">
+        <div>
+          <div class="kicker">YOUR PATH</div>
+          <h2 class="sec-t" style="margin-bottom:0">知る → 作る → 運用する → 育てる。<br>順番に進めば、講座は形になります。</h2>
+        </div>
+        <img class="photo-card" src="images/top-builder-desk.webp" alt="テキスト・ディプロマ・キット・リール動画。講座を構成する要素が並ぶ机" loading="lazy">
+      </div>
       <ol class="flow">${flow}</ol>
+    </div>
+  </section>
+
+  <section class="cert-band">
+    <div class="wrap" style="max-width:980px">
+      <img class="photo-card" src="images/top-certificate-moment.webp" alt="額入りの認定証を両手で手渡す瞬間" loading="lazy">
+      <p class="cb-cap">この教科書のゴールは、あなたが認定証を手渡す側になることです。</p>
     </div>
   </section>
 
@@ -714,9 +725,14 @@ function pageHome(){
 
   <div class="cta-band-wrap">
     <div class="cta-band">
-      <h2>まずは無料版で、<br>認定講座づくりの全体像をつかんでください。</h2>
-      <p>読むのに必要な時間は約15分。登録不要でいますぐ読めます。</p>
-      <a class="btn btn-p" href="#/free">無料版を読む</a>
+      <div class="cta-grid">
+        <img src="images/free-book-mock.webp" alt="無料版・認定講座ビジネス入門教科書(冊子とスマホ)" loading="lazy">
+        <div>
+          <h2>まずは無料版で、<br>認定講座づくりの全体像をつかんでください。</h2>
+          <p>読むのに必要な時間は約15分。登録不要でいますぐ読めます。</p>
+          <a class="btn btn-p" href="#/free">無料版を読む</a>
+        </div>
+      </div>
     </div>
   </div>`;
 }

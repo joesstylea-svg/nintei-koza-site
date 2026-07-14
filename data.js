@@ -1376,6 +1376,10 @@ window.SITE_DATA = {
 
 <h3>◆ 9-3　Discordサーバーの設計</h3>
 <p>MUSUBIでは1サーバー＋ロール振り分けで全講座の講師を管理しています。講座ごとにサーバーを分けると管理が大変になるため、1つのサーバーで一元管理するのがおすすめです。</p>
+<figure class="figure-wide">
+<img src="images/ch09-discord-structure.webp" alt="1つのDiscordサーバーからADBM講師・CACM講師・GAAM講師のロール別チャンネルに分かれる構造図。管理者は全部見える">
+<figcaption>図9-1｜1サーバー＋ロールの出し分けで、講座が増えても管理はシンプルなままです。</figcaption>
+</figure>
 <p><strong>▶ ロール設計(MUSUBIモデル)</strong></p>
 <table class="tbl">
 <thead><tr><th>ロール名</th><th>付与する対象</th><th>見られるチャンネル</th></tr></thead>
