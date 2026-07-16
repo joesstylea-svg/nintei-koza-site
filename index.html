@@ -1620,11 +1620,8 @@ function pageMentoring(){
 }
 
 // ---------- ページ:問い合わせフォーム ----------
-function igFallbackHtml(){
-  const ig = D.contact.instagramHandle;
-  return ig
-    ? `<a href="https://instagram.com/${ig}" target="_blank" rel="noopener">Instagram(@${ig})のDM</a>からご連絡ください。`
-    : `Instagramのダイレクトメッセージからご連絡ください。`;
+function contactFallbackHtml(){
+  return `恐れ入りますが、少し時間をおいてから再度お試しください。`;
 }
 function pageContact(presetTopic, source){
   const topics = D.contact.topics;
@@ -1887,7 +1884,7 @@ function bindEvents(parts){
       }catch(err){
         btn.disabled = false;
         btn.textContent = "送信する";
-        errBox.innerHTML = `送信できませんでした。お手数ですが${igFallbackHtml()}`;
+        errBox.innerHTML = `送信できませんでした。${contactFallbackHtml()}`;
         errBox.classList.add("show");
       }
     });

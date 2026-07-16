@@ -20,8 +20,6 @@ window.SITE_DATA = {
 
   // ---------- 問い合わせフォーム(#/contact) ----------
   contact: {
-    // Instagram DM誘導先(未定のため現状はリンクなしのテキスト案内)
-    instagramHandle: null,
     topics: [
       { v: "kobetsu",   label: "個別構築コースの事前診断を受けたい" },
       { v: "academy",   label: "Academyアプリについて相談したい" },
