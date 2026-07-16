@@ -477,6 +477,60 @@ footer{background:var(--bg-warm);border-top:1px solid var(--line)}
   .diag{padding:28px 20px 32px}
   .tt-grid{grid-template-columns:1fr;gap:12px}
 }
+
+/* ---------- アプリ画面モック(Academy/Community紹介用) ---------- */
+.appmock{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 44px rgba(75,102,120,.13);overflow:hidden}
+.am-bar{display:flex;align-items:center;gap:6px;padding:10px 16px;background:var(--bg-soft);border-bottom:1px solid var(--line)}
+.am-bar i{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.am-bar .am-title{margin-left:8px;font-size:11.5px;font-weight:700;color:var(--ink-2);letter-spacing:.06em}
+.am-body{padding:18px 18px 20px}
+.am-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:6px}
+.am-stat{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:10px 6px;text-align:center}
+.am-stat b{display:block;font-size:20px;color:var(--ink);line-height:1.3}
+.am-stat span{font-size:10.5px;color:var(--ink-2)}
+.am-sec{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--ink-3);margin:16px 0 8px}
+.am-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;font-size:12.5px;background:#fff;line-height:1.5}
+.am-row b{font-weight:700;color:var(--ink)}
+.am-row .am-sub{color:var(--ink-3);font-size:11px}
+.am-chip{margin-left:auto;font-size:10.5px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.am-chip.ok{background:#EAF3EA;color:var(--green)}
+.am-chip.wait{background:var(--bg-orange);color:var(--orange-deep)}
+.am-chip.info{background:var(--bg-blue);color:var(--bluegray)}
+.am-chip.alert{background:#FBEAEA;color:#BF554E}
+.am-btn{display:inline-block;background:var(--orange);color:#fff;font-size:11.5px;font-weight:700;border-radius:8px;padding:7px 16px}
+.am-btn.blue{background:var(--blue)}
+.qr-mock{flex:none;width:56px;height:56px;border:1px solid var(--line);border-radius:6px;background-image:linear-gradient(45deg,var(--ink) 25%,transparent 25%,transparent 75%,var(--ink) 75%),linear-gradient(45deg,var(--ink) 25%,#fff 25%,#fff 75%,var(--ink) 75%);background-size:12px 12px;background-position:0 0,6px 6px;opacity:.75}
+/* Community投稿フィード */
+.am-rooms{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.am-room{font-size:11px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--ink-2);background:var(--bg-soft)}
+.am-room.cur{background:var(--orange);border-color:var(--orange);color:#fff}
+.am-post{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:#fff}
+.am-post .ap-head{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--ink)}
+.am-ava{flex:none;width:24px;height:24px;border-radius:50%;background:var(--bg-orange);display:flex;align-items:center;justify-content:center;font-size:12px}
+.am-post p{font-size:12px;color:var(--body);margin-top:6px;line-height:1.75}
+.am-post .ap-meta{font-size:10.5px;color:var(--ink-3);margin-top:8px;display:flex;gap:14px}
+.am-pin{margin-left:auto;font-size:10px;background:var(--bg-orange);color:var(--orange-deep);border-radius:6px;padding:2px 8px;font-weight:700}
+/* モック＋説明の2カラム */
+.mock-split{display:grid;grid-template-columns:0.9fr 1.1fr;gap:34px;align-items:center;margin-top:44px}
+.mock-split.rev{grid-template-columns:1.1fr 0.9fr}
+.mock-split .ms-t{font-size:12px;letter-spacing:.18em;font-weight:700;color:var(--orange-deep);margin-bottom:10px}
+.mock-split h3{font-size:clamp(17px,2vw,20px);font-weight:700;margin-bottom:12px;line-height:1.6}
+.mock-split .ms-d{font-size:14.5px;color:var(--body)}
+.mock-split ul{margin-top:12px}
+.mock-split ul li{list-style:none;font-size:13.5px;color:var(--ink-2);padding:4px 0 4px 22px;position:relative}
+.mock-split ul li::before{content:"✓";position:absolute;left:0;color:var(--orange);font-weight:700}
+/* メリットカード */
+.merit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:36px}
+.merit{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 26px 24px}
+.merit .mi{font-size:26px;margin-bottom:10px}
+.merit h4{font-size:15.5px;font-weight:700;margin-bottom:10px;line-height:1.6}
+.merit p{font-size:13.5px;color:var(--ink-2);line-height:1.85}
+@media(max-width:900px){
+  .mock-split,.mock-split.rev{grid-template-columns:1fr;gap:20px}
+  .mock-split .appmock{max-width:480px;margin:0 auto;width:100%}
+  .merit-grid{grid-template-columns:1fr}
+}
+@media(max-width:680px){.am-stats{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -940,14 +994,14 @@ function pageLibrary(){
           <div class="c-label">APP ─ 運用する</div>
           <h3>Academy</h3>
           <p class="c-desc">作った講座を、回る状態にするMikke OSアプリ。</p>
-          <div class="c-price">初期 49,800円 / 月額 5,000円〜</div>
+          <div class="c-price">料金は準備中(月額制を予定)</div>
           <a class="btn btn-s btn-sm" href="#/academy">紹介を見る</a>
         </div>
         <div class="card">
           <div class="c-label">APP ─ 育てる</div>
           <h3>Community</h3>
           <p class="c-desc">受講後のつながりを育てるMikke OSアプリ。必要な場合だけ追加できます。</p>
-          <div class="c-price">料金は設計中</div>
+          <div class="c-price">料金は準備中(月額制を予定)</div>
           <a class="btn btn-s btn-sm" href="#/community">紹介を見る</a>
         </div>
       </div>
@@ -1101,22 +1155,138 @@ function pageChapter(id){
 function pageAcademy(){
   const f = D.academy.features.map(x=>`
     <div class="fcard"><h4>${x.title}</h4><ul>${x.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("");
+  const merits = D.academy.merits.map(m=>`
+    <div class="merit"><div class="mi">${m.icon}</div><h4>${m.t}</h4><p>${m.d}</p></div>`).join("");
+  const flow = D.academy.flow.map((x,i)=>`
+    <div class="feature"><div class="f-head">STEP ${i+1}　${x.step}</div><p>${x.d}</p></div>`).join("");
   return `
   <section class="sec sec-blue">
     <div class="wrap">
       <div class="kicker">MIKKE OS APP</div>
       <h2 class="sec-t" style="font-size:clamp(27px,3.8vw,40px)">Academyで、<br>講座が回る状態にする。</h2>
-      <p class="lede">完全版で講座の設計ができたら、次に必要になるのは運用の仕組みです。<br><br>Academyでは、講座LP、申込フォーム、本部受付、講師受付、教材配布、キット仕入れ、認定更新、講師ページまでを管理できます。学んだ内容を実際に運用する場所として使うと、講座構築後の管理が楽になります。</p>
+      <p class="lede">完全版で講座の設計ができたら、次に必要になるのは運用の仕組みです。<br><br>Academyは、講座LP・申込・入金・キット・教材・講師管理までを1つにまとめた、認定講座の本部運営アプリです。手作業の運用(note・STUDIO・手元リスト)で手が回らなくなってきたら、ここに引っ越せます。</p>
       <div class="btn-row">
-        <a class="btn btn-p" href="#/academy/pricing">料金・導入案内を見る</a>
-        <a class="btn btn-s" href="${D.links.consult}">Academyについて相談する</a>
+        <a class="btn btn-p" href="${D.links.consult}">Academyについて相談する</a>
+        <a class="btn btn-s" href="#/academy/pricing">料金について(準備中)</a>
       </div>
     </div>
   </section>
+
   <section class="sec">
     <div class="wrap">
+      <div class="kicker">MERITS</div>
+      <h2 class="sec-t">導入すると、何が変わるか</h2>
+      <div class="merit-grid">${merits}</div>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap">
+      <div class="kicker">SCREENS</div>
+      <h2 class="sec-t">アプリの様子</h2>
+      <p class="lede">Academyには3つの顔があります。本部のあなた・認定講師・受講希望者、それぞれにこう見えます。</p>
+
+      <div class="mock-split">
+        <div class="appmock">
+          <div class="am-bar"><i></i><i></i><i></i><span class="am-title">Academy ─ 本部ダッシュボード</span></div>
+          <div class="am-body">
+            <div class="am-stats">
+              <div class="am-stat"><b>4</b><span>講座</span></div>
+              <div class="am-stat"><b>12</b><span>講師</span></div>
+              <div class="am-stat"><b>6</b><span>今月の申込</span></div>
+              <div class="am-stat"><b>2</b><span>未対応</span></div>
+            </div>
+            <div class="am-sec">最近の申込</div>
+            <div class="am-row"><b>佐藤さま</b><span class="am-sub">CACM・本部受付</span><span class="am-chip wait">入金待ち</span></div>
+            <div class="am-row"><b>田中さま</b><span class="am-sub">ADBM・講師受付(山本先生)</span><span class="am-chip ok">入金済み</span></div>
+            <div class="am-row"><b>鈴木さま</b><span class="am-sub">GAAM・本部受付</span><span class="am-chip info">キット発送済み</span></div>
+            <div class="am-sec">更新期限アラート</div>
+            <div class="am-row"><b>山本先生</b><span class="am-sub">CACM・更新期限 8/10</span><span class="am-chip alert">あと26日</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="ms-t">HONBU ─ 本部のあなたの画面</div>
+          <h3>今日やることが、開いた瞬間にわかる</h3>
+          <p class="ms-d">ダッシュボードには、講座・講師・今月の申込の数と「未対応」の件数が最初に表示されます。対応が止まっている申込や、更新期限が近い講師は自動で上がってくるので、リストを見返して探す必要がありません。</p>
+          <ul>
+            <li>申込は受付元(本部/どの講師か)つきで自動で一覧に入る</li>
+            <li>入金・キット・受講・認定はワンタップでステータス更新</li>
+            <li>講師の認定日・講師番号・更新期限をまとめて管理</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mock-split rev">
+        <div>
+          <div class="ms-t">KOUSHI ─ 認定講師の画面</div>
+          <h3>講師は、自分のマイページだけで営業と復習が完結</h3>
+          <p class="ms-d">認定講師には専用のマイページが用意されます。自分専用の営業URLとQRコードで集客し、復習教材で学び直し、キットの仕入れ注文までここで完結します。講師が動きやすいほど、本部の仕組みは回ります。</p>
+          <ul>
+            <li>営業ページ(講座LP＋自分のプロフィール)のURL・QRを発行</li>
+            <li>復習動画・資料・仕入れ先リンクをいつでも閲覧</li>
+            <li>キット発注と支払い状況の確認</li>
+          </ul>
+        </div>
+        <div class="appmock">
+          <div class="am-bar"><i></i><i></i><i></i><span class="am-title">Academy ─ 講師マイページ</span></div>
+          <div class="am-body">
+            <div class="am-sec">取得講座</div>
+            <div class="am-row"><b>CACM</b><span class="am-sub">コンテナアロマキャンドル</span><span class="am-chip ok">認定済・活動中</span></div>
+            <div class="am-sec">営業用ページ</div>
+            <div class="am-row"><div class="qr-mock"></div><div><b>あなた専用の集客URL</b><br><span class="am-sub">academy/i/your-page…</span></div><span class="am-btn blue">コピー</span></div>
+            <div class="am-sec">復習・教材</div>
+            <div class="am-row"><b>📹 作り方動画(全7本)</b><span class="am-chip info">更新 7/12</span></div>
+            <div class="am-row"><b>🛒 材料の仕入れ先リスト</b><span class="am-chip info">最新版</span></div>
+            <div class="am-sec">キット仕入れ</div>
+            <div class="am-row"><b>CACMキット × 2</b><span class="am-sub">7/8 発注</span><span class="am-chip ok">発送済み</span></div>
+            <div style="margin-top:10px;text-align:center"><span class="am-btn">キットを発注する</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mock-split">
+        <div class="appmock">
+          <div class="am-bar"><i></i><i></i><i></i><span class="am-title">公開ページ ─ 講座LP</span></div>
+          <div class="am-body">
+            <div style="background:var(--bg-blue);border-radius:10px;padding:22px 16px;text-align:center;margin-bottom:12px">
+              <div style="font-size:10px;letter-spacing:.3em;color:var(--bluegray);font-weight:700">CACM</div>
+              <div style="font-size:15px;font-weight:700;margin-top:6px">コンテナアロマキャンドル<br>認定講座</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+              <div class="am-stat"><b style="font-size:13px">¥55,000</b><span>受講料</span></div>
+              <div class="am-stat"><b style="font-size:13px">約3時間</b><span>時間</span></div>
+              <div class="am-stat"><b style="font-size:13px">対面</b><span>形式</span></div>
+            </div>
+            <div class="am-row"><b>カリキュラム・キット内容・FAQ</b></div>
+            <div style="margin-top:12px;text-align:center"><span class="am-btn" style="padding:9px 28px;border-radius:999px">この講座に申し込む</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="ms-t">PUBLIC ─ 受講希望者が見るページ</div>
+          <h3>申込は、LPからそのまま自動で入ってくる</h3>
+          <p class="ms-d">講座名・受講料・カリキュラム・FAQ・申込ボタンが揃った講座LPが公開されます。受講希望者がここから申し込むと、本部の申込一覧に自動で入り、講師の営業ページ経由なら担当講師つきで記録されます。</p>
+          <ul>
+            <li>ビルド式で見出し・文章・画像を積み上げて作れる</li>
+            <li>本部LPと講師の営業ページで受付元を自動判定</li>
+            <li>決済は普段お使いの外部決済リンク(Stripe・銀行振込等)を設定</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">OPERATION</div>
+      <h2 class="sec-t">運営はこう回る ─ 1件の申込を追いかけてみる</h2>
+      <div class="feature-list" style="margin-top:26px">${flow}</div>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap">
       <div class="kicker">FEATURES</div>
-      <h2 class="sec-t">Academyでできること</h2>
+      <h2 class="sec-t">Academyでできること(全体)</h2>
       <div class="fsec">${f}</div>
       <div class="bridge community" style="margin-top:40px">
         <span class="br-tag">Community</span>
@@ -1125,39 +1295,39 @@ function pageAcademy(){
           <a href="#/community">Communityアプリを見る →</a>
         </div>
       </div>
+      <div class="callout" style="margin-top:34px">
+        <p><strong>料金について</strong></p>
+        <p style="font-size:14.5px;margin-top:6px">料金は現在準備中です(月額制を予定)。決まり次第ご案内しますので、導入をご検討の方はまずご相談ください。</p>
+      </div>
+      <div class="btn-row center" style="margin-top:26px">
+        <a class="btn btn-p" href="${D.links.consult}">Academyについて相談する</a>
+      </div>
     </div>
   </section>`;
 }
 
 function pageAcademyPricing(){
-  const plans = D.academy.plans.map((p,i)=>`
-    <div class="price-card ${i===1?"hot":""}">
-      <div class="pc-name">${p.name}</div>
-      <div class="pc-price">${p.price}</div>
-      <div class="pc-cap">${p.cap}</div>
-    </div>`).join("");
   return `
   <section class="sec sec-soft">
     <div class="wrap center">
       <div class="kicker">ACADEMY PRICING</div>
-      <h2 class="sec-t">小さく始めて、<br>講座と講師が増えたら育てる。</h2>
+      <h2 class="sec-t">Academyアプリ 料金</h2>
+      <p class="lede" style="margin:16px auto 0">料金は現在準備中です。<strong>月額制</strong>を予定しており、小さく始めて講座と講師が増えたら育てられる形を検討しています。決まり次第、このページでご案内します。</p>
     </div>
   </section>
   <section class="sec">
-    <div class="wrap">
-      <div class="setup-band">
-        <div><div class="sb-t">初期導入費</div><div class="sb-p">49,800円</div></div>
-        <div style="font-size:14px">導入設定・初期講座セットアップを含みます</div>
+    <div class="wrap" style="max-width:760px">
+      <div class="callout">
+        <p><strong>決まっている方針</strong></p>
+        <ul>
+          <li>月額制(講座数・講師数の規模に合わせたプランを検討中)</li>
+          <li>決済機能はアプリに内蔵せず、Stripe・Square・銀行振込など普段お使いの外部決済リンクを設定して運用します</li>
+          <li>導入をご検討の方には、料金確定前でも個別にご案内できます</li>
+        </ul>
       </div>
-      <div class="price-grid">${plans}</div>
-      <p class="note center" style="margin-top:22px">${D.academy.extra}</p>
-      <div class="callout" style="margin-top:44px">
-        <p><strong>決済について</strong></p>
-        <p style="font-size:14.5px;margin-top:6px">決済機能はアプリ内に内蔵しません。講座代、キット代、更新料などは、Stripe・Square・銀行振込など、各本部が利用している外部決済リンクを設定して運用します。</p>
-      </div>
-      <div class="btn-row center">
+      <div class="btn-row center" style="margin-top:30px">
         <a class="btn btn-p" href="${D.links.consult}">Academyについて相談する</a>
-        <a class="btn btn-s" href="${D.links.consult}">導入希望を送る</a>
+        <a class="btn btn-s" href="#/academy">Academyの紹介へ戻る</a>
       </div>
     </div>
   </section>`;
@@ -1167,22 +1337,90 @@ function pageAcademyPricing(){
 function pageCommunity(){
   const f = D.community.features.map(x=>`
     <div class="fcard"><h4>${x.title}</h4><ul>${x.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("");
+  const merits = D.community.merits.map(m=>`
+    <div class="merit"><div class="mi">${m.icon}</div><h4>${m.t}</h4><p>${m.d}</p></div>`).join("");
+  const rhythm = D.community.rhythm.map((x,i)=>`
+    <div class="feature"><div class="f-head">${["📣","✍️","❓","🎉"][i]||""} ${x.step}</div><p>${x.d}</p></div>`).join("");
   return `
   <section class="sec sec-orange">
     <div class="wrap">
       <div class="kicker">MIKKE OS APP</div>
       <h2 class="sec-t" style="font-size:clamp(27px,3.8vw,40px)">Communityで、<br>受講後のつながりを育てる。</h2>
-      <p class="lede">Communityは、認定講座の受講後に交流・質問・報告・イベントなどの場を作りたい人向けのMikke OSアプリです。<br><br>認定講座に必ずコミュニティが必要なわけではありません。ただし、講師同士の交流や継続サポート、有料サロン化を考える場合は、Communityを使うことで場の運営がしやすくなります。</p>
+      <p class="lede">Communityは、認定講座の受講後に交流・質問・報告・イベントなどの場を作りたい人向けのMikke OSアプリです。<br><br>認定講座に必ずコミュニティが必要なわけではありません。まずはDiscord(第9章)で十分。講師が増えて「自分のブランドの場」として育てたくなったときに移せる、会員制コミュニティアプリです。</p>
       <div class="btn-row">
-        <a class="btn btn-p" href="#/community/pricing">料金について見る</a>
-        <a class="btn btn-s" href="${D.links.consult}">Communityについて相談する</a>
+        <a class="btn btn-p" href="${D.links.consult}">Communityについて相談する</a>
+        <a class="btn btn-s" href="#/community/pricing">料金について(準備中)</a>
       </div>
     </div>
   </section>
+
   <section class="sec">
     <div class="wrap">
+      <div class="kicker">MERITS</div>
+      <h2 class="sec-t">導入すると、何が変わるか</h2>
+      <div class="merit-grid">${merits}</div>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap">
+      <div class="kicker">SCREENS</div>
+      <h2 class="sec-t">アプリの様子</h2>
+      <div class="mock-split">
+        <div class="appmock">
+          <div class="am-bar"><i></i><i></i><i></i><span class="am-title">Community ─ MUSUBI認定講師サロン</span></div>
+          <div class="am-body">
+            <div class="am-rooms">
+              <span class="am-room cur">📣 お知らせ</span>
+              <span class="am-room">❓ 質問</span>
+              <span class="am-room">🎨 作品・活動報告</span>
+              <span class="am-room">🎉 イベント</span>
+              <span class="am-room">🔒 限定コンテンツ</span>
+            </div>
+            <div class="am-post">
+              <div class="ap-head"><span class="am-ava">結</span>本部 @ayumi<span class="am-pin">📌 固定</span></div>
+              <p>【お知らせ】CACMキットの仕入れ先を更新しました。講師専用ページの仕入れ一覧をご確認ください🌿</p>
+              <div class="ap-meta"><span>💬 コメント 4</span><span>7/14</span></div>
+            </div>
+            <div class="am-post">
+              <div class="ap-head"><span class="am-ava">結</span>本部 @ayumi</div>
+              <p>【Column】久しぶりに窯出しの話。焦らなくて大丈夫、という話を書きました。</p>
+              <div class="ap-meta"><span>💬 コメント 7</span><span>7/12</span></div>
+            </div>
+            <div class="am-post">
+              <div class="ap-head"><span class="am-ava">山</span>山本先生(CACM)</div>
+              <p>【開催報告】週末のワークショップ、3名さまにご参加いただきました！写真を添付します✨</p>
+              <div class="ap-meta"><span>💬 コメント 12</span><span>7/11</span></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="ms-t">SALON ─ 会員から見た画面</div>
+          <h3>話題がRoomで整理され、大事な投稿が流れない</h3>
+          <p class="ms-d">お知らせ・質問・報告・イベント・限定コンテンツがRoomごとに分かれ、重要なお知らせは固定表示。チャットのように情報が流れて消えることがなく、あとから入った講師も過去の投稿から学べます。</p>
+          <ul>
+            <li>Roomごとに投稿・コメント・固定投稿</li>
+            <li>会員ステータス・支払い状況はオーナー画面で管理</li>
+            <li>イベント開催・月次報告はSTORY / Activity Logに実績として残せる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">OPERATION</div>
+      <h2 class="sec-t">運営は、この4つのリズムだけ</h2>
+      <p class="lede">無理に盛り上げる必要はありません。第9章で学ぶコミュニティ運営のリズムが、そのままCommunityでの運営になります。</p>
+      <div class="feature-list" style="margin-top:26px">${rhythm}</div>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap">
       <div class="kicker">FEATURES</div>
-      <h2 class="sec-t">Communityでできること</h2>
+      <h2 class="sec-t">Communityでできること(全体)</h2>
       <div class="fsec">${f}</div>
       <div class="bridge" style="margin-top:40px">
         <span class="br-tag">Academy</span>
@@ -1191,31 +1429,39 @@ function pageCommunity(){
           <a href="#/academy">Academyアプリを見る →</a>
         </div>
       </div>
+      <div class="callout" style="margin-top:34px">
+        <p><strong>料金について</strong></p>
+        <p style="font-size:14.5px;margin-top:6px">料金は現在準備中です(月額制を予定)。まずはAcademyや個別構築コースをご利用の方に、必要に応じて個別にご案内します。</p>
+      </div>
+      <div class="btn-row center" style="margin-top:26px">
+        <a class="btn btn-p" href="${D.links.consult}">Communityについて相談する</a>
+      </div>
     </div>
   </section>`;
 }
 
 function pageCommunityPricing(){
-  const plans = D.community.draftPlans.map(p=>`
-    <div class="price-card">
-      <div class="pc-name">${p.name}</div>
-      <div class="pc-price">${p.price}</div>
-      <div class="pc-cap">詳細未定</div>
-    </div>`).join("");
   return `
   <section class="sec sec-soft">
     <div class="wrap center">
       <div class="kicker">COMMUNITY PRICING</div>
-      <h2 class="sec-t">Communityアプリ料金</h2>
-      <p class="lede">現在設計中です。まずは、Academyや個別構築コースを利用する方に向けて、必要に応じて個別にご案内します。</p>
+      <h2 class="sec-t">Communityアプリ 料金</h2>
+      <p class="lede" style="margin:16px auto 0">料金は現在準備中です。<strong>月額制</strong>を予定しています。まずは、Academyや個別構築コースをご利用の方に向けて、必要に応じて個別にご案内します。</p>
     </div>
   </section>
   <section class="sec">
-    <div class="wrap">
-      <div class="price-grid" style="grid-template-columns:repeat(3,1fr)">${plans}</div>
-      <p class="note center" style="margin-top:20px">※将来的な料金の仮案です。詳細は未定です。</p>
-      <div class="btn-row center">
+    <div class="wrap" style="max-width:760px">
+      <div class="callout">
+        <p><strong>決まっている方針</strong></p>
+        <ul>
+          <li>月額制(コミュニティの規模に合わせたプランを検討中)</li>
+          <li>Academyとは独立したアプリとして提供し、必要な場合のみ講座と連携します</li>
+          <li>導入をご検討の方には、料金確定前でも個別にご案内できます</li>
+        </ul>
+      </div>
+      <div class="btn-row center" style="margin-top:30px">
         <a class="btn btn-p" href="${D.links.consult}">Communityについて相談する</a>
+        <a class="btn btn-s" href="#/community">Communityの紹介へ戻る</a>
       </div>
     </div>
   </section>`;
