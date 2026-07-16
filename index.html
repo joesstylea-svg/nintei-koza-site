@@ -531,6 +531,11 @@ footer{background:var(--bg-warm);border-top:1px solid var(--line)}
   .merit-grid{grid-template-columns:1fr}
 }
 @media(max-width:680px){.am-stats{grid-template-columns:repeat(2,1fr)}}
+/* FUND循環図 */
+.fund-cycle{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:28px}
+.fund-cycle .fc{background:var(--bg-orange);color:var(--orange-deep);font-weight:700;font-size:13px;border-radius:999px;padding:7px 16px;white-space:nowrap}
+.fund-cycle .fc:first-child{background:var(--orange);color:#fff}
+.fund-cycle .fa{color:var(--ink-3);font-weight:700;font-size:13px}
 </style>
 </head>
 <body>
@@ -1537,6 +1542,39 @@ function pageMentoring(){
           <div class="c-label">TEAM ─ 制作チームが行うこと</div>
           ${check(M.weDo)}
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">OPTION ─ MIKKE FUND</div>
+      <h2 class="sec-t">${M.fund.title}</h2>
+      <p class="lede" style="max-width:none;margin-top:18px"><strong>${M.fund.lead}</strong></p>
+      <p class="lede" style="max-width:none;margin-top:12px">${M.fund.body}</p>
+      <div class="fund-cycle">
+        ${M.fund.cycle.map((c,i)=>`${i>0?'<span class="fa">→</span>':""}<span class="fc">${c}</span>`).join("")}
+      </div>
+      <p style="font-size:13.5px;color:var(--ink-2);margin-top:14px">応援してくれた人は「完成した講座を買う人」ではなく「完成までを見届けた仲間」になります。この循環が、公開初日から講座が動き出す土台になります。</p>
+      <p style="margin-top:30px"><strong>▶ 支援メニューの例(受講予約型が中心)</strong></p>
+      <div class="feature-list" style="margin-top:14px">
+        ${M.fund.menus.map(m=>`<div class="feature"><div class="f-head">${m.t}</div><p>${m.d}</p></div>`).join("")}
+      </div>
+      <div class="callout" style="margin-top:26px">
+        <p><strong>FUND連携について</strong></p>
+        <ul>${M.fund.notes.map(n=>`<li>${n}</li>`).join("")}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">AFTER DELIVERY</div>
+      <h2 class="sec-t">${M.after.title}</h2>
+      <p class="lede" style="max-width:none;margin-top:18px">${M.after.body}</p>
+      <div class="callout callout-accent" style="margin-top:26px">
+        <p><strong>📦 納品物「運営ロードマップ」</strong></p>
+        <p>${M.after.deliverable}</p>
       </div>
     </div>
   </section>
