@@ -515,7 +515,7 @@ footer{background:var(--bg-warm);border-top:1px solid var(--line)}
       </div>
       <div class="ft-col">
         <div class="ft-t">SUPPORT</div>
-        <a href="#/mentoring">個別伴走コース</a>
+        <a href="#/mentoring">個別構築コース</a>
         <a href="#/login">ログイン</a>
         <a href="#/admin">管理画面(モック)</a>
       </div>
@@ -547,13 +547,13 @@ const store = {
 };
 const hasTextbook = ()=> ["textbook","mentoring"].includes(store.role);
 const hasMentoring = ()=> store.role === "mentoring";
-const roleLabel = (r)=>({free:"無料会員",textbook:"完全版会員",mentoring:"伴走コース会員"}[r]||r);
+const roleLabel = (r)=>({free:"無料会員",textbook:"完全版会員",mentoring:"個別構築コース会員"}[r]||r);
 
 // ---------- 共通部品 ----------
 function navHtml(){
   const items = [
     ["#/","ホーム"],["#/free","無料版"],["#/library","教材"],
-    ["#/academy","Academy"],["#/community","Community"],["#/mentoring","伴走コース"],
+    ["#/academy","Academy"],["#/community","Community"],["#/mentoring","個別構築"],
   ];
   const cur = location.hash || "#/";
   const links = items.map(([h,t])=>{
@@ -677,7 +677,7 @@ function pageHome(){
         </div>
         <div class="sub-cta">
           <a href="#/academy">Academyアプリを見る</a>
-          <a href="#/mentoring">伴走コースに相談する</a>
+          <a href="#/mentoring">個別構築コースに相談する</a>
         </div>
       </div>
       <div class="board">
@@ -757,7 +757,7 @@ function pageHome(){
       <h2 class="sec-t">認定講座は、作って終わりではなく、<br>回る状態まで整える。</h2>
       <p class="lede">このプログラムでは、講座そのものだけでなく、講座が回り続けるために必要な要素を順番に整えていきます。</p>
       <div class="chips">
-        ${["講座設計","教材設計","認定基準","価格設計","講座LP","申込導線","講師ページ","Academyアプリ","Communityアプリ","伴走サポート"].map(c=>`<span class="chip">${c}</span>`).join("")}
+        ${["講座設計","教材設計","認定基準","価格設計","講座LP","申込導線","講師ページ","Academyアプリ","Communityアプリ","個別構築サポート"].map(c=>`<span class="chip">${c}</span>`).join("")}
       </div>
       <figure class="figure-wide" style="max-width:820px;margin:44px auto 0">
         <img src="images/ch01-income-3pillars.webp" alt="認定講座の3つの収益源(受講料収益・キット材料収益・コンテンツ収益)" loading="lazy">
@@ -797,7 +797,7 @@ function pageHome(){
         <div class="tt-grid">
           <div class="tt-card"><div class="tt-i">📘</div><h4>自分で作りたい</h4><p>テーマも決まっている人は、完全版で手を動かしながら構築</p></div>
           <div class="tt-card"><div class="tt-i">⚙️</div><h4>運用を自動化したい</h4><p>作った講座をAcademyで一元管理して仕組み化</p></div>
-          <div class="tt-card"><div class="tt-i">🤝</div><h4>一緒に作りたい</h4><p>設計から伴走してほしい人は、伴走コースで最短構築</p></div>
+          <div class="tt-card"><div class="tt-i">🤝</div><h4>一緒に作りたい</h4><p>制作チームと一緒に形にしたい人は、個別構築コースへ</p></div>
         </div>
         <div class="center"><a class="btn btn-p" href="#/free">無料版を読んで診断する →</a></div>
       </div>
@@ -908,7 +908,7 @@ function pageLibrary(){
           <a href="${next.href}"><span class="na-tag">学ぶ</span>${tb?"完全版で講座設計を進める":"無料版・サンプル章で全体像を知る"}</a>
           <a href="#/academy"><span class="na-tag">運用する</span>Academyで講座ページと申込を整える</a>
           <a href="#/community"><span class="na-tag">育てる</span>Communityで受講後の場を作る(必要な場合)</a>
-          <a href="#/mentoring"><span class="na-tag">相談する</span>伴走コースで一緒に完成させる</a>
+          <a href="#/mentoring"><span class="na-tag">相談する</span>個別構築コースで一緒に完成させる</a>
         </div>
       </div>
 
@@ -931,8 +931,8 @@ function pageLibrary(){
         </div>
         <div class="card" ${hasMentoring()?"":'style="background:var(--bg-soft)"'}>
           <div class="c-label">MENTORING ─ 完成させる ${hasMentoring()?"":"✨"}</div>
-          <h3>個別伴走コース 専用ページ</h3>
-          <p class="c-desc">伴走コース受講者専用の資料・進行管理。</p>
+          <h3>個別構築コース 専用ページ</h3>
+          <p class="c-desc">個別構築コース依頼者専用の資料・進行管理。</p>
           <div class="c-price">500,000円〜</div>
           <a class="btn btn-s btn-sm" href="#/mentoring">コースを見る</a>
         </div>
@@ -1087,7 +1087,7 @@ function pageChapter(id){
       </div>
       <div class="ch-extra">
         <a href="#/academy">Academyで運用するイメージを見る →</a>
-        <a href="#/mentoring">伴走コースで相談する →</a>
+        <a href="#/mentoring">個別構築コースに相談する →</a>
       </div>
     </article>
   </div>
@@ -1207,7 +1207,7 @@ function pageCommunityPricing(){
     <div class="wrap center">
       <div class="kicker">COMMUNITY PRICING</div>
       <h2 class="sec-t">Communityアプリ料金</h2>
-      <p class="lede">現在設計中です。まずは、Academyや伴走コースを利用する方に向けて、必要に応じて個別にご案内します。</p>
+      <p class="lede">現在設計中です。まずは、Academyや個別構築コースを利用する方に向けて、必要に応じて個別にご案内します。</p>
     </div>
   </section>
   <section class="sec">
@@ -1221,44 +1221,102 @@ function pageCommunityPricing(){
   </section>`;
 }
 
-// ---------- ページ:伴走コース ----------
+// ---------- ページ:個別構築コース(旧・伴走コース) ----------
 function pageMentoring(){
+  const M = D.mentoring;
+  const check = (arr)=>`<ul style="margin:14px 0 0 4px">
+    ${arr.map(i=>`<li style="list-style:none;padding:6px 0 6px 26px;position:relative;font-size:14.5px;color:var(--body)"><span style="position:absolute;left:0;color:var(--orange);font-weight:700">✓</span>${i}</li>`).join("")}
+  </ul>`;
   const memberArea = hasMentoring()
     ? `<div class="admin-panel" style="margin-top:44px">
-        <h3>🤝 伴走コース会員専用エリア(モック)</h3>
-        <p style="font-size:14.5px;color:var(--ink-2)">次回セッションの資料・進行チェックリスト・個別課題をここに掲載します。(MVPではプレースホルダー)</p>
+        <h3>🤝 個別構築コース 依頼者専用エリア(モック)</h3>
+        <p style="font-size:14.5px;color:var(--ink-2)">制作の進捗・今対応が必要なもの・確認待ちの成果物・納品予定をここに掲載します。(MVPではプレースホルダー)</p>
       </div>`
     : `<div class="lockcard" style="margin-top:44px">
         <div class="lk-i">🤝</div>
-        <h3>会員専用エリア</h3>
-        <p>伴走コース受講者には、専用の資料・進行管理ページをご用意します。</p>
-        <a class="btn btn-p" href="${D.links.consult}">まずは相談する(無料)</a>
+        <h3>依頼者専用エリア</h3>
+        <p>個別構築コースの依頼者には、制作の進捗・確認事項を共有する専用ページをご用意します。</p>
+        <a class="btn btn-p" href="${D.links.consult}">まずは事前診断を申し込む(無料)</a>
       </div>`;
   return `
   <section class="sec sec-soft">
     <div class="wrap center">
-      <div class="kicker">MENTORING</div>
-      <h2 class="sec-t" style="font-size:clamp(25px,3.8vw,38px)">一人で作るのが不安な方へ<br>認定講座構築 個別伴走コース</h2>
-      <p class="lede">個別伴走コースでは、完全版の内容をもとに、講座コンセプト、価格設計、教材構成、申込導線、Academyアプリへの落とし込みまで一緒に進めます。必要な方には、Communityアプリを使った会員制コミュニティ設計もサポートします。</p>
+      <div class="kicker">CUSTOM BUILD</div>
+      <h2 class="sec-t" style="font-size:clamp(25px,3.8vw,38px)">自分だけでは難しい方へ<br>${M.title}</h2>
+      <p class="lede" style="margin:18px auto 0">${M.tagline}</p>
     </div>
   </section>
+
+  <section class="sec">
+    <div class="wrap" style="max-width:860px">
+      <p class="lede" style="max-width:none">認定講座を作りたい気持ちはあるけれど——</p>
+      <ul class="problem" style="margin-top:18px">
+        ${M.intro.map(i=>`<li>${i}</li>`).join("")}
+      </ul>
+      <p class="lede" style="max-width:none;margin-top:26px">そんな方に向けて、講座設計から教材・撮影・運営環境まで、<strong>制作チームが講座完成まで一緒に進める</strong>個別構築コースです。教科書の内容を代わりに行うだけのサービスではありません。あなたの技術・経験を提供いただき、それを講座として販売・受講・認定・継続運営できる状態まで、一緒に形にします。</p>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">DELIVERABLES</div>
+      <h2 class="sec-t">このコースで作るもの</h2>
+      <div class="chips" style="margin-top:22px">
+        ${M.makes.map(c=>`<span class="chip">${c}</span>`).join("")}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">PROCESS</div>
+      <h2 class="sec-t">進め方</h2>
+      <div class="feature-list" style="margin-top:26px">
+        ${M.flow.map((f,i)=>`<div class="feature"><div class="f-head">STEP ${i+1}　${f.step}</div><p>${f.desc}</p></div>`).join("")}
+      </div>
+      <p class="note" style="margin-top:18px">※専用の進行管理環境を使用し、制作状況を確認しながら進めます。</p>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap">
+      <div class="kicker">ROLES</div>
+      <h2 class="sec-t">役割分担</h2>
+      <div class="grid g2" style="margin-top:26px">
+        <div class="card">
+          <div class="c-label">YOU ─ 依頼者にお願いすること</div>
+          ${check(M.youDo)}
+        </div>
+        <div class="card">
+          <div class="c-label">TEAM ─ 制作チームが行うこと</div>
+          ${check(M.weDo)}
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="sec">
     <div class="wrap">
       <div class="grid g2">
         <div class="card">
           <div class="c-label">PRICE</div>
-          <h3>コース料金</h3>
-          <div style="font-size:34px;font-weight:700;margin:14px 0 8px">${D.mentoring.price}</div>
-          <p class="note">${D.mentoring.priceNote}</p>
-          <div class="btn-row"><a class="btn btn-p btn-block" href="${D.links.consult}">相談する(無料)</a></div>
+          <h3>料金</h3>
+          <div style="font-size:30px;font-weight:700;margin:14px 0 8px">${M.price}</div>
+          <p class="note">${M.priceNote}</p>
+          <div class="btn-row"><a class="btn btn-p btn-block" href="${D.links.consult}">事前診断を申し込む(無料)</a></div>
         </div>
         <div class="card">
-          <div class="c-label">INCLUDES</div>
-          <h3>含まれる内容</h3>
-          <ul style="margin:14px 0 0 4px">
-            ${D.mentoring.includes.map(i=>`<li style="list-style:none;padding:6px 0 6px 26px;position:relative;font-size:14.5px;color:var(--body)"><span style="position:absolute;left:0;color:var(--orange);font-weight:700">✓</span>${i}</li>`).join("")}
-          </ul>
+          <div class="c-label">DURATION</div>
+          <h3>期間</h3>
+          <div style="font-size:30px;font-weight:700;margin:14px 0 8px">${M.duration}</div>
+          <p class="note">${M.durationNote}</p>
         </div>
+      </div>
+      <div class="callout" style="margin-top:34px">
+        <p><strong>ご依頼にあたって</strong></p>
+        <ul>
+          ${M.notes.map(n=>`<li>${n}</li>`).join("")}
+        </ul>
       </div>
       ${memberArea}
     </div>
@@ -1286,7 +1344,7 @@ function pageLogin(){
         <div class="d-t">— デモ用：権限を選んでログイン —</div>
         <button class="btn btn-s btn-block" data-demo="free">無料会員としてログイン</button>
         <button class="btn btn-s btn-block" data-demo="textbook">完全版購入者としてログイン</button>
-        <button class="btn btn-s btn-block" data-demo="mentoring">伴走コース会員としてログイン</button>
+        <button class="btn btn-s btn-block" data-demo="mentoring">個別構築コース会員としてログイン</button>
       </div>`}
   </div>`;
 }
