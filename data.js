@@ -12,6 +12,25 @@ window.SITE_DATA = {
     author: "@ayumi ｜ MUSUBI 主宰",
   },
 
+  // ---------- Supabase(問い合わせフォーム送信先。mikke-os-mvpと共通プロジェクト) ----------
+  supabase: {
+    url: "https://nttqpprkqbynxyldbnjs.supabase.co",
+    anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50dHFwcHJrcWJ5bnh5bGRibmpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4Mzk4NTEsImV4cCI6MjA5NzQxNTg1MX0.5LJFZS6gnPJkuM1QKR8nR8tQe6wktfwCHe9UGUI8_NY",
+  },
+
+  // ---------- 問い合わせフォーム(#/contact) ----------
+  contact: {
+    // Instagram DM誘導先(未定のため現状はリンクなしのテキスト案内)
+    instagramHandle: null,
+    topics: [
+      { v: "kobetsu",   label: "個別構築コースの事前診断を受けたい" },
+      { v: "academy",   label: "Academyアプリについて相談したい" },
+      { v: "community", label: "Communityアプリについて相談したい" },
+      { v: "textbook",  label: "完全版について(決済準備中・先行案内)" },
+      { v: "other",     label: "その他" },
+    ],
+  },
+
   // ---------- 構築ステップ(完全版の章をステップにまとめる) ----------
   steps: [
     { id: "step-01", label: "STEP 01", title: "土台を作る",       chapters: ["chapter-01", "chapter-02"] },
@@ -2258,7 +2277,7 @@ Instagramでご紹介させていただきたいのですが、<br>
 
   // ---------- 外部リンク(モック) ----------
   links: {
-    buyTextbook: "https://example.com/pay/textbook",   // TODO: Stripe Payment Link等に差し替え
-    consult: "https://example.com/contact",            // TODO: 申込フォームURLに差し替え
+    buyTextbook: "#/contact/textbook",   // TODO: Phase C で Stripe Payment Link に差し替え
+    consult: "#/contact",                // サイト内フォーム
   },
 };
