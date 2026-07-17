@@ -605,6 +605,19 @@ footer{background:var(--bg-warm);border-top:1px solid var(--line)}
 // 認定講座構築サイト SPA(ハッシュルーティング / ビルド不要)
 // 権限・進捗は localStorage で管理(MVP:手動権限付与を想定)
 // ============================================================
+
+// ---------- 紹介コード取り込み(?r=code、ファーストタッチ90日) ----------
+(function(){
+  const r = new URLSearchParams(location.search).get("r");
+  if(r && /^[a-z0-9][a-z0-9_-]{1,31}$/.test(r.toLowerCase())){
+    let cur = null;
+    try{ cur = JSON.parse(localStorage.getItem("nk_ref")); }catch(e){}
+    const valid = cur && cur.t && (Date.now()-cur.t) < 90*24*60*60*1000;
+    if(!valid) localStorage.setItem("nk_ref", JSON.stringify({c:r.toLowerCase(), t:Date.now()}));
+    history.replaceState(null, "", location.pathname + location.hash);
+  }
+})();
+
 const D = window.SITE_DATA;
 const $ = (s)=>document.querySelector(s);
 const app = $("#app");
@@ -624,6 +637,13 @@ const roleLabel = (r)=>({free:"無料会員",textbook:"完全版会員",mentorin
 function savedDiagResult(){
   const k = localStorage.getItem("nk_diag");
   return (k && D.diagnosis.results[k]) ? k : null;
+}
+function refCode(){
+  let cur = null;
+  try{ cur = JSON.parse(localStorage.getItem("nk_ref")); }catch(e){}
+  if(!cur || !cur.t) return null;
+  if((Date.now()-cur.t) >= 90*24*60*60*1000){ localStorage.removeItem("nk_ref"); return null; }
+  return cur.c || null;
 }
 
 // ---------- 共通部品 ----------
@@ -1884,6 +1904,7 @@ function bindEvents(parts){
         fund_interest: fd.get("topic")==="kobetsu" ? (fd.get("fund_interest")||"unknown") : null,
         message: (fd.get("message")||"").trim() || null,
         source: fd.get("source") || "#/",
+        referral: refCode(),
       };
       const btn = $("#ctSubmit");
       btn.disabled = true;

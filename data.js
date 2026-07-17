@@ -2275,7 +2275,7 @@ Instagramでご紹介させていただきたいのですが、<br>
 
   // ---------- 外部リンク(モック) ----------
   links: {
-    buyTextbook: "#/contact/textbook",   // TODO: Phase C で Stripe Payment Link に差し替え
+    buyTextbook: "#/contact/textbook",   // TODO: Phase C で Stripe Payment Link に差し替え。差し替え時は末尾に `?client_reference_id=` + refCode() を付与し紹介元をStripe決済記録にも引き継ぐ(refCode()がnullなら付与しない)
     consult: "#/contact",                // サイト内フォーム
   },
 };
