@@ -9,6 +9,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="認定講座構築プログラム｜スキルを、仕組みに変える。">
 <meta property="og:description" content="講座設計・価格・教材・講師制度・運用まで、順番に進めれば認定講座のかたちができていく構築型学習サイト。">
+<meta property="og:image" content="https://joesstylea-svg.github.io/nintei-koza-site/images/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E7A147'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='bold'%3E結%3C/text%3E%3C/svg%3E">
 <title>認定講座構築プログラム｜スキルを、仕組みに変える。</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -619,6 +621,10 @@ const store = {
 const hasTextbook = ()=> ["textbook","mentoring"].includes(store.role);
 const hasMentoring = ()=> store.role === "mentoring";
 const roleLabel = (r)=>({free:"無料会員",textbook:"完全版会員",mentoring:"個別構築コース会員"}[r]||r);
+function savedDiagResult(){
+  const k = localStorage.getItem("nk_diag");
+  return (k && D.diagnosis.results[k]) ? k : null;
+}
 
 // ---------- 共通部品 ----------
 function navHtml(){
@@ -718,6 +724,7 @@ function renderDiag(nodeId){
   if(!box) return;
   box.innerHTML = diagStepHtml(nodeId);
   box.dataset.node = nodeId;
+  if(D.diagnosis.results[nodeId]) localStorage.setItem("nk_diag", nodeId);
 }
 
 // ---------- ページ:トップ ----------
@@ -870,7 +877,7 @@ function pageHome(){
           <div class="tt-card"><div class="tt-i">⚙️</div><h4>運用を自動化したい</h4><p>作った講座をAcademyで一元管理して仕組み化</p></div>
           <div class="tt-card"><div class="tt-i">🤝</div><h4>一緒に作りたい</h4><p>制作チームと一緒に形にしたい人は、個別構築コースへ</p></div>
         </div>
-        <div class="center"><a class="btn btn-p" href="#/free">無料版を読んで診断する →</a></div>
+        <div class="center"><a class="btn btn-p" href="#/free/diag">無料版を読んで診断する →</a></div>
       </div>
     </div>
   </section>
@@ -924,6 +931,7 @@ function pageFree(){
           <div class="kicker">DIAGNOSIS</div>
           <h3>あなたに合った“次の一歩”診断</h3>
           <p>3つの質問に答えると、あなたに向いた進め方が分かります。</p>
+          <p style="font-size:12.5px;color:var(--ink-3);margin-top:4px">※こちらは"進め方"の診断です。ジャンル(ハンドメイド以外でも作れるか)については、上の「ハンドメイド以外の方へ」をご覧ください。</p>
         </div>
         <div id="diagBox"></div>
       </div>
@@ -973,6 +981,11 @@ function pageLibrary(){
             <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--ink-2)"><span>完全版の進捗</span><span>${p.done} / ${p.total} 章</span></div>
             <div class="pbar" style="margin-top:6px"><div style="width:${p.pct}%"></div></div>
           </div>`:""}
+          ${(()=>{ const dk = savedDiagResult(); if(!dk) return ""; const r = D.diagnosis.results[dk];
+            return `<div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
+              <p style="font-size:13px;color:var(--ink-2);margin-bottom:8px">🧭 診断結果：<strong>${r.tag}</strong></p>
+              <a class="btn btn-s btn-sm" href="${r.cta.href}">${r.cta.label}</a>
+            </div>`; })()}
         </div>
         <div class="next-card">
           <div class="nc-t">次にできること</div>
@@ -1507,6 +1520,9 @@ function pageMentoring(){
       <div class="kicker">CUSTOM BUILD</div>
       <h2 class="sec-t" style="font-size:clamp(25px,3.8vw,38px)">自分だけでは難しい方へ<br>${M.title}</h2>
       <p class="lede" style="margin:18px auto 0">${M.tagline}</p>
+      <div class="btn-row" style="margin-top:22px">
+        <button class="btn btn-s" data-scroll="#kobetsu-price">料金・期間を見る ↓</button>
+      </div>
     </div>
   </section>
 
@@ -1562,6 +1578,7 @@ function pageMentoring(){
     <div class="wrap" style="max-width:860px">
       <div class="kicker">OPTION ─ MIKKE FUND</div>
       <h2 class="sec-t">${M.fund.title}</h2>
+      <p class="note" style="margin-top:8px">※Mikke FUNDは、Mikke OSのクラウドファンディングアプリです(準備中)。</p>
       <p class="lede" style="max-width:none;margin-top:18px"><strong>${M.fund.lead}</strong></p>
       <p class="lede" style="max-width:none;margin-top:12px">${M.fund.body}</p>
       <div class="fund-cycle">
@@ -1591,7 +1608,7 @@ function pageMentoring(){
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="kobetsu-price">
     <div class="wrap">
       <div class="grid g2">
         <div class="card">
@@ -1613,6 +1630,10 @@ function pageMentoring(){
         <ul>
           ${M.notes.map(n=>`<li>${n}</li>`).join("")}
         </ul>
+      </div>
+      <div class="callout callout-accent" style="margin-top:20px">
+        <p>50万円は大きな決断です。まずは完全版(39,800円)で全体像をつかんでから検討いただくのもおすすめです。</p>
+        <p style="margin-top:8px"><a href="#/textbook" style="font-weight:700;color:var(--orange-deep)">→ 完全版を見る</a></p>
       </div>
       ${memberArea}
     </div>
@@ -1789,7 +1810,8 @@ function bindEvents(parts){
   const diagBox = document.getElementById("diagBox");
   if(diagBox){
     diagPath = [];
-    renderDiag(D.diagnosis.start);
+    renderDiag(savedDiagResult() || D.diagnosis.start);
+    if(parts[1]==="diag") diagBox.scrollIntoView();
     diagBox.addEventListener("click", e=>{
       const nx = e.target.closest("[data-diag-next]");
       const bk = e.target.closest("[data-diag-back]");
@@ -1821,6 +1843,13 @@ function bindEvents(parts){
     const key = "nk_cc_" + cb.dataset.cc;
     cb.checked = localStorage.getItem(key)==="1";
     cb.addEventListener("change", ()=> localStorage.setItem(key, cb.checked?"1":"0"));
+  });
+  // ページ内スクロールボタン(hashルーティングと衝突するアンカーの代わり)
+  document.querySelectorAll("[data-scroll]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const target = document.querySelector(btn.dataset.scroll);
+      if(target) target.scrollIntoView({behavior:"smooth"});
+    });
   });
   // 問い合わせフォーム
   const contactForm = $("#contactForm");
