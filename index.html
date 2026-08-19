@@ -630,7 +630,48 @@ const store = {
   set done(arr){ localStorage.setItem("nk_done", JSON.stringify(arr)); },
   get user(){ return localStorage.getItem("nk_user") || ""; },
   set user(v){ localStorage.setItem("nk_user", v); },
+  get code(){ return localStorage.getItem("nk_code") || ""; },
+  set code(v){ v ? localStorage.setItem("nk_code", v) : localStorage.removeItem("nk_code"); },
 };
+
+// ---------- 購入コードで本文を取り出す ----------
+// 有料章の本文はこのファイルにも data.js にも入っていない。
+// Edge Function `nk-content` がコードを照合して返す。
+const NK_FN = `${D.supabase.url}/functions/v1/nk-content`;
+async function nkPost(code, chapterId){
+  const r = await fetch(NK_FN, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: D.supabase.anonKey,
+      Authorization: `Bearer ${D.supabase.anonKey}`,
+    },
+    body: JSON.stringify({ code, chapterId }),
+  });
+  if(!r.ok) throw new Error("server");
+  return r.json();
+}
+async function nkVerify(raw){
+  const code = (raw||"").toUpperCase().replace(/[^A-Z0-9]/g,"");
+  if(code.length !== 8) return { ok:false, message:"コードは英数8文字です。お手元のコードをご確認ください。" };
+  try{
+    const res = await nkPost(code, "verify");
+    if(!res.ok) return { ok:false, message:"このコードは使えません。お手数ですが本部までご連絡ください。" };
+    return { ok:true, code, role: res.role, email: res.email };
+  }catch(e){
+    return { ok:false, message:"接続できませんでした。時間をおいて、もう一度お試しください。" };
+  }
+}
+async function nkChapterBody(chapterId){
+  let cache = {};
+  try{ cache = JSON.parse(sessionStorage.getItem("nk_bodies") || "{}"); }catch(e){}
+  if(cache[chapterId]) return cache[chapterId];
+  const res = await nkPost(store.code, chapterId);
+  if(!res.ok || !res.body) throw new Error("not_found");
+  cache[chapterId] = res.body;
+  try{ sessionStorage.setItem("nk_bodies", JSON.stringify(cache)); }catch(e){}
+  return res.body;
+}
 const hasTextbook = ()=> ["textbook","mentoring"].includes(store.role);
 const hasMentoring = ()=> store.role === "mentoring";
 const roleLabel = (r)=>({free:"無料会員",textbook:"完全版会員",mentoring:"個別構築コース会員"}[r]||r);
@@ -1142,11 +1183,15 @@ function pageChapter(id){
       <ul>${c.outcome.map(o=>`<li>${o}</li>`).join("")}</ul>
     </div>` : "";
   const learn = c.learn.map(l=>`<li>${l}</li>`).join("");
-  const body = c.body || `
+  const needsFetch = !c.body && tb && !!store.code;
+  const body = c.body || (needsFetch ? `
+    <div class="ch-async" data-chapter="${c.id}">
+      <p style="text-align:center;color:#8a8177;padding:48px 0">本文を読み込んでいます…</p>
+    </div>` : `
     <div class="placeholder-body">
       <div class="ph-i">📖</div>
       <p><strong>この章の本文は現在準備中です。</strong><br>原稿(完全版v2)からの移植を順次進めています。<br>章の構成・ワーク・チェックリストは確定済みです。</p>
-    </div>`;
+    </div>`);
   const bridges = bridgeHtml(c.bridge) + bridgeHtml(c.bridge2);
   const checklist = c.checklist.map((t,i)=>`
     <label class="cc-item"><input type="checkbox" data-cc="${c.id}-${i}"> ${t}</label>`).join("");
@@ -1715,26 +1760,30 @@ function pageContact(presetTopic, source){
 
 // ---------- ページ:ログイン(モック) ----------
 function pageLogin(){
-  const logged = !!store.user;
+  const logged = !!store.code;
   return `
   <div class="auth">
-    <h1>${logged?"アカウント":"ログイン"}</h1>
-    <p class="a-sub">${logged?`ログイン中：${store.user}（${roleLabel(store.role)}）`:"MVPのためログインはモックです"}</p>
+    <h1>${logged?"アカウント":"購入コードを入力"}</h1>
+    <p class="a-sub">${logged
+      ? `${roleLabel(store.role)}として開いています${store.user?`（${store.user}）`:""}`
+      : "教科書をご購入いただいた方にお送りしたコードを入力してください"}</p>
     ${logged?`
-      <button class="btn btn-s btn-block" id="logoutBtn">ログアウト</button>
       <div class="demo-box">
         <div class="d-t">教材へ</div>
         <a class="btn btn-p btn-block" href="#/library">教材ダッシュボードへ</a>
-      </div>`
+      </div>
+      <button class="btn btn-s btn-block" id="logoutBtn">このブラウザからコードを外す</button>`
     :`
-      <div class="fld"><label>メールアドレス</label><input type="email" id="loginMail" placeholder="you@example.com"></div>
-      <div class="fld"><label>パスワード</label><input type="password" id="loginPw" placeholder="••••••••"></div>
-      <button class="btn btn-p btn-block" id="loginBtn">ログイン</button>
+      <div class="fld">
+        <label>購入コード</label>
+        <input type="text" id="codeInput" placeholder="ABCD-2345" maxlength="9" autocomplete="one-time-code" style="text-transform:uppercase;letter-spacing:.15em">
+      </div>
+      <button class="btn btn-p btn-block" id="codeBtn">教科書を開く</button>
+      <p id="codeMsg" style="margin-top:10px;font-size:13px;line-height:1.7;color:#8a8177"></p>
       <div class="demo-box">
-        <div class="d-t">— デモ用：権限を選んでログイン —</div>
-        <button class="btn btn-s btn-block" data-demo="free">無料会員としてログイン</button>
-        <button class="btn btn-s btn-block" data-demo="textbook">完全版購入者としてログイン</button>
-        <button class="btn btn-s btn-block" data-demo="mentoring">個別構築コース会員としてログイン</button>
+        <div class="d-t">まだお持ちでない方</div>
+        <a class="btn btn-s btn-block" href="#/textbook/chapter-01">第1章を無料で読む</a>
+        <a class="btn btn-s btn-block" href="#/free">無料版を読む</a>
       </div>`}
   </div>`;
 }
@@ -1939,28 +1988,42 @@ function bindEvents(parts){
       }
     });
   }
-  // ログイン(モック)
-  const loginBtn = $("#loginBtn");
-  if(loginBtn){
-    loginBtn.addEventListener("click", ()=>{
-      const mail = ($("#loginMail").value||"").trim();
-      if(!mail){ alert("メールアドレスを入力してください(モック)"); return; }
-      store.user = mail;
+  // 購入コードで開く
+  const codeBtn = $("#codeBtn");
+  if(codeBtn){
+    const codeInput = $("#codeInput");
+    const msg = $("#codeMsg");
+    const submit = async ()=>{
+      const raw = (codeInput.value||"").trim();
+      if(!raw){ msg.textContent = "コードを入力してください。"; return; }
+      codeBtn.disabled = true;
+      msg.textContent = "確認しています…";
+      const res = await nkVerify(raw);
+      codeBtn.disabled = false;
+      if(!res.ok){ msg.textContent = res.message; return; }
+      store.code = res.code;
+      store.role = res.role || "textbook";
+      if(res.email) store.user = res.email;
       location.hash = "#/library";
-    });
+    };
+    codeBtn.addEventListener("click", submit);
+    codeInput.addEventListener("keydown", e=>{ if(e.key === "Enter") submit(); });
   }
-  document.querySelectorAll("[data-demo]").forEach(b=>{
-    b.addEventListener("click", ()=>{
-      store.role = b.dataset.demo;
-      store.user = "demo@" + b.dataset.demo + ".jp";
-      location.hash = "#/library";
-    });
+  // 有料章の本文を取りに行く
+  document.querySelectorAll(".ch-async[data-chapter]").forEach(el=>{
+    nkChapterBody(el.dataset.chapter)
+      .then(html=>{ el.innerHTML = html; })
+      .catch(()=>{
+        el.innerHTML = `<p style="text-align:center;color:#b4553f;padding:40px 0">本文を読み込めませんでした。<br>ページを再読み込みしても直らないときは、本部までご連絡ください。</p>`;
+      });
   });
   const logoutBtn = $("#logoutBtn");
   if(logoutBtn){
     logoutBtn.addEventListener("click", ()=>{
+      store.code = "";
       store.user = "";
       store.role = "free";
+      try{ sessionStorage.removeItem("nk_bodies"); }catch(e){}
       route();
     });
   }
