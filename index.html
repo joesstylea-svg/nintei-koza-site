@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="スキルを、仕組みに変える。講座設計・価格・教材・講師制度・運用まで、順番に進めれば認定講座のかたちができていく構築型の学習サイトです。">
+<meta name="description" content="スキルを、仕組みに変える。自分の技術を認定講座にして、教える人を増やす。講座設計・価格・教材・講師制度・運用まで、順番に進めればかたちになる構築型の学習サイトです。">
 <meta name="theme-color" content="#E7A147">
 <meta property="og:type" content="website">
-<meta property="og:title" content="認定講座構築プログラム｜スキルを、仕組みに変える。">
-<meta property="og:description" content="講座設計・価格・教材・講師制度・運用まで、順番に進めれば認定講座のかたちができていく構築型学習サイト。">
+<meta property="og:title" content="スキルビジネス構築｜スキルを、仕組みに変える。">
+<meta property="og:description" content="自分の技術を認定講座にして、教える人を増やす。設計・価格・教材・講師制度・運用まで順番に進める構築型学習サイト。">
 <meta property="og:image" content="https://joesstylea-svg.github.io/nintei-koza-site/images/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E7A147'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='bold'%3E結%3C/text%3E%3C/svg%3E">
-<title>認定講座構築プログラム｜スキルを、仕組みに変える。</title>
+<title>スキルビジネス構築｜スキルを、仕組みに変える。</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -569,14 +569,15 @@ footer{background:var(--bg-warm);border-top:1px solid var(--line)}
 <footer>
   <div class="ft-in">
     <div>
-      <div class="ft-brand">認定講座構築プログラム</div>
-      <p class="ft-note">スキルを、仕組みに変える。順番に進めれば、認定講座のかたちができていく構築サイトです。</p>
+      <div class="ft-brand">スキルビジネス構築</div>
+      <p class="ft-note">スキルを、仕組みに変える。順番に進めれば、自分の認定講座のかたちができていく構築サイトです。</p>
+      <p class="ft-note" style="margin-top:10px">株式会社OJAS</p>
     </div>
     <div class="ft-cols">
       <div class="ft-col">
         <div class="ft-t">LEARN</div>
         <a href="#/free">無料版を読む</a>
-        <a href="#/textbook">完全版で作る</a>
+        <a href="#/textbook">教科書で作る</a>
         <a href="#/library">教材ダッシュボード</a>
       </div>
       <div class="ft-col">
@@ -588,9 +589,11 @@ footer{background:var(--bg-warm);border-top:1px solid var(--line)}
       </div>
       <div class="ft-col">
         <div class="ft-t">SUPPORT</div>
-        <a href="#/mentoring">個別構築コース</a>
+        <a href="#/course">構築コース</a>
+        <a href="#/mentoring">個別構築</a>
         <a href="#/login">ログイン</a>
-        <a href="#/admin">管理画面(モック)</a>
+        <a href="#/law">特定商取引法に基づく表記</a>
+        <a href="#/privacy">プライバシーポリシー</a>
       </div>
     </div>
   </div>
@@ -688,9 +691,43 @@ function refCode(){
 }
 
 // ---------- 共通部品 ----------
+// 外部の決済リンクには紹介元を引き継ぐ(Stripeの決済記録にも残す)。サイト内リンクはそのまま。
+function buyUrl(link){
+  if(!link) return "#/contact";
+  if(link.startsWith("#")) return link;
+  const ref = refCode();
+  if(!ref) return link;
+  return link + (link.includes("?") ? "&" : "?") + "client_reference_id=" + encodeURIComponent(ref);
+}
+// 構築コースと個別構築のちがい(両方のページに出す)
+function compareHtml(highlight){
+  const C = D.compare;
+  const hi = (col)=> col===highlight ? ' style="background:var(--bg-orange)"' : '';
+  return `
+  <section class="sec sec-soft">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">COMPARE</div>
+      <h2 class="sec-t">${C.title}</h2>
+      <p class="lede" style="max-width:none;margin-top:14px">${C.lead}</p>
+      <div style="overflow-x:auto;margin-top:22px">
+        <table class="tbl" style="min-width:620px">
+          <thead><tr><th></th><th${hi("a")}>${C.headA}</th><th${hi("b")}>${C.headB}</th></tr></thead>
+          <tbody>
+            ${C.rows.map(r=>`<tr><td><strong>${r.k}</strong></td><td${hi("a")}>${r.a}</td><td${hi("b")}>${r.b}</td></tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
+      <div class="btn-row" style="margin-top:22px">
+        <a class="btn ${highlight==="a"?"btn-s":"btn-p"}" href="#/course">構築コースを見る</a>
+        <a class="btn ${highlight==="b"?"btn-s":"btn-p"}" href="#/mentoring">個別構築を見る</a>
+      </div>
+    </div>
+  </section>`;
+}
+
 function navHtml(){
   const items = [
-    ["#/","ホーム"],["#/free","無料版"],["#/library","教材"],
+    ["#/","ホーム"],["#/free","無料版"],["#/library","教材"],["#/course","構築コース"],
     ["#/academy","Academy"],["#/community","Community"],["#/mentoring","個別構築"],
   ];
   const cur = location.hash || "#/";
@@ -1134,9 +1171,9 @@ function pageTextbook(){
         <div class="pbar"><div style="width:${p.pct}%"></div></div>
       </div>`
     : lockCard("ここから先で、講座が形になります",
-        "第1章はサンプルで読めます。完全版では、全11章＋付録のワーク・テンプレートを使って、あなたの講座を実際に組み立てていきます(39,800円)。",
-        "完全版の先行案内を受け取る(決済準備中)", D.links.buyTextbook,
-        {text:"まず第1章をサンプルで読む", href:"#/textbook/chapter-01"});
+        "第1章はサンプルで読めます。教科書では、全11章＋付録のワーク・テンプレートを使って、あなたの講座を実際に組み立てていきます(39,800円)。ご購入後、閲覧コードをメールでお送りします。",
+        "教科書を購入する(39,800円)", buyUrl(D.links.buyTextbook),
+        {text:"すでにコードをお持ちの方", href:"#/login"});
   return `
   <section class="sec sec-soft">
     <div class="wrap">
@@ -1158,7 +1195,7 @@ function pageChapter(id){
   const tb = hasTextbook();
   if(!tb && !c.sample){
     return `<section class="sec"><div class="wrap">
-      ${lockCard("この章は完全版で開きます","完全版(39,800円)では、全11章＋付録のワーク・テンプレートを使って、あなたの講座を実際に組み立てていきます。","完全版の先行案内を受け取る(決済準備中)",D.links.buyTextbook,{text:"まず第1章をサンプルで読む",href:"#/textbook/chapter-01"})}
+      ${lockCard("この章は教科書で開きます","教科書(39,800円)では、全11章＋付録のワーク・テンプレートを使って、あなたの講座を実際に組み立てていきます。ご購入後、閲覧コードをメールでお送りします。","教科書を購入する(39,800円)",buyUrl(D.links.buyTextbook),{text:"すでにコードをお持ちの方",href:"#/login"})}
       <div class="center"><a class="btn btn-s" href="#/textbook">STEP一覧へ戻る</a></div>
     </div></section>`;
   }
@@ -1200,7 +1237,7 @@ function pageChapter(id){
   const prevOpen = prev && (tb || prev.sample);
   const nextOpen = next && (tb || next.sample);
   const nextBtn = nextOpen ? `<a class="btn btn-p" href="#/textbook/${next.id}">次の章へ →</a>`
-    : next ? `<a class="btn btn-p" href="${D.links.buyTextbook}">先行案内を受け取る →</a>` : "";
+    : next ? `<a class="btn btn-p" href="${buyUrl(D.links.buyTextbook)}">教科書を購入する →</a>` : "";
   // 読む目安(本文の文字数から算出。目安550字/分)
   const mins = c.body ? Math.max(2, Math.round(c.body.replace(/<[^>]+>/g,"").length/550)) : 0;
   return `
@@ -1562,6 +1599,155 @@ function pageCommunityPricing(){
   </section>`;
 }
 
+// ---------- ページ:プライバシーポリシー ----------
+function pagePrivacy(){
+  const P = D.privacy;
+  return `
+  <section class="sec">
+    <div class="wrap" style="max-width:760px">
+      <div class="kicker">PRIVACY</div>
+      <h2 class="sec-t">${P.title}</h2>
+      <p class="lede" style="max-width:none;margin-top:16px">${P.lead}</p>
+      <div class="feature-list" style="margin-top:28px">
+        ${P.sections.map(s=>`<div class="feature"><div class="f-head">${s.h}</div><p>${s.body}</p></div>`).join("")}
+      </div>
+      <p class="note" style="margin-top:22px">${P.updated}</p>
+      <div class="center" style="margin-top:34px">
+        <a class="btn btn-s" href="#/">ホームに戻る</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+// ---------- ページ:特定商取引法に基づく表記 ----------
+function pageLaw(){
+  const L = D.law;
+  return `
+  <section class="sec">
+    <div class="wrap" style="max-width:820px">
+      <div class="kicker">LEGAL</div>
+      <h2 class="sec-t">${L.title}</h2>
+      <div style="overflow-x:auto;margin-top:26px">
+        <table class="tbl" style="min-width:100%">
+          <tbody>
+            ${L.rows.map(r=>`<tr><th style="width:34%;text-align:left;vertical-align:top">${r.k}</th><td>${r.v}</td></tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:22px">${L.note}</p>
+      <div class="center" style="margin-top:34px">
+        <a class="btn btn-s" href="#/">ホームに戻る</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+// ---------- ページ:スキルビジネス構築コース(79,800円) ----------
+function pageCourse(){
+  const C = D.course;
+  const check = (arr)=>`<ul style="margin:14px 0 0 4px">
+    ${arr.map(i=>`<li style="list-style:none;padding:6px 0 6px 26px;position:relative;font-size:14.5px;color:var(--body)"><span style="position:absolute;left:0;color:var(--orange);font-weight:700">✓</span>${i}</li>`).join("")}
+  </ul>`;
+  return `
+  <section class="sec sec-soft">
+    <div class="wrap center">
+      <div class="kicker">BUILD SUPPORT</div>
+      <h2 class="sec-t" style="font-size:clamp(25px,3.8vw,38px)">アプリの設定だけが進まない方へ<br>${C.title}</h2>
+      <p class="lede" style="margin:18px auto 0">${C.tagline}</p>
+      <div class="btn-row" style="margin-top:22px">
+        <button class="btn btn-s" data-scroll="#course-price">料金を見る ↓</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="max-width:860px">
+      <p class="lede" style="max-width:none">こんなところで止まっていませんか。</p>
+      <ul class="problem" style="margin-top:18px">
+        ${C.intro.map(i=>`<li>${i}</li>`).join("")}
+      </ul>
+      <p class="lede" style="max-width:none;margin-top:26px">講座の<strong>つくり方は教科書にまとまっています</strong>。このコースは、そのうえで「アプリの設定だけが進まない」というところを、画面を一緒に見ながら越えるための伴走コースです。</p>
+    </div>
+  </section>
+
+  <section class="sec sec-soft">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">RESULT</div>
+      <h2 class="sec-t">このコースで終わる状態</h2>
+      ${check(C.result)}
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">PROCESS</div>
+      <h2 class="sec-t">進め方（オンライン全3回）</h2>
+      <div class="feature-list" style="margin-top:26px">
+        ${C.flow.map(f=>`<div class="feature"><div class="f-head">${f.step}</div><p>${f.desc}</p></div>`).join("")}
+      </div>
+      <p class="note" style="margin-top:18px">※ 日程はお申し込み後、メールにてご案内します。ご希望があればお申し込み時の備考欄にお書きください。</p>
+    </div>
+  </section>
+
+  <section class="sec sec-soft" id="course-price">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">PRICE</div>
+      <h2 class="sec-t">料金</h2>
+      <div class="price-box" style="margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px">
+        <p style="font-size:32px;font-weight:700;color:var(--ink);margin:0">${C.price}</p>
+        <p style="font-size:14px;color:var(--ink-2);margin:8px 0 0">${C.priceNote}</p>
+        <div class="btn-row" style="margin-top:20px">
+          <a class="btn btn-p" href="${buyUrl(D.links.buyCourse)}">このコースを申し込む</a>
+        </div>
+      </div>
+
+      <div class="admin-panel" style="margin-top:22px">
+        <h3>すでに教科書をお持ちの方</h3>
+        <p style="font-size:14.5px;color:var(--ink-2)">お手元の購入コードを入れると、差額 ${C.upgradePrice} でのお申し込みにご案内します。</p>
+        <div class="fld" style="margin-top:12px">
+          <input type="text" id="upCode" placeholder="ABCD-2345" maxlength="9" style="text-transform:uppercase;letter-spacing:.15em">
+        </div>
+        <button class="btn btn-s" id="upBtn">コードを確認する</button>
+        <p id="upMsg" style="margin-top:10px;font-size:13.5px;line-height:1.7;color:var(--ink-2)"></p>
+      </div>
+
+      <div style="margin-top:30px">
+        <h3 style="font-size:17px;color:var(--ink)">含まれるもの</h3>
+        ${check(C.included)}
+        <h3 style="font-size:17px;color:var(--ink);margin-top:26px">含まれないもの</h3>
+        <ul style="margin:14px 0 0 4px">
+          ${C.notIncluded.map(i=>`<li style="list-style:none;padding:6px 0 6px 26px;position:relative;font-size:14.5px;color:var(--ink-2)"><span style="position:absolute;left:0;color:var(--ink-3)">—</span>${i}</li>`).join("")}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="max-width:860px">
+      <div class="feature" style="background:var(--bg-orange);border:none">
+        <div class="f-head">${C.supporter.title}</div>
+        <p>${C.supporter.body}</p>
+      </div>
+    </div>
+  </section>
+
+  ${compareHtml("a")}
+
+  <section class="sec">
+    <div class="wrap" style="max-width:760px">
+      <div class="kicker">FAQ</div>
+      <h2 class="sec-t">よくあるご質問</h2>
+      <div class="faq" style="margin-top:24px">
+        ${C.faq.map(f=>`<details class="faq-item"><summary>${f.q}</summary><p>${f.a}</p></details>`).join("")}
+      </div>
+      <div class="center" style="margin-top:34px">
+        <a class="btn btn-p" href="${buyUrl(D.links.buyCourse)}">このコースを申し込む</a>
+        <a class="btn btn-s" href="#/textbook">先に教科書を見る</a>
+      </div>
+    </div>
+  </section>`;
+}
+
 // ---------- ページ:個別構築コース(旧・伴走コース) ----------
 function pageMentoring(){
   const M = D.mentoring;
@@ -1672,6 +1858,8 @@ function pageMentoring(){
       </div>
     </div>
   </section>
+
+  ${compareHtml("b")}
 
   <section class="sec" id="kobetsu-price">
     <div class="wrap">
@@ -1856,6 +2044,9 @@ function route(){
   else if(parts[0]==="academy") html = pageAcademy();
   else if(parts[0]==="community" && parts[1]==="pricing") html = pageCommunityPricing();
   else if(parts[0]==="community") html = pageCommunity();
+  else if(parts[0]==="privacy") html = pagePrivacy();
+  else if(parts[0]==="law") html = pageLaw();
+  else if(parts[0]==="course") html = pageCourse();
   else if(parts[0]==="mentoring") html = pageMentoring();
   else if(parts[0]==="contact") html = pageContact(parts[1], prevHash);
   else if(parts[0]==="login") html = pageLogin();
@@ -2008,6 +2199,24 @@ function bindEvents(parts){
     };
     codeBtn.addEventListener("click", submit);
     codeInput.addEventListener("keydown", e=>{ if(e.key === "Enter") submit(); });
+  }
+  // 教科書をお持ちの方の差額確認（購入コードを購入証明として使う）
+  const upBtn = $("#upBtn");
+  if(upBtn){
+    const upCode = $("#upCode");
+    const upMsg = $("#upMsg");
+    const checkUp = async ()=>{
+      const raw = (upCode.value||"").trim();
+      if(!raw){ upMsg.textContent = "コードを入力してください。"; return; }
+      upBtn.disabled = true;
+      upMsg.textContent = "確認しています…";
+      const res = await nkVerify(raw);
+      upBtn.disabled = false;
+      if(!res.ok){ upMsg.textContent = res.message; return; }
+      upMsg.innerHTML = `確認できました。差額 ${D.course.upgradePrice} でお申し込みいただけます。<br><a class="btn btn-p btn-sm" style="margin-top:12px" href="${buyUrl(D.links.buyUpgrade)}">差額で申し込む</a>`;
+    };
+    upBtn.addEventListener("click", checkUp);
+    upCode.addEventListener("keydown", e=>{ if(e.key === "Enter") checkUp(); });
   }
   // 有料章の本文を取りに行く
   document.querySelectorAll(".ch-async[data-chapter]").forEach(el=>{
