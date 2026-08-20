@@ -1122,14 +1122,14 @@ function pageLibrary(){
           <div class="c-label">APP ─ 運用する</div>
           <h3>Academy</h3>
           <p class="c-desc">作った講座を、回る状態にするMikke OSアプリ。</p>
-          <div class="c-price">料金は準備中(月額制を予定)</div>
+          <div class="c-price">${D.academy.pricing.short}</div>
           <a class="btn btn-s btn-sm" href="#/academy">紹介を見る</a>
         </div>
         <div class="card">
           <div class="c-label">APP ─ 育てる</div>
           <h3>Community</h3>
           <p class="c-desc">受講後のつながりを育てるMikke OSアプリ。必要な場合だけ追加できます。</p>
-          <div class="c-price">料金は準備中(月額制を予定)</div>
+          <div class="c-price">${D.community.pricing.short}</div>
           <a class="btn btn-s btn-sm" href="#/community">紹介を見る</a>
         </div>
       </div>
@@ -1299,7 +1299,7 @@ function pageAcademy(){
       <p class="lede">完全版で講座の設計ができたら、次に必要になるのは運用の仕組みです。<br><br>Academyは、講座LP・申込・入金・キット・教材・講師管理までを1つにまとめた、認定講座の本部運営アプリです。手作業の運用(note・STUDIO・手元リスト)で手が回らなくなってきたら、ここに引っ越せます。</p>
       <div class="btn-row">
         <a class="btn btn-p" href="#/contact/academy">Academyについて相談する</a>
-        <a class="btn btn-s" href="#/academy/pricing">料金について(準備中)</a>
+        <a class="btn btn-s" href="#/academy/pricing">料金を見る</a>
       </div>
     </div>
   </section>
@@ -1429,34 +1429,52 @@ function pageAcademy(){
       </div>
       <div class="callout" style="margin-top:34px">
         <p><strong>料金について</strong></p>
-        <p style="font-size:14.5px;margin-top:6px">料金は現在準備中です(月額制を予定)。決まり次第ご案内しますので、導入をご検討の方はまずご相談ください。</p>
+        <p style="font-size:14.5px;margin-top:6px">${D.academy.pricing.label}は<strong>${D.academy.pricing.short}</strong>。登録している講師の人数で決まります。講師の方の利用は無料です。</p>
       </div>
       <div class="btn-row center" style="margin-top:26px">
         <a class="btn btn-p" href="#/contact/academy">Academyについて相談する</a>
+        <a class="btn btn-s" href="#/academy/pricing">料金を見る</a>
       </div>
     </div>
   </section>`;
 }
 
 function pageAcademyPricing(){
+  const P = D.academy.pricing;
+  const rows = P.tiers.map(t=>`<tr><td>${t.n}</td><td class="ok">${t.p}</td></tr>`).join("");
+  const notes = P.notes.map(n=>`<li style="margin:10px 0;font-size:14.5px">${n}</li>`).join("");
   return `
   <section class="sec sec-soft">
     <div class="wrap center">
       <div class="kicker">ACADEMY PRICING</div>
       <h2 class="sec-t">Academyアプリ 料金</h2>
-      <p class="lede" style="margin:16px auto 0">料金は現在準備中です。<strong>月額制</strong>を予定しており、小さく始めて講座と講師が増えたら育てられる形を検討しています。決まり次第、このページでご案内します。</p>
+      <p class="lede" style="margin:16px auto 0">料金は、Academyに登録している<strong>講師の人数</strong>で決まります。講座をいくつ作っても、講師の方が何人ログインしても、追加料金はかかりません。</p>
     </div>
   </section>
   <section class="sec">
     <div class="wrap" style="max-width:760px">
-      <div class="callout">
-        <p><strong>決まっている方針</strong></p>
-        <ul>
-          <li>月額制(講座数・講師数の規模に合わせたプランを検討中)</li>
-          <li>決済機能はアプリに内蔵せず、Stripe・Square・銀行振込など普段お使いの外部決済リンクを設定して運用します</li>
-          <li>導入をご検討の方には、料金確定前でも個別にご案内できます</li>
-        </ul>
+      <div class="kicker">${P.label}</div>
+      <table class="tbl" style="min-width:100%">
+        <thead><tr><th>講師数</th><th>月額(税込)</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p class="note">${P.example}</p>
+
+      <div class="callout" style="margin-top:30px">
+        <p><strong>${P.setup}</strong></p>
+        <p style="font-size:14.5px;margin-top:6px">${P.setupNote}</p>
       </div>
+
+      <div class="callout" style="margin-top:30px">
+        <p><strong>料金の条件</strong></p>
+        <ul>${notes}</ul>
+      </div>
+
+      <div class="callout" style="margin-top:30px">
+        <p><strong>受講料の決済について</strong></p>
+        <p style="font-size:14.5px;margin-top:6px">受講生からの受講料の決済機能はアプリに内蔵していません。Stripe・Square・銀行振込など、普段お使いの外部決済リンクを設定して運用します。</p>
+      </div>
+
       <div class="btn-row center" style="margin-top:30px">
         <a class="btn btn-p" href="#/contact/academy">Academyについて相談する</a>
         <a class="btn btn-s" href="#/academy">Academyの紹介へ戻る</a>
@@ -1481,7 +1499,7 @@ function pageCommunity(){
       <p class="lede">Communityは、認定講座の受講後に交流・質問・報告・イベントなどの場を作りたい人向けのMikke OSアプリです。<br><br>認定講座に必ずコミュニティが必要なわけではありません。まずはDiscord(第9章)で十分。講師が増えて「自分のブランドの場」として育てたくなったときに移せる、会員制コミュニティアプリです。</p>
       <div class="btn-row">
         <a class="btn btn-p" href="#/contact/community">Communityについて相談する</a>
-        <a class="btn btn-s" href="#/community/pricing">料金について(準備中)</a>
+        <a class="btn btn-s" href="#/community/pricing">料金を見る</a>
       </div>
     </div>
   </section>
@@ -1563,34 +1581,35 @@ function pageCommunity(){
       </div>
       <div class="callout" style="margin-top:34px">
         <p><strong>料金について</strong></p>
-        <p style="font-size:14.5px;margin-top:6px">料金は現在準備中です(月額制を予定)。まずはAcademyや個別構築コースをご利用の方に、必要に応じて個別にご案内します。</p>
+        <p style="font-size:14.5px;margin-top:6px"><strong>${D.community.pricing.free}</strong>。そのあとは会員数の規模に合わせた月額制(月額2,980円〜・税込)です。</p>
       </div>
       <div class="btn-row center" style="margin-top:26px">
         <a class="btn btn-p" href="#/contact/community">Communityについて相談する</a>
+        <a class="btn btn-s" href="#/community/pricing">料金を見る</a>
       </div>
     </div>
   </section>`;
 }
 
 function pageCommunityPricing(){
+  const P = D.community.pricing;
   return `
   <section class="sec sec-soft">
     <div class="wrap center">
       <div class="kicker">COMMUNITY PRICING</div>
       <h2 class="sec-t">Communityアプリ 料金</h2>
-      <p class="lede" style="margin:16px auto 0">料金は現在準備中です。<strong>月額制</strong>を予定しています。まずは、Academyや個別構築コースをご利用の方に向けて、必要に応じて個別にご案内します。</p>
+      <p style="font-size:34px;font-weight:700;color:var(--orange-deep);margin:18px 0 0">${P.free}</p>
+      <p class="lede" style="margin:12px auto 0">${P.lead}</p>
     </div>
   </section>
   <section class="sec">
     <div class="wrap" style="max-width:760px">
       <div class="callout">
-        <p><strong>決まっている方針</strong></p>
         <ul>
-          <li>月額制(コミュニティの規模に合わせたプランを検討中)</li>
-          <li>Academyとは独立したアプリとして提供し、必要な場合のみ講座と連携します</li>
-          <li>導入をご検討の方には、料金確定前でも個別にご案内できます</li>
+          ${P.points.map(i=>`<li style="margin:10px 0;font-size:14.5px">${i}</li>`).join("")}
         </ul>
       </div>
+      <p class="note" style="margin-top:16px">${P.note}</p>
       <div class="btn-row center" style="margin-top:30px">
         <a class="btn btn-p" href="#/contact/community">Communityについて相談する</a>
         <a class="btn btn-s" href="#/community">Communityの紹介へ戻る</a>
@@ -1718,6 +1737,12 @@ function pageCourse(){
         <ul style="margin:14px 0 0 4px">
           ${C.notIncluded.map(i=>`<li style="list-style:none;padding:6px 0 6px 26px;position:relative;font-size:14.5px;color:var(--ink-2)"><span style="position:absolute;left:0;color:var(--ink-3)">—</span>${i}</li>`).join("")}
         </ul>
+      </div>
+
+      <div class="callout" style="margin-top:30px">
+        <p><strong>${C.appNote.title}</strong></p>
+        <p style="font-size:14.5px;margin-top:6px">${C.appNote.body}</p>
+        <p style="margin-top:10px"><a href="${C.appNote.link}">${C.appNote.linkLabel}</a></p>
       </div>
     </div>
   </section>
